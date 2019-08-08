@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('page.index');
 });
 Route::get('/index', function () {
