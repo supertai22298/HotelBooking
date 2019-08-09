@@ -15,7 +15,7 @@ Route::get('/home', function () {
     return view('page.index');
 });
 Route::get('/index', function () {
-    return view('page.index');
+    return view('page.hotel-grid-left-sidebar');
 });
 Route::get('/login', function () {
     return view('page.login');
