@@ -17,6 +17,9 @@ Route::get('/home', function () {
 Route::get('/hotel-grid-left-sidebar', function () {
     return view('page.hotel-grid-left-sidebar');
 });
+Route::get('/hotel-detail',function(){
+    return view('page.hotel-detail');
+});
 Route::get('/login', function () {
     return view('page.login');
 });

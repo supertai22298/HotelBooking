@@ -33,6 +33,10 @@
 
     <!-- Magnific Gallery -->
     <link rel="stylesheet" href="page_asset/css/magnific-popup.css">
+
+    <!-- Slick Stylesheet -->
+		<link rel="stylesheet" href="page_asset/css/slick.css">
+    <link rel="stylesheet" href="page_asset/css/slick-theme.css">
     @yield('css')
 </head>
 <body id="@yield('id-body')">
@@ -69,6 +73,8 @@
 <script src="page_asset/js/custom-owl.js"></script>
 <script src="page_asset/js/custom-date-picker.js"></script>
 <script src="page_asset/js/custom-gallery.js"></script>
+<script src="page_asset/js/slick.min.js"></script>
+<script src="page_asset/js/custom-slick.js"></script>
 <!-- Page Scripts Ends -->
 @yield('javascript')
 </body>
