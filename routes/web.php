@@ -35,3 +35,27 @@ Route::get('/user-profile', function () {
 Route::get('/dashboard', function () {
     return view('page.dashboard');
 });
+Route::get('/wishlist', function () {
+    return view('page.wishlist');
+});
+Route::get('/contact-us', function () {
+    return view('page.contact-us');
+});
+Route::get('/error-page', function () {
+    return view('page.error-page');
+});
+Route::get('/forgot-password', function () {
+    return view('page.forgot-password');
+});
+Route::get('/cards', function () {
+    return view('page.cards');
+});
+Route::get('/bookings', function () {
+    return view('page.bookings');
+});
+Route::get('/about-us', function () {
+    return view('page.about-us');
+});
+Route::get('/coming-soon', function () {
+    return view('page.coming-soon');
+});

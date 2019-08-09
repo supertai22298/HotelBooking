@@ -395,48 +395,29 @@ main-homepage
         
     </section><!-- end flexslider-container -->
     
-    
     <!--=============== HOTEL OFFERS ===============-->
     @include('page.components.hotel-offers')
-    
-    
+
     <!--======================= BEST FEATURES =====================-->
     @include('page.components.best-features')
-            
-    
-    <!--=============== TOUR OFFERS ===============-->
-   
-    @include('page.components.tour-offers')
-                 
-    
-    <!--=============== CRUISE OFFERS ===============-->
-    @include('page.components.cruise-offers')
-                       
-    
+
+    <!--=============== LUXURY ROOMS ===============-->
+    @include('page.components.luxury-rooms') 
+        
+    <!--================ PACKAGES ==============-->
+    @include('page.components.packages')
+
     <!--==================== VIDEO BANNER ===================-->
     @include('page.components.video-banner')
-    
-    
-    <!--================= FLIGHT OFFERS =============-->
-    @include('page.components.flight-offers')
-                           
     
     <!--==================== HIGHLIGHTS ====================-->
     @include('page.components.hightlights')
     
-         
-    <!--================ VEHICLE OFFERS ==============-->
-    @include('page.components.vehicle-offers')
-
-    
-    
     <!--==================== TESTIMONIALS ====================-->
     @include('page.components.testimonials')   
     
-
     <!--================ LATEST BLOG ==============-->
     @include('page.components.lasted-blog')
-    
 
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter-1')
