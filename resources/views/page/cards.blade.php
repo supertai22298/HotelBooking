@@ -1,4 +1,4 @@
-@extends('page_layout.page-masterpage')
+@extends('page_layout.page_masterpage')
 
 @section('title')
 Card
@@ -123,9 +123,9 @@ Card
     </section><!-- end innerpage-wrapper -->
 
     <!--======================= BEST FEATURES =====================-->
-    @include('page.components.best-features')
+    @include('page.components.best_features')
 
     <!--========================= NEWSLETTER-1 ==========================-->
-    @include('page.components.newsletter-1')
+    @include('page.components.newsletter_1')
 
 @endsection

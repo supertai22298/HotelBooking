@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookingStatusesTable extends Migration
+class CreatePackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateBookingStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_statuses', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status', 20);
-		    $table->text('description');
-		    $table->unsignedBigInteger('sort_order');
-		    $table->string('ative', 30);
+            $table->unsignedBigInteger('hotel_id');
+            $table->string('package');
+            $table->float('price', 8, 2);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateBookingStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_statuses');
+        Schema::dropIfExists('packages');
     }
 }

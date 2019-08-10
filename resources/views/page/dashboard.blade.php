@@ -1,4 +1,4 @@
-@extends('page_layout.page-masterpage')
+@extends('page_layout.page_masterpage')
 
 @section('title')
 Dashboard
@@ -194,6 +194,6 @@ Dashboard
         </section><!-- end innerpage-wrapper -->
 
     <!--========================= NEWSLETTER-1 ==========================-->
-    @include('page.components.newsletter-1')
+    @include('page.components.newsletter_1')
 
 @endsection

@@ -1,4 +1,4 @@
-@extends('page_layout.page-masterpage')
+@extends('page_layout.page_masterpage')
 
 @section('title')
 Thông tin tài khoản
@@ -88,6 +88,6 @@ Thông tin tài khoản
     </section><!-- end innerpage-wrapper -->
 
     <!--========================= NEWSLETTER-1 ==========================-->
-    @include('page.components.newsletter-1')
+    @include('page.components.newsletter_1')
 
 @endsection
