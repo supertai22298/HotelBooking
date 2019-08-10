@@ -15,17 +15,16 @@ class CreateReservationsAgentsTable extends Migration
   {
     Schema::create('reservations_agents', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->string('first_name', 20);
-      $table->string('last_name', 20);
-      $table->string('address', 40);
-      $table->string('address_2', 40)->nullable();
-      $table->string('city', 40);
-      $table->string('state', 40)->nullable();
-      $table->string('country', 40);
-      $table->string('hotel_phone_number', 11);
-      $table->string('Cellular_number', 11)->nullable();
-      $table->string('email_address', 30);
-      $table->integer('gender');
+      $table->string('first_name');
+      $table->string('last_name');
+      $table->string('address');
+      $table->string('address_2')->nullable();
+      $table->string('city');
+      $table->string('country');
+      $table->string('hotel_phone_number');
+      $table->string('cellular_number')->nullable();
+      $table->string('email_address');
+      $table->unsignedBigInteger('gender');
       $table->timestamps();
     });
   }

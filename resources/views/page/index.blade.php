@@ -1,4 +1,4 @@
-@extends('page_layout.page-masterpage')
+@extends('page_layout.page_masterpage')
 @section('title')
     Trang chủ
 @endsection
@@ -396,19 +396,19 @@ main-homepage
     </section><!-- end flexslider-container -->
     
     <!--=============== HOTEL OFFERS ===============-->
-    @include('page.components.hotel-offers')
+    @include('page.components.hotel_offers')
 
     <!--======================= BEST FEATURES =====================-->
-    @include('page.components.best-features')
+    @include('page.components.best_features')
 
     <!--=============== LUXURY ROOMS ===============-->
-    @include('page.components.luxury-rooms') 
+    @include('page.components.luxury_rooms')
         
     <!--================ PACKAGES ==============-->
     @include('page.components.packages')
 
     <!--==================== VIDEO BANNER ===================-->
-    @include('page.components.video-banner')
+    @include('page.components.video_banner')
     
     <!--==================== HIGHLIGHTS ====================-->
     @include('page.components.hightlights')
@@ -417,10 +417,10 @@ main-homepage
     @include('page.components.testimonials')   
     
     <!--================ LATEST BLOG ==============-->
-    @include('page.components.lasted-blog')
+    @include('page.components.lasted_blog')
 
     <!--========================= NEWSLETTER-1 ==========================-->
-    @include('page.components.newsletter-1')
+    @include('page.components.newsletter_1')
     
 
 @endsection

@@ -15,14 +15,14 @@ class CreateBookingsTable extends Migration
   {
     Schema::create('bookings', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->integer('hotel_id');
-      $table->integer('guest_id');
-      $table->integer('reservation_agent_id');
-      $table->integer('booking_status_id');
+      $table->unsignedBigInteger('hotel_id');
+      $table->unsignedBigInteger('guest_id');
+      $table->unsignedBigInteger('reservation_agent_id');
+      $table->unsignedBigInteger('booking_status_id');
       $table->dateTime('date_from');
       $table->dateTime('date_to');
-      $table->integer('room_count');
-      $table->string('rate', 20)->nullable();
+      $table->unsignedBigInteger('room_count');
+      $table->string('rate')->nullable();
       $table->timestamps();
     });
   }

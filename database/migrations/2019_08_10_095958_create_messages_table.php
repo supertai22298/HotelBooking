@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBookingStatusesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateBookingStatusesTable extends Migration
      */
     public function up()
     {
-        Schema::create('booking_statuses', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('status', 20);
-		    $table->text('description');
-		    $table->unsignedBigInteger('sort_order');
-		    $table->string('ative', 30);
+            $table->string('guest_name')->nullable();
+            $table->string('email');
+            $table->string('subject')->nullable();
+            $table->string('message')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateBookingStatusesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('booking_statuses');
+        Schema::dropIfExists('messages');
     }
 }

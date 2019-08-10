@@ -15,9 +15,9 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('room_id');
-		    $table->integer('rate_type_id');
-		    $table->string('rate', 20);
+            $table->unsignedBigInteger('room_id');
+		    $table->unsignedBigInteger('rate_type_id');
+		    $table->string('rate');
 		    $table->dateTime('from_date');
 		    $table->dateTime('to_date');
             $table->timestamps();

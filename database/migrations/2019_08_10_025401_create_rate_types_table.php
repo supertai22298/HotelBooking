@@ -15,11 +15,11 @@ class CreateRateTypesTable extends Migration
     {
         Schema::create('rate_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('rate_type_id');
-		    $table->string('rate_type', 20);
+            $table->unsignedBigInteger('rate_type_id');
+		    $table->string('rate_type');
 		    $table->text('description');
-		    $table->integer('sort_order');
-		    $table->string('ative', 30);
+		    $table->unsignedBigInteger('sort_order');
+		    $table->string('active');
             $table->timestamps();
         });
     }

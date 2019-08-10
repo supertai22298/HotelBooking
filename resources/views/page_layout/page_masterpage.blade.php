@@ -46,14 +46,14 @@
 
 
     <!--======== SEARCH-OVERLAY =========-->
-    @include('page_layout.search-overlay')
+    @include('page_layout.search_overlay')
 
 
     <!--============= TOP-BAR ===========-->
-    @include('page_layout.top-bar')
+    @include('page_layout.top_bar')
 
     <!--================ NAV BAR===============-->
-    @include('page_layout.nav-bar')
+    @include('page_layout.nav_bar')
 
     @yield('content')
 

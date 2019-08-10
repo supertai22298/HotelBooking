@@ -15,9 +15,9 @@ class CreateRoomsBookedsTable extends Migration
     {
         Schema::create('rooms_bookeds', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('booking_id');
-		    $table->integer('room_id');
-		    $table->string('rate', 20)->default(null);
+            $table->unsignedBigInteger('booking_id');
+		    $table->unsignedBigInteger('room_id');
+		    $table->string('rate')->default(null);
             $table->timestamps();
         });
     }

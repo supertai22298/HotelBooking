@@ -15,12 +15,13 @@ class CreateRoomsTable extends Migration
     {
         Schema::create('rooms', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('hotel_id');
-		    $table->integer('room_type_id');
-		    $table->integer('room_status_id');
-		    $table->integer('floor');
-		    $table->integer('room_number');
-		    $table->text('description');
+            $table->unsignedBigInteger('hotel_id');
+		    $table->unsignedBigInteger('room_type_id');
+		    $table->unsignedBigInteger('room_status_id');
+		    $table->unsignedBigInteger('floor');
+		    $table->unsignedBigInteger('room_number');
+            $table->text('description');
+            $table->float('price', 8, 2);
             $table->timestamps();
         });
     }
