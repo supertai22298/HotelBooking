@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Packages extends Model
+class Package extends Model
 {
     //
+    protected $table = 'packages';
+    public $timestamp = true;
 }
