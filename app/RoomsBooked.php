@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RoomType extends Model
+class RoomsBooked extends Model
 {
     //
-    protected $table = 'room_types';
+    protected $table = 'rooms_booked';
     public $timestamp = true;
 }

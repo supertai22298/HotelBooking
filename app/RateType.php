@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RateTypes extends Model
+class RateType extends Model
 {
     //
+    protected $table = 'rate_types';
+    public $timestamp = true;
 }

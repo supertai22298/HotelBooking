@@ -4,7 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Rates extends Model
+class Rate extends Model
 {
     //
+    protected $table = 'rates';
+    public $timestamp = true;
 }
