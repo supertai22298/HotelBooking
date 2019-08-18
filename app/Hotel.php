@@ -12,13 +12,23 @@ class Hotel extends Model
     protected $table = 'hotels';
     public $timestamp = true;
     
-    // one - many relationship Hotel -> Rooms
+    // one - many relationship between hotel -> hotel_utilities
+    public function hotel_utilities(){
+        return $this->hasMany('App\HotelUtility');
+    }
+    // one - many relationship between hotel -> rooms
     public function rooms(){
         return $this->hasMany('App\Room');
     }
 
-    // one - many relationship Hotel -> Bookings
-    public function bookings(){
-        return $this->hasMany('App\Booking');
+    // many - many relationship between hotels -> room_statuses
+    public function room_statuses(){
+        return $this->belongsToMany('App\RoomStatus', 'rooms', 'hotel_id', 'room_status_id');
     }
+
+    // many - many relationship between hotels -> room_types
+    public function room_types(){
+        return $this->belongsToMany('App\RoomType', 'rooms', 'hotel_id', 'room_type_id');
+    }
+    
 }
