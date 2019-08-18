@@ -15,10 +15,11 @@ class CreateRoomTypesTable extends Migration
     {
         Schema::create('room_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('room_type');
-            $table->text('description');
-		    $table->string('active');
+            $table->string('room_type')->unique();
+            $table->string('description');
+		    $table->integer('active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

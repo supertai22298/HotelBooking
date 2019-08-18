@@ -15,11 +15,13 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('guest_name')->nullable();
+            $table->string('name')->nullable();
             $table->string('email');
             $table->string('subject')->nullable();
             $table->string('message')->nullable();
+            $table->integer('is_received_news')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

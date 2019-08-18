@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRolesTable extends Migration
+class CreateHotelUtilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,16 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('roles', function (Blueprint $table) {
+        Schema::create('hotel_utilities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('role_name');
+            $table->unsignedBigInteger('hotel_id');
+            $table->string('utility');
             $table->string('description');
+            $table->string('image');
+            $table->string('image_link')->nullable();
             $table->timestamps();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 
@@ -28,6 +33,6 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('hotel_utilities');
     }
 }
