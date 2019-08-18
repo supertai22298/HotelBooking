@@ -17,12 +17,19 @@ class CreateRoomsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('hotel_id');
 		    $table->unsignedBigInteger('room_type_id');
-		    $table->unsignedBigInteger('room_status_id');
-		    $table->unsignedBigInteger('floor');
-		    $table->unsignedBigInteger('room_number');
-            $table->text('description');
+            $table->unsignedBigInteger('room_status_id');
+            $table->string('name');
+		    $table->integer('floor');
+            $table->text('description')->nullable();
             $table->float('price', 8, 2);
+            $table->integer('discount')->default(0);
+            $table->string('image');
+            $table->string('image_link')->nullable();
             $table->timestamps();
+            $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');
+            $table->foreign('room_type_id')->references('id')->on('room_types')->onDelete('cascade');
+            $table->foreign('room_status_id')->references('id')->on('room_statuses')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

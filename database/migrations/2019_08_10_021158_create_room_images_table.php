@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRatesTable extends Migration
+class CreateRoomImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateRatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rates', function (Blueprint $table) {
+        Schema::create('room_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('room_id');
-		    $table->unsignedBigInteger('rate_type_id');
-		    $table->string('rate');
-		    $table->dateTime('from_date');
-		    $table->dateTime('to_date');
+            $table->string('image');
+            $table->string('image_link')->nullable();
             $table->timestamps();
+            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 
@@ -31,6 +31,6 @@ class CreateRatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rates');
+        Schema::dropIfExists('room_images');
     }
 }

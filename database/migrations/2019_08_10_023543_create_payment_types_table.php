@@ -15,10 +15,11 @@ class CreatePaymentTypesTable extends Migration
     {
         Schema::create('payment_types', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rate_type');
-		    $table->unsignedBigInteger('sort_order');
-		    $table->string('active');
+            $table->string('payment_type')->unique();
+		    $table->string('description');
+		    $table->integer('active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

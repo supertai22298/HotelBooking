@@ -4,10 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class RateType extends Model
+class RoomImage extends Model
 {
     //
+    protected $table = 'room_images';
     use SoftDeletes;
-    protected $table = 'rate_types';
-    public $timestamp = true;
 }

@@ -15,11 +15,12 @@ class CreatePaymentStatusesTable extends Migration
     {
         Schema::create('payment_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('rate_type');
+            $table->string('payment_status');
 		    $table->text('description');
-		    $table->unsignedBigInteger('sort_order');
-		    $table->string('active');
+		    $table->integer('active')->default(1);
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 
