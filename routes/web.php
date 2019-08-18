@@ -56,3 +56,7 @@ Route::get('/about-us', function () {
 Route::get('/coming-soon', function () {
     return view('page.coming_soon');
 });
+
+Route::get('/admin',function(){
+  return view('admin.layout_admin.admin_masterpage');
+});
