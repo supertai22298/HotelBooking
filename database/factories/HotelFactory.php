@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 $factory->define(Hotel::class, function (Faker $faker) {
     return [
         //
-        'hotel_code' => $faker->buildingNumber,
+        'hotel_star' => rand(2,5),
         'name' => $faker->name,
         'address' => $faker->address,
         'address_2' => $faker->address,
