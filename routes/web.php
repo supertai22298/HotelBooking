@@ -58,5 +58,8 @@ Route::get('/coming-soon', function () {
 });
 
 Route::get('/admin',function(){
-  return view('admin.layout_admin.admin_masterpage');
+  return view('admin.page.index');
 });
+Route::get('/quan-ly-nguoi-dung',function(){
+  return view('admin.page.users_management.add_user');
+})->name('quan-ly-nguoi-dung');

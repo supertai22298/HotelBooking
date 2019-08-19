@@ -42,7 +42,7 @@
         <!-- Header-->
         @include('admin.layout_admin.header')
         <!-- /#header -->
-
+            @yield('breadcrumbs')
         <!-- Content -->
         <div class="content">
 
