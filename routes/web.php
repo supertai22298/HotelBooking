@@ -59,7 +59,20 @@ Route::get('/coming-soon', function () {
 
 Route::get('/admin',function(){
   return view('admin.page.index');
-});
+})->name('admin');
+
 Route::get('/quan-ly-nguoi-dung',function(){
-  return view('admin.page.users_management.add_user');
+  return view('admin.page.users_management.user_management');
 })->name('quan-ly-nguoi-dung');
+
+Route::get('/them-nguoi-dung',function(){
+  return view('admin.page.users_management.add_user');
+})->name('them-nguoi-dung');
+
+Route::get('/xoa-nguoi-dung',function(){
+  //
+})->name('xoa-nguoi-dung');
+
+Route::get('/chinh-sua-nguoi-dung',function(){
+  return view('admin.page.users_management.edit_user');
+})->name('chinh-sua-nguoi-dung');
