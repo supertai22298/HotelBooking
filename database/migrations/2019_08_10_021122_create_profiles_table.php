@@ -20,12 +20,14 @@ class CreateProfilesTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->string('address');
+            $table->dateTime('date_of_birth');
             $table->string('city');
             $table->string('country');
             $table->string('address_2')->nullable();
             $table->string('cellular_phone_number');
             $table->integer('gender');
             $table->string('avatar')->nullable();
+            $table->string('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
