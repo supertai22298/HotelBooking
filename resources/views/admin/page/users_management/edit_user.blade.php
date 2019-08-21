@@ -14,27 +14,33 @@
             <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
               <div class="row form-group">
                   <div class="col col-md-3"><label for="email-input" class=" form-control-label">Họ và tên</label></div>
-                  <div class="col-12 col-md-9"><input type="email" id="email-input" name="full_name" placeholder="Họ và tên" class="form-control"><small class="help-block form-text">Please enter your email</small></div>
+                  <div class="col-12 col-md-9"><input type="email" id="email-input" name="full_name" placeholder="Họ và tên" class="form-control">  
+                    <small class="help-block form-text">Vui lòng nhập họ và tên</small></div>
               </div>
               <div class="row form-group">
                   <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên đăng nhập</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control">
+                    <small class="form-text text-muted">Vui lòng nhập tên đăng nhập</small></div>
               </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="Email" placeholder="Email" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="Email" placeholder="Email" class="form-control">
+                      <small class="form-text text-muted">Vui lòng nhập email</small></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mật khẩu</label></div>
-                    <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control"><small class="help-block form-text">Please enter a complex password</small></div>
+                    <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control">
+                      <small class="help-block form-text">Vui lòng nhập mật khẩu</small></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control">
+                      <small class="form-text text-muted">Vui lòng xác nhận nhập mật khẩu</small></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Địa chỉ</label></div>
-                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control"><small class="form-text text-muted">This is a help text</small></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control">
+                      <small class="form-text text-muted">Vui lòng địa chỉ</small></div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Tiểu sử</label></div>
