@@ -59,7 +59,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Tiger Nixon</td>
+                                <td>AAA Nixon</td>
                                 <td>System Architect</td>
                                 <td>Edinburgh</td>
                                 <td>$320,800</td>
@@ -67,62 +67,62 @@
                                   <a class="btn btn-primary btn-sm" href="" data-toggle="modal" data-target="#myModal" data-backdrop="false">Xem</a>
                                   <a class="btn btn-secondary btn-sm" href="{{route('them-nguoi-dung')}}">Thêm</a>
                                   <a class="btn btn-danger btn-sm" href="#" onclick="funccheck()">Xóa</a>
-                                <a class="btn btn-primary btn-sm" href="#">Sửa</a></td>
+                                <a class="btn btn-primary btn-sm" href="{{route('chinh-sua-nguoi-dung')}}">Sửa</a></td>
                                 {{-- modal --}}
                                 <!-- The Modal -->
-                              <div class="modal fade" id="myModal">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
+                                <div class="modal fade" id="myModal">
+                                  <div class="modal-dialog">
+                                    <div class="modal-content">
 
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                      <h4 class="modal-title">Thông tin tài khoản</h4>
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
+                                      <!-- Modal Header -->
+                                      <div class="modal-header">
+                                        <h4 class="modal-title">Thông tin tài khoản</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                      </div>
 
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                      <div class="row">
-                                        <div class="col-4"><img src="" alt="avatar"></div>
-                                      <div class="col-8">
-                                        <div>
-                                          <strong>Tên đăng nhập :</strong>
+                                      <!-- Modal body -->
+                                      <div class="modal-body">
+                                        <div class="row">
+                                          <div class="col-4"><img src="" alt="avatar"></div>
+                                        <div class="col-8">
+                                          <div>
+                                            <strong>Tên đăng nhập :</strong>
+                                          </div>
+                                          <div>
+                                            <strong>Email :</strong>
+                                          </div>
+                                          <div>
+                                            <strong>Họ và tên : Nguyễn Trần Ánh</strong>
+                                          </div>
+                                          <div>
+                                            <strong>Mật khẩu :</strong>
+                                          </div>
+                                          <div>
+                                            <strong>Số điện thoại :</strong>
+                                          </div>
+                                          <div>
+                                            <strong>Địa chỉ :</strong>
+                                          </div>
+                                          <div>
+                                          <a class="btn btn-primary btn-sm" href="{{route('chinh-sua-nguoi-dung')}}">Chỉnh sửa</a>
+                                          </div>
                                         </div>
-                                        <div>
-                                          <strong>Email :</strong>
                                         </div>
-                                        <div>
-                                          <strong>Họ và tên : Nguyễn Trần Ánh</strong>
-                                        </div>
-                                        <div>
-                                          <strong>Mật khẩu :</strong>
-                                        </div>
-                                        <div>
-                                          <strong>Số điện thoại :</strong>
-                                        </div>
-                                        <div>
-                                          <strong>Địa chỉ :</strong>
-                                        </div>
-                                        <div>
-                                          <button class="btn btn-primary btn-sm">Chỉnh sửa</button>
+                                        <div class="user-description">
+                                          <h6>Tiểu sử</h6>
+                                          <p>bla bla...</p>
                                         </div>
                                       </div>
-                                      </div>
-                                      <div class="user-description">
-                                        <h6>Tiểu sử</h6>
-                                        <p>bla bla...</p>
-                                      </div>
-                                    </div>
 
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                      <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                    </div>
+                                      <!-- Modal footer -->
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                      </div>
 
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                                {{-- end modal --}}
+                                  {{-- end modal --}}
 
                             </tr>
                             <tr>
@@ -131,6 +131,7 @@
                                 <td>Tokyo</td>
                                 <td>$170,750</td>
                                 <td><a href="#">Thêm</a> <a href="#">Xóa</a><a href="#">Sửa</a></td>
+                                
                             </tr>
                             <tr>
                                 <td>Ashton Cox</td>

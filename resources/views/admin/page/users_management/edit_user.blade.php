@@ -1,13 +1,13 @@
 @extends('admin.layout_admin.admin_masterpage')
 
 @section('title')
-  Them moi nguoi dung
+  Chỉnh sửa người dùng
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            Thêm mới người dùng
+            Chỉnh sửa người dùng
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
