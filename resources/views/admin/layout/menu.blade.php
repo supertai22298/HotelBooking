@@ -7,7 +7,7 @@
                 </li>
                 <li class="menu-title">UI elements</li><!-- /.menu-title -->
                 <li>
-                <a href="{{route('quan-ly-nguoi-dung')}}"> <i class="menu-icon ti-user"></i>Quản lý người dùng</a>
+                <a href=""> <i class="menu-icon ti-user"></i>Quản lý người dùng</a>
                 </li>
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon ti-receipt"></i>Quản lý đặt phòng</a>
