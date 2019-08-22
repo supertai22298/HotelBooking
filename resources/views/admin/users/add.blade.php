@@ -1,16 +1,18 @@
-@extends('admin.layout_admin.admin_masterpage')
+@extends('admin.layout.masterpage')
+
 @section('css')
 {{-- css validation --}}
     <link rel="stylesheet" href="admin_page_asset/css/parsley.css">
 @endsection
+
 @section('title')
-  Chỉnh sửa người dùng
+  Them moi nguoi dung
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            Chỉnh sửa người dùng
+            Thêm mới người dùng
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
@@ -89,11 +91,10 @@
         </div>
     </div>
 @endsection
-
 @section('script')
     
   {{-- xem anh trc khi upload --}}
-  <script src="admin_page_asset/js/validation/jquery.min.js"></script>
+    <script src="admin_page_asset/js/validation/jquery.min.js"></script>
     <script>
     function readURL(file){
       if(file.files && file.files[0]){

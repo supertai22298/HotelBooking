@@ -63,11 +63,11 @@ Route::get('/admin',function(){
 })->name('admin');
 
 Route::get('/quan-ly-nguoi-dung',function(){
-  return view('admin.users_management.user_management');
+  return view('admin.users.user_management');
 })->name('quan-ly-nguoi-dung');
 
 Route::get('/them-nguoi-dung',function(){
-  return view('admin.users_management.add_user');
+  return view('admin.users.add_user');
 })->name('them-nguoi-dung');
 Route::post('/post-them-nguoi-dung', 'RoomTypeController@create')->name('post-them-nguoi-dung');
 
@@ -77,5 +77,5 @@ Route::get('/xoa-nguoi-dung',function(){
 })->name('xoa-nguoi-dung');
 
 Route::get('/chinh-sua-nguoi-dung',function(){
-  return view('admin.users_management.edit_user');
+  return view('admin.users.edit_user');
 })->name('chinh-sua-nguoi-dung');

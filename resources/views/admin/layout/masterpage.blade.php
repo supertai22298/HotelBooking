@@ -34,13 +34,13 @@
 
 <body>
     <!-- Left Panel -->
-    @include('admin.layout_admin.menu')
+    @include('admin.layout.menu')
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        @include('admin.layout_admin.header')
+        @include('admin.layout.header')
         <!-- /#header -->
             @yield('breadcrumbs')
         <!-- Content -->
@@ -54,7 +54,7 @@
         <div class="clearfix"></div>
 
         <!-- Footer -->
-        @include('admin.layout_admin.footer')
+        @include('admin.layout.footer')
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
