@@ -16,7 +16,7 @@ class CreateRoomTypesTable extends Migration
         Schema::create('room_types', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('room_type')->unique();
-            $table->string('description');
+            $table->string('description')->nullable();
 		    $table->integer('active')->default(1);
             $table->timestamps();
             $table->softDeletes();
