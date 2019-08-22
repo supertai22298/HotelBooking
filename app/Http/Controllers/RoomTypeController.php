@@ -8,8 +8,5 @@ use App\RoomType;
 class RoomTypeController extends Controller
 {
     
-    public function create(Request $request){
-        $this->roomTypeRepository->create($request->all());
-        
-    }
+    
 }
