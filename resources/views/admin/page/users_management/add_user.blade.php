@@ -11,54 +11,18 @@
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
-          <form action="#" method="post" enctype="multipart/form-data" class="form-horizontal">
+        <form action={{route('post-them-nguoi-dung')}} method="post"  class="form-horizontal">
             <div class="row form-group">
-                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Họ và tên</label></div>
-                <div class="col-12 col-md-9"><input type="email" id="email-input" name="full_name" placeholder="Họ và tên" class="form-control">  
-                  <small class="help-block form-text">Vui lòng nhập họ và tên</small></div>
+                <div class="col col-md-3"><label for="room_types" class=" form-control-label">Loại phòng</label></div>
+                <div class="col-12 col-md-9"><input type="text" name="room_types" placeholder="Loại phòng" class="form-control" required>  
+                  <small class="help-block form-text">Nhập loại phòng</small></div>
             </div>
             <div class="row form-group">
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên đăng nhập</label></div>
-                <div class="col-12 col-md-9"><input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control">
-                  <small class="form-text text-muted">Vui lòng nhập tên đăng nhập</small></div>
+                <div class="col col-md-3"><label for="room_types" class=" form-control-label">Loại phòng</label></div>
+                <div class="col-12 col-md-9">
+                    <textarea name="description"  cols="30" rows="10" class="form-control" placeholder="Mô tả loại phòng"></textarea>
+                </div>
             </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="Email" placeholder="Email" class="form-control">
-                    <small class="form-text text-muted">Vui lòng nhập email</small></div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mật khẩu</label></div>
-                  <div class="col-12 col-md-9"><input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control">
-                    <small class="help-block form-text">Vui lòng nhập mật khẩu</small></div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control">
-                    <small class="form-text text-muted">Vui lòng xác nhận nhập mật khẩu</small></div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="text-input" class=" form-control-label">Địa chỉ</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control">
-                    <small class="form-text text-muted">Vui lòng địa chỉ</small></div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Tiểu sử</label></div>
-                  <div class="col-12 col-md-9"><textarea name="description" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control"></textarea></div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="select" class=" form-control-label">Loại người dùng</label></div>
-                  <div class="col-12 col-md-9">
-                      <select name="role" id="select" class="form-control">
-                          <option value="0">Khách hàng</option>
-                          <option value="1">Quản trị viên</option>
-                      </select>
-                  </div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="file-input" class=" form-control-label">Avatar</label></div>
-                  <div class="col-12 col-md-9"><input type="file" id="file-input" name="file-input" class="form-control-file"></div>
-              </div>
               <button type="submit" class="btn btn-primary">
                   <i class="fa fa-dot-circle-o"></i> Lưu
               </button>

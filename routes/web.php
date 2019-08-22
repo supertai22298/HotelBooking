@@ -68,6 +68,8 @@ Route::get('/quan-ly-nguoi-dung',function(){
 Route::get('/them-nguoi-dung',function(){
   return view('admin.page.users_management.add_user');
 })->name('them-nguoi-dung');
+Route::post('/post-them-nguoi-dung', 'RoomTypeController@create')->name('post-them-nguoi-dung');
+
 
 Route::get('/xoa-nguoi-dung',function(){
   //
