@@ -21,9 +21,9 @@ class Rate extends Model
         return $this->belongsTo('App\Room');
     }
 
-    // one - many relationship between profile -> rates (reverse)
-    public function profile(){
-        return $this->belongsTo('App\Profile');
+    // one - many relationship between user -> rates (reverse)
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 }
 
