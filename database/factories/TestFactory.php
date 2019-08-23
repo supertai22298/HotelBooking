@@ -68,7 +68,7 @@ $factory->define(Hotel::class, function (Faker $faker) {
     $country    =  $faker->country;
     $main_phone_number =$faker->phoneNumber ;
     $toll_free_number = $faker->tollFreePhoneNumber;
-    $company_email_address = str_replace('','',$name).'@gmail.com';
+    $company_email_address = str_replace('','',str_replace('.','',$name)).'@gmail.com';
     $website_address=   str_replace('','',$name).'.com';
     $image= $faker->image;
 
@@ -87,6 +87,48 @@ $factory->define(Hotel::class, function (Faker $faker) {
         'image_link'=>"Chưa có!"
     ];
 });
+
+$factory->define(Message::class, function (Faker $faker) {
+    $jsonString = file_get_contents('database/factories/data.json');
+    $data       = json_decode($jsonString,false);
+    $name = $faker->name;  
+    return[
+        'name'  =>$name,
+        'email' =>str_replace(' ','',str_replace('.','',$name)).'@gmail.com',
+        'message'=>$faker->sentence($nbWords = 10, $variableNbWords = true)
+    ]; 
+});
+
+$factory->define(Blog::class, function (Faker $faker) {
+    $jsonString = file_get_contents('database/factories/data.json');
+    $data       = json_decode($jsonString,false);
+    return[
+        'title' =>$faker->sentence($nbWords = 7, $variableNbWords = true),
+        'author' =>$faker->name,
+        'description'   =>$faker->text($maxNbChars = 190),
+        'active'    =>1,
+        'image'     =>$faker->image
+        
+    ]; 
+});
+
+// $factory->define(Profile::class, function (Faker $faker) {
+//     // $jsonString = file_get_contents('database/factories/data.json');
+//     // $data       = json_decode($jsonString,false);
+//     return[
+//         'user_id'       =>
+//         'first_name'    =>$faker->firstName,
+//         'last_name'     =>$faker->lastName,
+//         'address'       =>$faker->address,
+//         'city'          =>$faker->city,
+//         'country'       =>$faker->country,
+//         'cellular_phone_number'  =>$faker->phoneNumber
+        
+//     ]; 
+// });
+
+
+
 
 
 
