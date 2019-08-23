@@ -19,7 +19,7 @@ class CreateRatesTable extends Migration
 		    $table->unsignedBigInteger('rate_type_id');
 		    $table->unsignedBigInteger('profile_id');
 		    $table->integer('rate');
-		    $table->string('description');
+		    $table->text('description');
             $table->timestamps();
             $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
             $table->foreign('rate_type_id')->references('id')->on('rate_types')->onDelete('cascade');

@@ -27,7 +27,7 @@ class CreateProfilesTable extends Migration
             $table->string('cellular_phone_number');
             $table->integer('gender');
             $table->string('avatar')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -28,4 +28,18 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::post('delete/{id}', 'UserController@delete');
     });
+
+    Route::group(['prefix' => 'room-type'], function(){
+        Route::get('/', 'RoomTypeController@view');
+
+        Route::get('add', 'RoomTypeController@create')->name('get-room-type-create');
+        Route::post('add', 'RoomTypeController@store')->name('post-room-type-store');
+
+
+        Route::get('edit/{id}', 'RoomTypeController@edit');
+        Route::post('edit/{id}', 'RoomTypeController@update');
+
+        Route::post('delete/{id}', 'RoomTypeController@delete');
+    });
+
 });

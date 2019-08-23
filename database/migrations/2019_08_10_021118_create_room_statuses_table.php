@@ -16,7 +16,7 @@ class CreateRoomStatusesTable extends Migration
         Schema::create('room_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('room_status')->unique();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -17,7 +17,7 @@ class CreateHotelUtilitiesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('hotel_id');
             $table->string('utility');
-            $table->string('description');
+            $table->text('description');
             $table->string('image');
             $table->string('image_link')->nullable();
             $table->timestamps();

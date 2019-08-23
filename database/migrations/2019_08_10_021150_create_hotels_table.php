@@ -17,7 +17,7 @@ class CreateHotelsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('hotel_star');
 		    $table->string('name');
-		    $table->string('motto')->nullable();
+		    $table->text('motto')->nullable();
             $table->string('address');
             $table->string('city');
 		    $table->string('country');

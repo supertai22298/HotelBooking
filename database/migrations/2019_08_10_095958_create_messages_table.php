@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->string('name')->nullable();
             $table->string('email');
             $table->string('subject')->nullable();
-            $table->string('message')->nullable();
+            $table->text('message')->nullable();
             $table->integer('is_received_news')->default(0);
             $table->timestamps();
             $table->softDeletes();
