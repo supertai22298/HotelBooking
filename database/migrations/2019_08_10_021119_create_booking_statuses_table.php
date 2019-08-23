@@ -16,7 +16,7 @@ class CreateBookingStatusesTable extends Migration
         Schema::create('booking_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('booking_status')->unique();
-		    $table->string('description')->nullable();
+		    $table->text('description')->nullable();
 		    $table->integer('ative')->default(1);
             $table->timestamps();
             $table->softDeletes();

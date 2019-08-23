@@ -11,6 +11,13 @@ class RoomType extends Model
     protected $table = 'room_types';
     public $timestamp = true;
     
+    /**
+     * The attributes that are mass assignable.
+     * @var array
+     */
+    protected $fillable = [
+        'room_type','description'
+    ];
     // one - many relationship between room_type -> rooms
     public function rooms(){
         return $this->hasMany('App\Room');

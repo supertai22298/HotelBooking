@@ -1,4 +1,4 @@
-@extends('admin.layout_admin.admin_masterpage')
+@extends('admin.layout.masterpage')
 
 @section('title')
     Quản lý

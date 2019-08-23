@@ -19,7 +19,7 @@ class CreatePaymentsTable extends Migration
             $table->unsignedBigInteger('payment_status_id');
             $table->unsignedBigInteger('booking_id');
 		    $table->string('payment');
-		    $table->string('description')->nullable();
+		    $table->text('description')->nullable();
 		    $table->dateTime('date');
             $table->timestamps();
             $table->foreign('payment_type_id')->references('id')->on('payment_types')->onDelete('cascade');

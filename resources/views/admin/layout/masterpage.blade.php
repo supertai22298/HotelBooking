@@ -9,7 +9,7 @@
     
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <base href={{asset('')}}>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
 
@@ -34,13 +34,13 @@
 
 <body>
     <!-- Left Panel -->
-    @include('admin.layout_admin.menu')
+    @include('admin.layout.menu')
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
 
         <!-- Header-->
-        @include('admin.layout_admin.header')
+        @include('admin.layout.header')
         <!-- /#header -->
             @yield('breadcrumbs')
         <!-- Content -->
@@ -54,7 +54,7 @@
         <div class="clearfix"></div>
 
         <!-- Footer -->
-        @include('admin.layout_admin.footer')
+        @include('admin.layout.footer')
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
