@@ -58,8 +58,12 @@ class DatabaseSeeder extends Seeder
         // ]);
         // factory(Blog::class,30)->create();
        
+        // $this->call([
+        //     HotelUtilitySeeder::class
+        // ]);
+
         $this->call([
-            HotelUtilitySeeder::class
+            ProfileSeeder::class
         ]);
 
     }
