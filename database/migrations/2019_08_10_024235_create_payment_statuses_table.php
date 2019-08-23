@@ -16,7 +16,7 @@ class CreatePaymentStatusesTable extends Migration
         Schema::create('payment_statuses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('payment_status');
-		    $table->text('description');
+		    $table->text('description')->nullable();
 		    $table->integer('active')->default(1);
             $table->timestamps();
             $table->softDeletes();

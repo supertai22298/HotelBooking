@@ -24,10 +24,10 @@ class Booking extends Model
         return $this->hasOne('App\Payment');
     }
 
-    // one - many relationship between profile -> bookings (reverse)
-    public function profile()
+    // one - many relationship between user -> bookings (reverse)
+    public function user()
     {
-        return $this->belongsTo('App\Profile');
+        return $this->belongsTo('App\User');
     }
 
     // one - many relationship between room -> bookings(reverse)

@@ -38,8 +38,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
    
-    // one - one relationship between user -> profile
-    public function profile(){
-        return $this->hasOne('App\Profile');
+   
+    // one - many relationship between user -> rates
+    public function rates(){
+        return $this->hasMany('App\Rate');
+    }
+
+    // one - many relationship between user -> bookings
+    public function bookings(){
+        return $this->hasMany('App\Booking');
+    }
+
+    // many - many relationship between users -> rooms
+    public function rooms(){
+        return $this->belongsToMany('App\Room', 'bookings', 'user_id', 'room_id');
+    }
+
+    // many - many relationship between users -> booking_statuses
+    public function booking_statuses(){
+        return $this->belongsToMany('App\BookingStatus', 'bookings', 'user_id', 'booking_status_id');
+    }
+
+    // many - many relationship between users -> rate_types
+    public function rate_types(){
+        return $this->belongsToMany('App\RateType', 'rates', 'user_id', 'rate_type_id');
     }
 }

@@ -48,10 +48,10 @@ class Room extends Model
         return $this->hasMany('App\Booking');
     }
 
-    // many - many relationship between profiles -> rooms (reverse)
-    public function profiles()
+    // many - many relationship between users -> rooms (reverse)
+    public function users()
     {
-        return $this->belongsToMany('App\Profile', 'bookings', 'room_id', 'profile_id');
+        return $this->belongsToMany('App\User', 'bookings', 'room_id', 'user_id');
     }
 
     // many - many relationship between rooms -> rate_types

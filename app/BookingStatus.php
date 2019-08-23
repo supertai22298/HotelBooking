@@ -16,9 +16,9 @@ class BookingStatus extends Model
         return $this->hasMany('App\Booking');
     }
 
-    // many - many relationship between profiles -> booking_statuses
-    public function profiles(){
-        return $this->belongsToMany('App\Profile', 'bookings', 'booking_status_id', 'profile_id');
+    // many - many relationship between users -> booking_statuses
+    public function users(){
+        return $this->belongsToMany('App\User', 'bookings', 'booking_status_id', 'user_id');
     }
 
     // many - many relationship between rooms -> booking_statuses

@@ -17,10 +17,10 @@ class RateType extends Model
     {
         return $this->hasMany('App\Rate');
     }
-    // many - many relationship between profiles -> rate_types
-    public function profiles()
+    // many - many relationship between users -> rate_types
+    public function users()
     {
-        return $this->belongsToMany('App\Profile', 'rates', 'rate_type_id', 'profile_id');
+        return $this->belongsToMany('App\User', 'rates', 'rate_type_id', 'user_id');
     }
 
     // many - many relationship between rooms -> rate_types
