@@ -35,11 +35,22 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('add', 'RoomTypeController@create')->name('get-room-type-create');
         Route::post('add', 'RoomTypeController@store')->name('post-room-type-store');
 
+        Route::get('edit/{id}', 'RoomTypeController@edit')->name('get-room-type-edit');
+        Route::post('edit/{id}', 'RoomTypeController@update')->name('post-room-type-update');
 
-        Route::get('edit/{id}', 'RoomTypeController@edit');
-        Route::post('edit/{id}', 'RoomTypeController@update');
+        Route::post('delete/{id}', 'RoomTypeController@delete')->name('post-room-type-delete');
+    });
 
-        Route::post('delete/{id}', 'RoomTypeController@delete');
+    Route::group(['prefix' => 'hotel'], function(){
+        Route::get('/', 'HotelController@view');
+
+        Route::get('add', 'HotelController@create')->name('get-hotel-create');
+        Route::post('add', 'HotelController@store')->name('post-hotel-store');
+
+        Route::get('edit/{id}', 'HotelController@edit')->name('get-hotel-edit');
+        Route::post('edit/{id}', 'HotelController@update')->name('post-hotel-update');
+
+        Route::post('delete/{id}', 'HotelController@delete')->name('post-hotel-delete');
     });
 
 });

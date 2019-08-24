@@ -106,7 +106,6 @@
         reader.readAsDataURL(file.files[0]);
       }
     };
-
     $("#avatar").change(function(){
       readURL(this)
     })
