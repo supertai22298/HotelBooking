@@ -3,7 +3,7 @@ use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-use Faker\Factory as Faker;
+use Faker\Generator as Faker;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 class ProfileSeeder extends Seeder
 {

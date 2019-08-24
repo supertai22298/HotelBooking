@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function view()
     { 
-        return view('admin.user.index');
+        return view('admin.user.add');
     }
 
     /**

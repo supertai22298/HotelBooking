@@ -8,7 +8,7 @@
 @endsection
 
 @section('title')
-    Quản lý loại phòng
+    Quản lý khách sạn
 @endsection
 
 @section('breadcrumbs')
@@ -27,7 +27,7 @@
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
                           <li><a href="">Dashboard</a></li>
-                              <li><a href="#">Quản lý loại phòng</a></li>
+                              <li><a href="#">Quản lý khách sạn</a></li>
                           </ol>
                       </div>
                   </div>
@@ -43,8 +43,8 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-header">
-                  <strong class="card-title">Loại phòng</strong>
-                  <a class="btn btn-primary btn-md" href={{route('get-room-type-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
+                  <strong class="card-title">Danh sách khách sạn</strong>
+                  <a class="btn btn-primary btn-md" href={{route('get-hotel-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{session('success')}}
@@ -56,34 +56,40 @@
                     <thead>
                         <tr>
                             <th>Id</th>
-                            <th>Loại phòng</th>
-                            <th>Mô tả</th>
-                            <th>Trạng thái</th>
-                            <th>Chức Năng</th>
+                            <th>Tên khách sạn</th>
+                            <th>Hình ảnh</th>
+                            <th>Địa chỉ</th>
+                            <th>Thành phố</th>
+                            <th>Số điện thoại</th>
+                            <th>Email</th>
+                            <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                      @if (!empty($roomTypes) )
-                        @foreach ($roomTypes as $roomType)
+                      @if (!empty($hotels) )
+                        @foreach ($hotels as $hotel)
                         <tr>
-                          <td>{{$roomType->id}}</td>
-                          <td>{{$roomType->room_type}}</td>
-                          <td><p>{{$roomType->description}}</p></td>
-                          <td><p class="text text-success">{{$roomType->active == 1 ? 'Đang hoạt động': 'Không hoạt động'}}</p></td>
+                          <td>{{$hotel->id}}</td>
+                          <td>{{$hotel->name}}</td>
+                          <td>{{$hotel->image}}</td>
+                          <td>{{$hotel->address}}</td>
+                          <td>{{$hotel->city}}</td>
+                          <td>{{$hotel->main_phone_number}}</td>
+                          <td>{{$hotel->company_email_address}}</td>
                           <td>
-                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$roomType->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
-                          		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-room-type-edit', ['id' => $roomType->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <form action="{{route('post-room-type-delete', ['id'=>$roomType->id])}}" method="post" class="d-inline ">
+                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$hotel->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-room-type-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                <form action="{{route('post-room-type-delete', ['id'=>$hotel->id])}}" method="post" class="d-inline ">
                                     {{ csrf_field('PUT')}}
-                                <input type="number" value="{{$roomType->id}}" class="d-none" name="id">
+                                <input type="number" value="{{$hotel->id}}" class="d-none" name="id">
                                     <button class="btn btn-danger btn-sm" type="submit" onclick="confirm('Bạn chắc chắn muốn xoá')"><span><i class="fa fa-trash"></i></span> Xóa</button>
                                 </form>
-                                <div class="modal fade" id="myModal-{{$roomType->id}}">
+                                <div class="modal fade" id="myModal-{{$hotel->id}}">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <!-- Modal Header -->
                                     <div class="modal-header">
-                                      <h4 class="modal-title">Thông tin loại phòng</h4>
+                                      <h4 class="modal-title">Thông tin khách sạn</h4>
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <!-- Modal body -->
@@ -91,24 +97,36 @@
                                       <table class="table table-boderless">
                                         <tr>
                                           <th>Id: </th>
-                                          <td>{{$roomType->id}}</td>
+                                          <td>{{$hotel->id}}</td>
                                         </tr>
                                         <tr>
-                                          <th>Loại phòng: </th>
-                                          <td>{{$roomType->room_type}}</td>
+											<th>Tên khách sạn</th>
+                                          <td>{{$hotel->name}}</td>
                                         </tr>
                                         <tr>
-                                          <th>Mô tả: </th>
-                                          <td>{{$roomType->description}}</td>
+											<th>Hình ảnh</th>
+                                          	<td>{{$hotel->name}}</td>
                                         </tr>
                                         <tr>
-                                          <th>Trạng thái: </th>
-                                          <td>{{$roomType->active == 1 ? 'Đang hoạt động': 'Không hoạt động'}}</td>
+											<th>Địa chỉ</th>
+                                          	<td>{{$hotel->name }}</td>
+                                        </tr>
+                                        <tr>
+											<th>Thành phố</th>
+                                          	<td>{{$hotel->name }}</td>
+                                        </tr>
+                                        <tr>
+											<th>Số điện thoại</th>
+                                          	<td>{{$hotel->name }}</td>
+                                        </tr>
+                                        <tr>
+											<th>Email</th>
+                                          	<td>{{$hotel->name }}</td>
                                         </tr>
                                       </table>
                                     </div>
                                     <div class="modal-footer">
-                                      <a class="btn btn-warning" href={{route('get-room-type-edit', ['id'=>$roomType->id])}}> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                      <a class="btn btn-warning" href={{route('get-room-type-edit', ['id'=>$hotel->id])}}> <span><i class="fa fa-edit"></i></span> Sửa</a>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     </div>
                                   </div>
