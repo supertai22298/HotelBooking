@@ -16,17 +16,18 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
     Route::get('/index', 'AdminController@index');
 
+    // quản lý user
     Route::group(['prefix' => 'user'], function(){
-        Route::get('/', 'UserController@view');
+        Route::get('/', 'UserController@viewAllUsers')->name('allUsers');
 
-        Route::get('add', 'UserController@create');
-        Route::post('add', 'UserController@store');
+        Route::get('add', 'UserController@create')->name('addUser');
+        Route::post('add', 'UserController@store')->name('store');
 
 
-        Route::get('edit/{id}', 'UserController@edit');
-        Route::post('edit/{id}', 'UserController@update');
+        Route::get('edit/{id}', 'UserController@edit')->name('editUser');
+        Route::post('edit/{id}', 'UserController@update')->name('upadteUser');
 
-        Route::post('delete/{id}', 'UserController@delete');
+        Route::get('delete/{id}', 'UserController@delete')->name('deleteUser');
     });
 
     Route::group(['prefix' => 'room-type'], function(){
