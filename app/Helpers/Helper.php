@@ -16,16 +16,16 @@ class Helper{
      */
     public function uploadFile(UploadedFile $imageFile = null)
     {
-        $avatarName = "default.png";
+        $imageName = "default.png";
         if ($imageFile) {
             // get file original extention
-            $avatarExtention = $imageFile->getClientOriginalExtension();
+            $imageExt = $imageFile->getClientOriginalExtension();
             // new file name
-            $avatarName = date('Y-M-D') . '_' . round(microtime(true) * 1000) . '.' . $avatarExtention;
+            $imageName = date('Y-M-D') . '_' . round(microtime(true) * 1000) . '.' . $imageExt;
             // move file
-            $imageFile->move('uploads/images/', $avatarName);
+            $imageFile->move('upload/images/', $imageName);
         }
-        return $avatarName;
+        return $imageName;
     }
 
     /**
@@ -35,13 +35,10 @@ class Helper{
      */
     public static function getArrInput(Request $request)
     {
-
         $imageFile = $request->file('avatar');
-
         // uploadFile
         $helper = new Helper;
         $avatarName = $helper->uploadFile($imageFile);
-
         // get arr input
         $arrInput = $request->all();
         if($arrInput['password']!=null){

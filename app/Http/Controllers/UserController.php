@@ -17,12 +17,8 @@ class UserController extends Controller
      */
     public function viewAllUsers()
     { 
-<<<<<<< HEAD
-        return view('admin.user.add');
-=======
         $getUsers = User::all();  
         return view('admin.user.index',['getUsers' => $getUsers, 'stt' => 1]);
->>>>>>> feature/userManagement
     }
 
     /**

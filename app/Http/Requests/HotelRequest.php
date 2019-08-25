@@ -25,10 +25,10 @@ class HotelRequest extends FormRequest
     {
         return [
             'name' => 'required|min:4',
-            'hotel_star' => 'required',
+            'hotel_star' => 'required|number',
             'address' => 'required|min:6',
-            'city' => 'required|min:3',
-            'country' => 'required|min:3',
+            'city' => 'required|min:3|alpha',
+            'country' => 'required|min:3|alpha',
             'main_phone_number' => 'required|min:6|max:15',
             'company_email_address' => 'required|min:8|email',
             'image' => 'required|image|max:2048'

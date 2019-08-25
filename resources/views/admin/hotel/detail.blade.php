@@ -4,11 +4,11 @@
     <link rel="stylesheet" href="admin_page_asset/css/parsley.css">
 @endsection
 @section('title')
-  Chỉnh sửa khách sạn {{ $hotel->name }}
+  Chi tiết khách sạn {{ $hotel->name }}
 @endsection
 
 @section('content')
-Chỉnh sửa khách sạn {{ $hotel->name }}
+Chi tiết khách sạn {{ $hotel->name }}
 @endsection
 
 @section('script')

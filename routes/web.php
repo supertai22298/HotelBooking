@@ -51,7 +51,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', 'HotelController@edit')->name('get-hotel-edit');
         Route::post('edit/{id}', 'HotelController@update')->name('post-hotel-update');
 
-        Route::post('delete/{id}', 'HotelController@delete')->name('post-hotel-delete');
+        Route::get('delete/{id}', 'HotelController@delete')->name('get-hotel-delete');
+
+        Route::get('detail/{id}', 'HotelController@detail')->name('get-hotel-detail');
     });
 
 });

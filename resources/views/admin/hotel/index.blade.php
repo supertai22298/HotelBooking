@@ -58,7 +58,6 @@
                             <th>Id</th>
                             <th>Tên khách sạn</th>
                             <th>Hình ảnh</th>
-                            <th>Địa chỉ</th>
                             <th>Thành phố</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
@@ -69,72 +68,17 @@
                       @if (!empty($hotels) )
                         @foreach ($hotels as $hotel)
                         <tr>
-                          <td>{{$hotel->id}}</td>
-                          <td>{{$hotel->name}}</td>
-                          <td>{{$hotel->image}}</td>
-                          <td>{{$hotel->address}}</td>
-                          <td>{{$hotel->city}}</td>
-                          <td>{{$hotel->main_phone_number}}</td>
-                          <td>{{$hotel->company_email_address}}</td>
-                          <td>
-                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$hotel->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
-                          		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-room-type-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <form action="{{route('post-room-type-delete', ['id'=>$hotel->id])}}" method="post" class="d-inline ">
-                                    {{ csrf_field('PUT')}}
-                                <input type="number" value="{{$hotel->id}}" class="d-none" name="id">
-                                    <button class="btn btn-danger btn-sm" type="submit" onclick="confirm('Bạn chắc chắn muốn xoá')"><span><i class="fa fa-trash"></i></span> Xóa</button>
-                                </form>
-                                <div class="modal fade" id="myModal-{{$hotel->id}}">
-                                <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                      <h4 class="modal-title">Thông tin khách sạn</h4>
-                                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                      <table class="table table-boderless">
-                                        <tr>
-                                          <th>Id: </th>
-                                          <td>{{$hotel->id}}</td>
-                                        </tr>
-                                        <tr>
-											<th>Tên khách sạn</th>
-                                          <td>{{$hotel->name}}</td>
-                                        </tr>
-                                        <tr>
-											<th>Hình ảnh</th>
-                                          	<td>{{$hotel->name}}</td>
-                                        </tr>
-                                        <tr>
-											<th>Địa chỉ</th>
-                                          	<td>{{$hotel->name }}</td>
-                                        </tr>
-                                        <tr>
-											<th>Thành phố</th>
-                                          	<td>{{$hotel->name }}</td>
-                                        </tr>
-                                        <tr>
-											<th>Số điện thoại</th>
-                                          	<td>{{$hotel->name }}</td>
-                                        </tr>
-                                        <tr>
-											<th>Email</th>
-                                          	<td>{{$hotel->name }}</td>
-                                        </tr>
-                                      </table>
-                                    </div>
-                                    <div class="modal-footer">
-                                      <a class="btn btn-warning" href={{route('get-room-type-edit', ['id'=>$hotel->id])}}> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                          </td>
-                            {{-- modal --}}
-                            <!-- The Modal -->
+                            <td>{{$hotel->id}}</td>
+                            <td>{{$hotel->name}}</td>
+                            <td><img src="{{ asset('upload/images/') }}/{{$hotel->image}}" height="60px"> </td>
+                            <td>{{$hotel->city}}</td>
+                            <td>{{$hotel->main_phone_number}}</td>
+                            <td>{{$hotel->company_email_address}}</td>
+                            <td>
+                                <a class="btn btn-success btn-sm" href="{{route('get-hotel-detail', ['id'=>$hotel->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm" href="{{route('get-hotel-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                          		<a class="btn btn-danger btn-sm" href="{{route('get-hotel-delete', ['id'=>$hotel->id])}}"> <span><i class="fa fa-trash"></i></span> Xoá</a>
+                            </td>
                         </tr>
                         @endforeach
                       @endif

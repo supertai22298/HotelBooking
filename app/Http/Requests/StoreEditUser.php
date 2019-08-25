@@ -24,11 +24,12 @@ class StoreEditUser extends FormRequest
     public function rules()
     {
         return [
-            'email'     => 'required|email', 
+            'email'     => 'required|email',
 
-            'password'  => ['min:3',
-                                'max:35',
-                                'nullable',
+            'password'  => [
+                'min:3',
+                'max:35',
+                'nullable',
             ],
 
             'first_name'    => 'required|min:2',
@@ -52,7 +53,8 @@ class StoreEditUser extends FormRequest
             'avatar'        => 'image',
         ];
     }
-    public function messages(){
+    public function messages()
+    {
         return [
             'email.required'        => 'Email không được để trống',
             'email.email'           => 'Email không hợp lệ',
