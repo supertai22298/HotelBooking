@@ -31,7 +31,7 @@ class HotelRequest extends FormRequest
             'country' => 'required|min:3',
             'main_phone_number' => 'required|min:6|max:15',
             'company_email_address' => 'required|min:8|email',
-            'image' => 'required|image'
+            'image' => 'required|image|max:2048'
         ];
     }
     public function messages()
@@ -60,6 +60,7 @@ class HotelRequest extends FormRequest
 
             'image.required' => 'Hình ảnh không hợp lệ',
             'image.image' => 'Hình ảnh không hợp lệ',
+            'image.max' => 'Kích thước hình ảnh nhỏ hơn 2048kb',
 
         ];
     }
