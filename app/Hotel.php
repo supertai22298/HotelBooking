@@ -13,9 +13,7 @@ class Hotel extends Model
     public $timestamp = true;
 
     protected $fillable = [
-        'name, hotel_star, motto, address, address_2,
-        city, country, main_phone_number, toll_free_number,
-        company_email_address, website_address, image_link, image'
+        'name, motto, address, address_2, city, country, main_phone_number, toll_free_number, company_email_address, website_address, image_link, image'
     ];
     // one - many relationship between hotel -> hotel_utilities
     public function hotel_utilities()

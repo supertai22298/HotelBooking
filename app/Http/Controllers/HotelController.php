@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Hotel;
 use App\Http\Requests\HotelRequest;
-
 class HotelController extends Controller
 {
     /**
@@ -37,7 +36,28 @@ class HotelController extends Controller
     public function store(HotelRequest $request)
     {
         $hotel = new Hotel();
-        $hotel->create($request->all());
-        //dd($request->all());
+
+        if($request->hasFile('image')){
+            $imageName = time() . '_hotel_' .rand(0, 84600). '.'. $request->image->getClientOriginalExtension();
+            $request->image->move(public_path('upload'), $imageName);
+        }
+
+        $hotel->name = request('name');
+        $hotel->motto = request('motto');
+        $hotel->hotel_star = request('hotel_star');
+        $hotel->address = request('address');
+        $hotel->city = request('city');
+        $hotel->country = request('country');
+        $hotel->address_2 = request('address_2');
+        $hotel->main_phone_number = request('main_phone_number');
+        $hotel->toll_free_number = request('toll_free_number');
+        $hotel->company_email_address = request('company_email_address');
+        $hotel->website_address = request('website_address');
+        $hotel->image = $imageName;
+        $hotel->image_link = request('image_link');
+
+        $hotel->save();
+
+        dd($hotel);
     }
 }

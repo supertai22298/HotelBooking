@@ -12,7 +12,7 @@ Thêm khách sạn mới
 @section('content')
     <div class="card">
         <div class="card-header">
-            Thêm mới khách sạn
+            <strong> Thêm mới khách sạn</strong>
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
@@ -29,7 +29,7 @@ Thêm khách sạn mới
 					<div class="row form-group">
 						<div class="col col-md-3"><label for="hotel_star" class=" form-control-label">Số sao</label></div>
 						<div class="col-12 col-md-9">
-							<input type="number" name="hotel_star" placeholder="Số sao" class="form-control" data-parsley-trigger="change" required min="1" max="5" >
+							<input type="number" name="hotel_star" placeholder="Số sao từ 1 đến 5" class="form-control" data-parsley-trigger="change" required min="1" max="5" >
 						</div>
 					</div>
 					<div class="row form-group">
@@ -97,13 +97,13 @@ Thêm khách sạn mới
                   	<div class="row form-group">
 						<div class="col-12"><label for="image" class=" form-control-label">Hình ảnh</label></div>
 						<div class="col-12">
-							<img class="mt-4" id="preview_avatar" src="admin_page_asset/images/default.png" alt="ảnh đại điện">
+							<img class="mt-4" id="preview_avatar" src="admin_page_asset/images/default_image.png" alt="ảnh đại điện">
 							<input type="file" id="image" name="image" class="form-control-file" required>
 						</div>
                   	</div>
                 </div>
             </div>
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary mr-3">
                   <i class="fa fa-dot-circle-o"></i> Lưu
               </button>
               <button type="reset" class="btn btn-danger">
