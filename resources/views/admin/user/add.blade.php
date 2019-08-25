@@ -6,51 +6,101 @@
 @endsection
 
 @section('title')
-  Them moi nguoi dung
+Thêm mới người dùng
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            Thêm mới người dùng
+            <h4>Thêm mới người dùng
+                @if(session('noti'))
+                <small class="alert alert-success p-2">
+                    {{session('noti')}}
+                </small>
+                @endif
+            </h4>
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
-          <form id="data_add" action="#" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+        <form id="data_add" action="{{route('store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+            @csrf
             <div class="row">
               <div class="col-8">
                 <div class="row form-group">
-                  <div class="col col-md-3"><label for="email-input" class=" form-control-label">Họ và tên *</label></div>
-                  <div class="col-12 col-md-9">
-                    <input type="text" id="email-input" name="full_name" placeholder="Họ và tên" class="form-control" data-parsley-trigger="change" required="" >
-                  </div>
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">Họ*</label></div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="email-input" name="first_name" placeholder="Họ" class="form-control" data-parsley-trigger="change" required="" >
+                        @if($errors->has('first_name'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('first_name')}}
+                            </small>
+                        @endif
+                    </div>
               </div>
               <div class="row form-group">
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">Tên*</label></div>
+                    <div class="col-12 col-md-9">
+                        <input type="text" id="email-input" name="last_name" placeholder="Tên" class="form-control" data-parsley-trigger="change" required="" >
+                        @if($errors->has('last_name'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('last_name')}}
+                            </small>
+                        @endif
+                    </div>
+                </div>
+              <div class="row form-group">
                   <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên đăng nhập *</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control" data-parsley-trigger="change" required=""></div>
+                  <div class="col-12 col-md-9">
+                        <input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control" data-parsley-trigger="change" required="">
+                        @if($errors->has('username'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('username')}}
+                            </small>
+                        @endif
+                    </div>
               </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email *</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="email" id="text-input" name="Email" placeholder="Email" class="form-control" data-parsley-trigger="change" required="">
+                        <input type="email" id="text-input" name="email" placeholder="Email" class="form-control" data-parsley-trigger="change" required="">
+                        @if($errors->has('email'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('email')}}
+                            </s>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mật khẩu *</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control" data-parsley-trigger="change" required="">
+                        <input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control" data-parsley-trigger="change" required="">
+                        @if($errors->has('password'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('password')}}
+                            </small>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control" data-parsley-trigger="change" required="">
+                        <input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control" data-parsley-trigger="change">
+                        @if($errors->has('phone_number'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('phone_number')}}
+                            </small>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Địa chỉ</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control" data-parsley-trigger="change">
+                        <input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control" data-parsley-trigger="change">
+                        @if($errors->has('address'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('address')}}
+                            </small>
+                        @endif
                     </div>
                 </div>
                 <div class="row form-group">
@@ -60,6 +110,11 @@
                             <option value="0">Khách hàng</option>
                             <option value="1">Quản trị viên</option>
                         </select>
+                        @if($errors->has('role'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('role')}}
+                            </small>
+                        @endif
                     </div>
                 </div>
               </div>
@@ -67,8 +122,13 @@
                   <div class="row form-group">
                     <div class="col-12"><label for="file-input" class=" form-control-label">Avatar</label></div>
                     <div class="col-12">
-                      <img class="mt-4" id="preview_avatar" src="admin_page_asset/images/default.png" alt="ảnh đại điện">
-                      <input type="file" id="avatar" name="file-input" class="form-control-file">
+                        <img class="my-2" id="preview_avatar" src="admin_page_asset/images/default.png" alt="ảnh đại điện">
+                        <input type="file" id="avatar" name="avatar" class="form-control-file">
+                        @if($errors->has('avatar'))
+                            <small class="text-danger w-100">
+                                {{$errors->first('avatar')}}
+                            </small>
+                        @endif
                     </div>
                   </div>
                 </div>
@@ -77,8 +137,6 @@
               <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Tiểu sử</label></div>
               <div class="col-12 col-md-10"><textarea name="description" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
           </div>
-            
-          <input type='text' data-parsley-multiple-of='3' />
 
               <button type="submit" class="btn btn-primary">
                   <i class="fa fa-dot-circle-o"></i> Lưu
@@ -113,4 +171,6 @@
 
     {{-- validation with parsley js --}}
     <script src="admin_page_asset/js/validation/parsley.min.js"></script>
+
+
 @endsection

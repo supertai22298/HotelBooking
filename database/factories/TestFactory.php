@@ -46,11 +46,17 @@ $factory->define(User::class, function (Faker $faker) {
     $data = json_decode($jsonString,false);
     $username = $data->username[rand(0,count($data->username)-1)].rand(0,999);
     $email= $username.'@gmail.com';
-    $password=bcrypt($username);
+    $firstName = $data->firstName[rand(0,count($data->firstName)-1)];
+    $lastName = $data->lastName[rand(0,count($data->lastName)-1)];
+    $password=bcrypt('admin');
     $role=rand(0,1);
+    $active=rand(0,1);
 
     return[
         'username'  => $username,
+        'first_name'  => $firstName,
+        'last_name'  => $lastName,
+        'active'  => $active,
         'email'     =>$email,
         'password'  =>$password,
         'role'      =>$role

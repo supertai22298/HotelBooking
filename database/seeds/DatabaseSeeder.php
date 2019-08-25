@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
         //     BookingStatusSeeder::class
         // ]);
 
-        // factory(User::class, 10)->create();
+        //factory(User::class, 10)->create();
 
         // factory(Hotel::class, 10)->create();
 
@@ -62,9 +62,9 @@ class DatabaseSeeder extends Seeder
         //     HotelUtilitySeeder::class
         // ]);
 
-        $this->call([
-            ProfileSeeder::class
-        ]);
+        // $this->call([
+        //     ProfileSeeder::class
+        // ]);
 
     }
 }
