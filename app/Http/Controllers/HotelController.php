@@ -64,6 +64,11 @@ class HotelController extends Controller
         return redirect()->back()->with('success', 'Thêm mới thành công');
     }
 
+    /**
+     * Get method
+     * @param $id
+     * @return back() with success or errorSQL
+     */
     public function delete($id){
         try {
             $hotel = Hotel::findOrFail($id);
@@ -76,13 +81,56 @@ class HotelController extends Controller
         return redirect()->back()->with('success', 'Xoá thành công');
     }
 
+    /**
+     * Get method
+     * @param int $id
+     * @return view
+     */
     public function edit($id){
         $hotel = Hotel::findOrFail($id);
         return view('admin.hotel.edit', ['hotel' => $hotel]);
     }
-
+    
+    /**
+     * Post method
+     * @param int $id
+     * @param Request $request
+     * @return back() with success or errorSQL
+     */
+    public function update($id, HotelRequest $request){
+        try {
+            $hotel = Hotel::findOrFail($id);
+            $imageName = $hotel->image;
+            if($request->hasFile('image')){
+                $helper = new Helper();
+                $imageName = $helper->uploadFile(request('image'));
+            }
+            $hotel->name = request('name');
+            $hotel->motto = request('motto');
+            $hotel->hotel_star = request('hotel_star');
+            $hotel->address = request('address');
+            $hotel->city = request('city');
+            $hotel->country = request('country');
+            $hotel->address_2 = request('address_2');
+            $hotel->main_phone_number = request('main_phone_number');
+            $hotel->toll_free_number = request('toll_free_number');
+            $hotel->company_email_address = request('company_email_address');
+            $hotel->website_address = request('website_address');
+            $hotel->image = $imageName;
+            $hotel->image_link = request('image_link');
+            $hotel->save();
+        } catch (Exception $e) {
+            return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
+        }
+        return redirect()->back()->with('success', 'Sửa thành công');
+        }
+    /**
+     * Get method
+     * @param int $id
+     * @return view
+     */
     public function detail($id){
-        $hotel = Hotel::find($id);
+        $hotel = Hotel::findOrFail($id);
         return view('admin.hotel.detail', ['hotel' => $hotel]);
     }
 }

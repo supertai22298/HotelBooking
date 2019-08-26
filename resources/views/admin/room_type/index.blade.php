@@ -73,11 +73,30 @@
                           <td>
                                 <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$roomType->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
                           		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-room-type-edit', ['id' => $roomType->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <form action="{{route('post-room-type-delete', ['id'=>$roomType->id])}}" method="post" class="d-inline ">
-                                    {{ csrf_field('PUT')}}
-                                <input type="number" value="{{$roomType->id}}" class="d-none" name="id">
-                                    <button class="btn btn-danger btn-sm" type="submit" onclick="confirm('Bạn chắc chắn muốn xoá')"><span><i class="fa fa-trash"></i></span> Xóa</button>
-                                </form>
+                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$roomType->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                        
+                                  <!-- model delete-->
+                                  <div style="text-align: left;" id="myModal{{$roomType->id}}" class="modal fade" role="dialog">
+                                      <div class="modal-dialog">
+                                          <!-- Modal content-->
+                                          <div class="modal-content">
+                                              <div class="modal-header">
+                                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                  <h4 class="modal-title alert alert-danger">Xác Nhận</h4>
+                                              </div>
+                                              <div class="modal-body">
+                                                  <p><strong>Loại phòng {{ $roomType->room_type }} hiện có {{ count($roomType->rooms) }} phòng</strong></p>
+                                                  <p>Bạn có chắc chắn muốn xóa loại phòng: "{{ $roomType->room_type }}" không?</p>
+                                              </div>
+                                              <div class="modal-footer">
+                                                  <a class="btn btn-danger" href="{{route('get-room-type-delete', ['id'=>$roomType->id])}}">Đồng ý xoá</a>
+                                                  <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                                              </div>
+                                          </div>
+  
+                                      </div>
+                                  </div>
+                                  <!-- end model-->
                                 <div class="modal fade" id="myModal-{{$roomType->id}}">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
