@@ -105,15 +105,14 @@ class RoomTypeController extends Controller
      * @param Request $id
      * @return view admin.room_type.index with success or error
      */
-    public function delete(Request $request)
+    public function delete($id)
     {
         try{
-            $id = $request->id;
             $roomType = RoomType::where('id', $id)->delete();
         }
         catch(Exception $e)
         {
-            return back()->with('errors',$e);
+            return back()->with('errors', $e);
         }
         return back()->with('success','Thao tác thành công');
     }

@@ -39,7 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('edit/{id}', 'RoomTypeController@edit')->name('get-room-type-edit');
         Route::post('edit/{id}', 'RoomTypeController@update')->name('post-room-type-update');
 
-        Route::post('delete/{id}', 'RoomTypeController@delete')->name('post-room-type-delete');
+        Route::get('delete/{id}', 'RoomTypeController@delete')->name('get-room-type-delete');
     });
 
     Route::group(['prefix' => 'hotel'], function(){

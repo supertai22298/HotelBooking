@@ -77,7 +77,30 @@
                             <td>
                                 <a class="btn btn-success btn-sm" href="{{route('get-hotel-detail', ['id'=>$hotel->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
                           		<a class="btn btn-warning btn-sm" href="{{route('get-hotel-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                          		<a class="btn btn-danger btn-sm" href="{{route('get-hotel-delete', ['id'=>$hotel->id])}}"> <span><i class="fa fa-trash"></i></span> Xoá</a>
+                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$hotel->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                        
+                                <!-- model delete-->
+                                <div style="text-align: left;" id="myModal{{$hotel->id}}" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title alert alert-danger">Xác Nhận Xoá Khách Sạn</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Khách sạn {{ $hotel->name }} hiện có {{ count($hotel->rooms) }} phòng</strong></p>
+                                                <p>Bạn có chắc chắn muốn xóa khách sạn: "{{ $hotel->name }}" không?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-danger" href="{{route('get-hotel-delete', ['id'=>$hotel->id])}}">Đồng ý xoá</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- end model-->
                             </td>
                         </tr>
                         @endforeach
