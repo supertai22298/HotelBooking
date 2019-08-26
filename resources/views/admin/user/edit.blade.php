@@ -19,7 +19,7 @@
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
-            <form id="data_add" action="{{route('upadteUser',['id' => $user->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+            <form id="data_add" action="{{route('post-user-update',['id' => $user->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
                 @csrf
                 <div class="row">
                     <div class="col-8">
@@ -185,7 +185,7 @@
                         <div class="row form-group">
                           <div class="col-12"><label for="file-input" class=" form-control-label">Avatar</label></div>
                           <div class="col-12">
-                              <img class="my-2" id="preview_avatar" src="uploads/images/{{$user->avatar}}" alt="ảnh đại điện">
+                              <img class="my-2" id="preview_avatar" src="upload/images/{{$user->avatar}}" alt="ảnh đại điện">
                               <input type="file" id="avatar" name="avatar" class="form-control-file">
                               @if($errors->has('avatar'))
                                   <small class="text-danger w-100">
