@@ -14,6 +14,16 @@
         <div class="card-header">
           Thêm loại phòng
         </div>
+        @if (session('success'))
+            <div class="alert alert-success">
+              {{session('success')}}
+            </div>
+        @endif
+        @if (session('errorSQL'))
+            <div class="alert alert-danger">
+              {{session('errorSQL')}}
+            </div>
+        @endif
         <div class="card-body card-block">
           {{-- form data --}}
           <form id="data_add" action={{ route('post-room-type-store')}} method="post" class="form-horizontal" data-parsley-validate="">
@@ -23,12 +33,19 @@
                 <div class="row form-group">
                   <div class="col col-md-3"><label for="email-input" class="form-control-label">Loại phòng <span class="text text-danger">*</span></label></div>
                   <div class="col-12 col-md-9">
-                    <input type="text" name="room_type" placeholder="Nhập loại phòng mới" class="form-control" data-parsley-trigger="change" required minlength="6" >
+                  <input type="text" name="room_type" id="room_type" placeholder="Nhập loại phòng mới" value="{{old('room_type')}}"
+                      class="form-control" data-parsley-trigger="change" required minlength="6" >
+                      @if ($errors->has('room_type'))
+                          <small class="form-control-feedback text-danger">
+                            {{$errors->first('room_type')}}
+                          </small>
+                      @endif
+                      <small id="input-room-type" class="d-none text"></small>
                   </div>
                 </div>   
                 <div class="row form-group">
                   <div class="col col-md-3"><label for="description" class=" form-control-label">Mô tả</label></div>
-                  <div class="col-12 col-md-9"><textarea name="description" rows="4" cols="50" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
+                  <div class="col-12 col-md-9"><textarea name="description" rows="4" cols="50" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change">{{old('description')}}</textarea></div>
                 </div>
                 <div class="row form-group">
                   <div class="col col-md-3"><label for="active" class=" form-control-label">Trạng thái <span class="text text-danger">*</span></label></div>
@@ -39,7 +56,6 @@
                       </select>
                   </div>
                 </div>
-                
                 <button type="submit" class="btn btn-primary mr-5">
                   <i class="fa fa-dot-circle-o"></i> Lưu
                 </button>

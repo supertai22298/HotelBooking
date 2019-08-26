@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         factory(User::class, 10)->create();
+        //factory(User::class, 10)->create();
 
         factory(Hotel::class, 10)->create();
 
@@ -61,6 +62,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HotelUtilitySeeder::class
         ]);
+        // $this->call([
+        //     HotelUtilitySeeder::class
+        // ]);
+
+        // $this->call([
+        //     ProfileSeeder::class
+        // ]);
 
         
 

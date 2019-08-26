@@ -12,105 +12,65 @@
         <div class="card-header">
           Chỉnh sửa loại phòng
         </div>
+        @if (session('success'))
+            <div class="alert alert-success">
+              {{session('success')}}
+            </div>
+        @endif
+        @if (session('errorSQL'))
+            <div class="alert alert-danger">
+              {{session('errorSQL')}}
+            </div>
+        @endif
         <div class="card-body card-block">
           {{-- form data --}}
-          <form id="data_add" action="#" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+          @if (!empty($roomType))
+              
+        <form id="data_add" action="/admin/room-type/edit/{{$roomType->id}}" method="POST" class="form-horizontal" data-parsley-validate="">
+            {{ csrf_field() }}
             <div class="row">
               <div class="col-8">
                 <div class="row form-group">
-                  <div class="col col-md-3"><label for="email-input" class=" form-control-label">Họ và tên *</label></div>
+                  <div class="col col-md-3"><label for="email-input" class="form-control-label">Loại phòng <span class="text text-danger">*</span></label></div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="email-input" name="full_name" placeholder="Họ và tên" class="form-control" data-parsley-trigger="change" required="" >
+                    <input type="number" name="id" value="{{$roomType->id}}" class="d-none">
+                    <input type="text" name="room_type" id="room_type" placeholder="Nhập loại phòng mới" value="{{$roomType->room_type}}"
+                        class="form-control" data-parsley-trigger="change" required minlength="6" >
+                        @if ($errors->has('room_type'))
+                          <small class="form-control-feedback text-danger">
+                            {{$errors->first('room_type')}}
+                          </small>
+                        @endif
+                      <small id="input-room-type" class="d-none text"></small>
                   </div>
-              </div>
-              <div class="row form-group">
-                  <div class="col col-md-3"><label for="text-input" class=" form-control-label">Tên đăng nhập *</label></div>
-                  <div class="col-12 col-md-9"><input type="text" id="text-input" name="username" placeholder="Tên đăng nhập" class="form-control" data-parsley-trigger="change" required=""></div>
-              </div>
+                </div>   
                 <div class="row form-group">
-                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Email *</label></div>
-                    <div class="col-12 col-md-9">
-                      <input type="email" id="text-input" name="Email" placeholder="Email" class="form-control" data-parsley-trigger="change" required="">
-                    </div>
+                  <div class="col col-md-3"><label for="description" class=" form-control-label">Mô tả</label></div>
+                  <div class="col-12 col-md-9"><textarea name="description" rows="4" cols="50" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change">{{$roomType->description}}</textarea></div>
                 </div>
                 <div class="row form-group">
-                    <div class="col col-md-3"><label for="password-input" class=" form-control-label">Mật khẩu *</label></div>
-                    <div class="col-12 col-md-9">
-                      <input type="password" id="password-input" name="password" placeholder="Mật khẩu" class="form-control" data-parsley-trigger="change" required="">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại</label></div>
-                    <div class="col-12 col-md-9">
-                      <input type="text" id="text-input" name="phone_number" placeholder="Số điện thoại" class="form-control" data-parsley-trigger="change" required="">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Địa chỉ</label></div>
-                    <div class="col-12 col-md-9">
-                      <input type="text" id="text-input" name="address" placeholder="Địa chỉ" class="form-control" data-parsley-trigger="change">
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col col-md-3"><label for="select" class=" form-control-label">Loại người dùng *</label></div>
-                    <div class="col-12 col-md-9">
-                        <select name="role" id="select" class="form-control" data-parsley-trigger="change">
-                            <option value="0">Khách hàng</option>
-                            <option value="1">Quản trị viên</option>
-                        </select>
-                    </div>
-                </div>
-              </div>
-              <div class="col-4">
-                  <div class="row form-group">
-                    <div class="col-12"><label for="file-input" class=" form-control-label">Avatar</label></div>
-                    <div class="col-12">
-                      <img class="mt-4" id="preview_avatar" src="admin_page_asset/images/default.png" alt="ảnh đại điện">
-                      <input type="file" id="avatar" name="file-input" class="form-control-file">
-                    </div>
+                  <div class="col col-md-3"><label for="active" class=" form-control-label">Trạng thái <span class="text text-danger">*</span></label></div>
+                  <div class="col-12 col-md-9">
+                      <select name="active" class="form-control" data-parsley-trigger="change">
+                          <option value="1" {{$roomType->active == 1 ? 'selected': ''}}>Hoạt động</option>
+                          <option value="0" {{$roomType->active == 0 ? 'selected': ''}}>Không hoạt động</option>
+                      </select>
                   </div>
                 </div>
-            </div>
-            <div class="row form-group">
-              <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Tiểu sử</label></div>
-              <div class="col-12 col-md-10"><textarea name="description" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
-          </div>
-            
-          <input type='text' data-parsley-multiple-of='3' />
-
-              <button type="submit" class="btn btn-primary">
-                  <i class="fa fa-dot-circle-o"></i> Lưu
-              </button>
-              <button type="reset" class="btn btn-danger">
-                  <i class="fa fa-ban"></i> Đặt lại
-              </button>
+                <button type="submit" class="btn btn-primary mr-5">
+                  <i class="fa fa-dot-circle-o"></i> Xác nhận
+                </button>
+              </div>
           </form>
           {{-- end form data --}}
+          @endif
+
         </div>
     </div>
 @endsection
 
 @section('script')
     
-  {{-- xem anh trc khi upload --}}
-  <script src="admin_page_asset/js/validation/jquery.min.js"></script>
-    <script>
-    function readURL(file){
-      if(file.files && file.files[0]){
-        var reader = new FileReader();
-
-        reader.onload = function(e){
-          $('#preview_avatar').attr('src',e.target.result);
-        }
-        reader.readAsDataURL(file.files[0]);
-      }
-    };
-
-    $("#avatar").change(function(){
-      readURL(this)
-    })
-    </script>
-
     {{-- validation with parsley js --}}
     <script src="admin_page_asset/js/validation/parsley.min.js"></script>
 @endsection

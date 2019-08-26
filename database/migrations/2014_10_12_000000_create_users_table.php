@@ -28,7 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('address_2')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('gender')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('avatar')->default('user_default.png');
             $table->text('description')->nullable();
             $table->integer('active')->default(1);
             $table->integer('role')->default(0);
@@ -45,6 +45,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user');
+        Schema::dropIfExists('users');
     }
 }

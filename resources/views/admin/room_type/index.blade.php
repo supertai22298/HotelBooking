@@ -45,7 +45,11 @@
               <div class="card-header">
                   <strong class="card-title">Loại phòng</strong>
                   <a class="btn btn-primary btn-md" href={{route('get-room-type-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
-
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{session('success')}}
+                    </div>
+                @endif
               </div>
               <div class="card-body">
                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -67,10 +71,14 @@
                           <td><p>{{$roomType->description}}</p></td>
                           <td><p class="text text-success">{{$roomType->active == 1 ? 'Đang hoạt động': 'Không hoạt động'}}</p></td>
                           <td>
-                              <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$roomType->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
-                              <a class="btn btn-warning btn-sm mr-2" href=""> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                              <a class="btn btn-danger btn-sm" href="#" onclick="funccheck()"> <span><i class="fa fa-trash"></i></span> Xóa</a>
-                              <div class="modal fade" id="myModal-{{$roomType->id}}">
+                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$roomType->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-room-type-edit', ['id' => $roomType->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                <form action="{{route('post-room-type-delete', ['id'=>$roomType->id])}}" method="post" class="d-inline ">
+                                    {{ csrf_field('PUT')}}
+                                <input type="number" value="{{$roomType->id}}" class="d-none" name="id">
+                                    <button class="btn btn-danger btn-sm" type="submit" onclick="confirm('Bạn chắc chắn muốn xoá')"><span><i class="fa fa-trash"></i></span> Xóa</button>
+                                </form>
+                                <div class="modal fade" id="myModal-{{$roomType->id}}">
                                 <div class="modal-dialog">
                                   <div class="modal-content">
                                     <!-- Modal Header -->
@@ -100,8 +108,8 @@
                                       </table>
                                     </div>
                                     <div class="modal-footer">
-                                      <a class="btn btn-warning" href=""> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                      <a class="btn btn-warning" href={{route('get-room-type-edit', ['id'=>$roomType->id])}}> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     </div>
                                   </div>
                                 </div>
@@ -109,7 +117,6 @@
                           </td>
                             {{-- modal --}}
                             <!-- The Modal -->
-                          
                         </tr>
                         @endforeach
                       @endif
@@ -137,8 +144,6 @@
   <script src="admin_page_asset/js/lib/data-table/buttons.print.min.js"></script>
   <script src="admin_page_asset/js/lib/data-table/buttons.colVis.min.js"></script>
   <script src="admin_page_asset/js/init/datatables-init.js"></script>
-
-  <script src="admin_page_asset/js/functionscript.js"></script>
 
   <script type="text/javascript">
     $(document).ready(function() {
