@@ -27,12 +27,6 @@ class ProfileSeeder extends Seeder
                 ]);
         }
         
-        // $i=1;
-        // foreach (range(1,50) as $index) {
-        //     DB::table('profiles')->insert([
-        //     'user_id' => $i
-        //     ]);
-        //     $i++;
-        // }  
+        
     }
 }

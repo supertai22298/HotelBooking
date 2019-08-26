@@ -27,44 +27,42 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {   
-        // $this->call([
-        //     BookingStatusSeeder::class
-        // ]);
+        $this->call([
+            BookingStatusSeeder::class
+        ]);
 
-        // factory(User::class, 10)->create();
+        factory(User::class, 10)->create();
 
-        // factory(Hotel::class, 10)->create();
-
-        // $this->call([
-        //     RoomTypeSeeder::class
-        // ]);
-
-        // $this->call([
-        //     PaymentTypeSeeder::class
-        // ]);
-        
-        // $this->call([
-        //     PaymentStatusSeeder::class
-        // ]);
-
-        // $this->call([
-        //         RateTypeSeeder::class
-        //     ]);
-
-        // factory(Message::class,20)->create();
-
-        // $this->call([
-        //     RoomStatusSeeder::class
-        // ]);
-        // factory(Blog::class,30)->create();
-       
-        // $this->call([
-        //     HotelUtilitySeeder::class
-        // ]);
+        factory(Hotel::class, 10)->create();
 
         $this->call([
-            ProfileSeeder::class
+            RoomTypeSeeder::class
         ]);
+
+        $this->call([
+            PaymentTypeSeeder::class
+        ]);
+        
+        $this->call([
+            PaymentStatusSeeder::class
+        ]);
+
+        $this->call([
+                RateTypeSeeder::class
+            ]);
+
+        factory(Message::class,20)->create();
+
+        $this->call([
+            RoomStatusSeeder::class
+        ]);
+        factory(Blog::class,30)->create();
+       
+        $this->call([
+            HotelUtilitySeeder::class
+        ]);
+
+        
 
     }
 }

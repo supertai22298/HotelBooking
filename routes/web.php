@@ -42,4 +42,20 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('delete/{id}', 'RoomTypeController@delete');
     });
 
+    Route::group(['prefix' => 'roombooking'], function(){
+        Route::get('/', 'RoomBookingController@View');
+
+         Route::get('add', 'RoomBookingController@getAdd');
+        // Route::post('add', 'UserController@store');
+
+
+        // Route::get('edit/{id}', 'UserController@edit');
+        // Route::post('edit/{id}', 'UserController@update');
+
+        // Route::post('delete/{id}', 'UserController@delete');
+    });
+
+    Route::group(['prefix'=>'ajax'],function(){
+		Route::get('room/{idHotel}','AjaxController@getRoom');
+	});
 });
