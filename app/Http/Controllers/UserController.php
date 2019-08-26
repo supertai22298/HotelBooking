@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreEditUser;
+use App\Http\Requests\StoreEditUserRequest;
 use App\User;
 use Illuminate\Http\Request;
 use App\Helpers\Helper;
-use App\Http\Requests\StoreUser;
+use App\Http\Requests\StoreUserRequest;
 
 class UserController extends Controller
 {
@@ -15,7 +15,7 @@ class UserController extends Controller
      * View table user
      * @return view admin.user.index
      */
-    public function viewAllUsers()
+    public function view()
     { 
         $getUsers = User::all();  
         return view('admin.user.index',['getUsers' => $getUsers, 'stt' => 1]);
@@ -36,7 +36,7 @@ class UserController extends Controller
      * @param Illuminate\Http\Request
      * @return view admin.user.index with success| back() with error
      */
-    public function store(StoreUser $request)
+    public function store(StoreUserRequest $request)
     { 
         $user = new User();
         
@@ -61,7 +61,7 @@ class UserController extends Controller
     /**
      * @param $id
      */
-    public function update(StoreEditUser $request, $id)
+    public function update(StoreEditUserRequest $request, $id)
     {   
         $input = Helper::update($id,$request);
         return back()->with('noti','Chỉnh sửa tài khoản thành công!!');

@@ -11,6 +11,21 @@
     body{
         padding: 0 !important;
     }
+    .p-5px{
+        margin-bottom: 5px !important;
+    }
+    .my-center{
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    .my-center-65{
+        width: 40%;
+    }
+    .my-center-85{
+        width: 85%;
+    }
 </style>
 
 @endsection
@@ -35,7 +50,7 @@
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
                           <li><a href="">Dashboard</a></li>
-                          <li><a href="{{route('allUsers')}}">Quản lý người dùng</a></li>
+                          <li><a href="{{route('get-user-view')}}">Quản lý người dùng</a></li>
                           </ol>
                       </div>
                   </div>
@@ -53,7 +68,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">Bảng dữ liệu</strong>
-                    <a class="btn btn-primary btn-sm" href="{{route('addUser')}}">Thêm </a>
+                    <a class="btn btn-primary" href="{{route('get-user-add')}}"><i class="fa fa-plus"></i> Thêm </a>
                     @if(session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -83,74 +98,99 @@
                                     @if($user->role == 1)
                                         {{'Khách hàng'}}
                                     @else
-                                        {{'Quanr trị viên'}}
+                                        {{'Quản trị viên'}}
                                     @endif
                                 </td>
                                 <td>
                                     @if($user->active == 1)
-                                        <span class="text-success">{{'Bình thường'}}</span>
+                                        <span class="text-success">{{'Hoạt động'}}</span>
                                     @else
                                         <span class="text-warning">{{'Khóa'}}</span>
                                     @endif
                                 </td>
                                 <td>
                                     <a class="btn btn-success mt-1" href="" data-toggle="modal" data-target="#myModal{{$user->id}}" data-backdrop="true">Xem</a>
-                                    <a class="btn btn-warning mt-1" href="{{route('editUser',['id' => $user->id])}}">Sửa</a>
-                                <a class="btn btn-danger mt-1" href="{{route('deleteUser',['id' => $user->id])}}" onclick="funccheck()">Xóa</a>
+                                    <a class="btn btn-warning mt-1" href="{{route('get-user-edit',['id' => $user->id])}}">Sửa</a>
+                                <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$user->id}}" data-backdrop="true">Xóa</a>
                                 </td>
                                 {{-- modal --}}
                                 <!-- The Modal -->
-                            <div class="modal fade" id="myModal{{$user->id}}">
-                                  <div class="modal-dialog">
-                                    <div class="modal-content">
+                                <div class="modal fade" id="myModal{{$user->id}}">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
 
-                                      <!-- Modal Header -->
-                                      <div class="modal-header">
-                                        <h4 class="modal-title">Thông tin tài khoản</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                      </div>
+                                        <!-- Modal Header -->
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Thông tin tài khoản</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        </div>
 
-                                      <!-- Modal body -->
-                                      <div class="modal-body">
-                                        <div class="row">
-                                          <div class="col-4"><img src="
-                                            @if($user->avatar == null)
-                                                {{'admin_page_asset/images/default.png'}}
-                                            @else
-                                                {{'uploads/images/'.$user->avatar}}
-                                            @endif    
-                                            " alt="avatar"></div>
-                                        <div class="col-8">
-                                            <div>
-                                              <strong>Họ và tên :</strong> {{$user->first_name ." ".$user->last_name}}
+                                        <!-- Modal body -->
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="my-center my-center-65">
+                                                    <img src="
+                                                    @if($user->avatar == null)
+                                                        {{'upload/images/default.png'}}
+                                                    @else
+                                                        {{'upload/images/'.$user->avatar}}
+                                                    @endif    
+                                                    " alt="avatar">
+                                                    <h4 class="text-center mt-2">{{$user->first_name ." ".$user->last_name}}</h4>
+                                                        @if ($user->active == 1)
+                                                            <p class="text-center text-success">{{'Hoạt động'}}</p>
+                                                        @else
+                                                            <p class="text-center text-secondary">{{'Khóa'}}</p>
+                                                        @endif
+                                                    <hr>
+                                                </div>
+                                                <div class="my-center my-center-85">
+                                                    <div class="row">
+                                                    <p class="col-6 p-5px">Tên đăng nhập :</p><p class="col-6 p-5px text-body">{{$user->username}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                    <p class="col-6 p-5px bg-light">Email :</p><p class="col-6 p-5px text-body bg-light">{{$user->email}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p class="col-6 p-5px">Số điện thoại :</p><p class="col-6 p-5px text-body">{{$user->phone_number}}</p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p class="col-6 p-5px bg-light">Địa chỉ :</p><p class="col-6 p-5px text-body bg-light">{{$user->address}}</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div>
-                                            <strong>Tên đăng nhập :</strong> {{$user->username}}
-                                            </div>
-                                            <div>
-                                                <strong>Email :</strong> {{$user->username}}
-                                            </div>
-                                            <div>
-                                                <strong>Số điện thoại :</strong> {{$user->phone_number}}
-                                            </div>
-                                            <div>
-                                                <strong>Địa chỉ :</strong> {{$user->address}}
-                                            </div>
-                                            <div>
-                                            <a class="btn btn-primary btn-sm" href="{{route('editUser',['id' => $user->id])}}">Chỉnh sửa</a>
+                                            <hr>
+                                            <div class="user-description">
+                                            <h6>Tiểu sử</h6>
+                                            <p>{{$user->description}}</p>
                                             </div>
                                         </div>
+                                        <div class="modal-footer">
+                                                <a class="btn btn-primary" href="{{route('get-user-edit',['id' => $user->id])}}"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            </div>
                                         </div>
-                                        <div class="user-description">
-                                          <h6>Tiểu sử</h6>
-                                          <p>{{$user->description}}</p>
-                                        </div>
-                                      </div>
                                     </div>
-                                  </div>
                                 </div>
-                                  {{-- end modal --}}
-
+                                <div class="modal fade" id="myModalDel{{$user->id}}">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <!-- Modal Header -->
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Xác nhận tài khoản!</h4>
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+                                                <p>Bạn đồng ý xóa tài khoản <strong>{{$user->username}}</strong> này không ?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a class="btn btn-primary" href="{{route('get-user-delete',['id' => $user->id])}}">Đồng ý</a>
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </tr>
                             @endforeach
                         </tbody>

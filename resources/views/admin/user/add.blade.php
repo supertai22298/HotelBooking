@@ -22,7 +22,7 @@ Thêm mới người dùng
         </div>
         <div class="card-body card-block">
           {{-- form data --}}
-        <form id="data_add" action="{{route('store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+        <form id="data_add" action="{{route('post-user-store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
             @csrf
             <div class="row">
               <div class="col-8">
