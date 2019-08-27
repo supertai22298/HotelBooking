@@ -11,7 +11,9 @@ class RoomStatus extends Model
     use SoftDeletes;
     protected $table = 'room_statuses';
     public $timestamp = true;
-
+    protected $fillable = [
+        'room_status','description', 'active'
+    ];
 
     // one - many relationship between room_status -> rooms
     public function rooms()
