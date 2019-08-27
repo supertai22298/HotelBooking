@@ -41,6 +41,17 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('delete/{id}', 'RoomTypeController@delete')->name('get-room-type-delete');
     });
+    Route::group(['prefix' => 'room-status'], function(){
+        Route::get('/', 'RoomStatusController@view');
+
+        Route::get('add', 'RoomStatusController@create')->name('get-room-status-create');
+        Route::post('add', 'RoomStatusController@store')->name('post-room-status-store');
+
+        Route::get('edit/{id}', 'RoomStatusController@edit')->name('get-room-status-edit');
+        Route::post('edit/{id}', 'RoomStatusController@update')->name('post-room-status-update');
+
+        Route::get('delete/{id}', 'RoomStatusController@delete')->name('get-room-status-delete');
+    });
 
     Route::group(['prefix' => 'hotel'], function(){
         Route::get('/', 'HotelController@view');
@@ -54,6 +65,31 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'HotelController@delete')->name('get-hotel-delete');
 
         Route::get('detail/{id}', 'HotelController@detail')->name('get-hotel-detail');
+    });
+    Route::group(['prefix' => 'utility'], function(){
+        Route::get('/{id}', 'HotelController@detail')->name('get-utility');
+
+        Route::get('add/{hotel_id}', 'UtilityController@create')->name('get-utility-create');
+        Route::post('add/{hotel_id}', 'UtilityController@store')->name('post-utility-store');
+
+        Route::get('edit/{id}', 'UtilityController@edit')->name('get-utility-edit');
+        Route::post('edit/{id}', 'UtilityController@update')->name('post-utility-update');
+
+        Route::get('delete/{id}', 'UtilityController@delete')->name('get-utility-delete');
+    });
+
+    Route::group(['prefix' => 'room'], function(){
+        Route::get('/', 'HotelController@view');
+
+        Route::get('add', 'RoomController@create')->name('get-room-create');
+        Route::post('add', 'RoomController@store')->name('post-room-store');
+
+        Route::get('edit/{id}', 'RoomController@edit')->name('get-room-edit');
+        Route::post('edit/{id}', 'RoomController@update')->name('post-room-update');
+
+        Route::get('delete/{id}', 'RoomController@delete')->name('get-room-delete');
+
+        Route::get('detail/{id}', 'RoomController@detail')->name('get-room-detail');
     });
 
     Route::group(['prefix' => 'roombooking'], function(){

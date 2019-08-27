@@ -16,9 +16,9 @@ class CreateHotelUtilitiesTable extends Migration
         Schema::create('hotel_utilities', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('hotel_id');
-            $table->string('utility');
-            $table->text('description');
-            $table->string('image');
+            $table->string('utility')->nullable();
+            $table->text('description')->nullable();
+            $table->string('image')->default('default.png');
             $table->string('image_link')->nullable();
             $table->timestamps();
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');

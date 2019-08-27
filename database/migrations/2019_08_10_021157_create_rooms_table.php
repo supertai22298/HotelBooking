@@ -23,7 +23,7 @@ class CreateRoomsTable extends Migration
             $table->text('description')->nullable();
             $table->float('price', 8, 2);
             $table->integer('discount')->default(0);
-            $table->string('image')->default('default_image.png');
+            $table->string('image')->default('default.png');
             $table->string('image_link')->nullable();
             $table->timestamps();
             $table->foreign('hotel_id')->references('id')->on('hotels')->onDelete('cascade');

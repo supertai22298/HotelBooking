@@ -16,7 +16,7 @@ class RoomType extends Model
      * @var array
      */
     protected $fillable = [
-        'room_type','description'
+        'room_type','description', 'active'
     ];
     // one - many relationship between room_type -> rooms
     public function rooms(){
