@@ -4,14 +4,14 @@
     <link rel="stylesheet" href="admin_page_asset/css/parsley.css">
 @endsection
 @section('title')
-  Chỉnh sửa khách sạn {{ $hotel->name }}
+  Chỉnh sửa phòng {{ $room->name }}
 @endsection
 
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <strong> Chỉnh sửa khách sạn {{ $hotel->name }}</strong>
+            <strong> Chỉnh sửa phòng {{ $room->name }}</strong>
 		</div>
 
 		@if (session('success'))
@@ -23,15 +23,70 @@
 
         <div class="card-body card-block">
           {{-- form data --}}
-		<form id="data_add" action="/admin/hotel/edit/{{ $hotel->id }}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+		<form id="data_add" action="/admin/room/edit/{{ $room->id }}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="row">
               	<div class="col-8">
 					<div class="row form-group">
-						<div class="col col-md-3"><label for="name" class=" form-control-label">Tên khách sạn <span class="text text-danger">*</span></label></div>
+						<div class="col col-md-3"><label for="hotel_id" class=" form-control-label">Tên khách sạn <span class="text text-danger">*</span></label></div>
 						<div class="col-12 col-md-9">
-							<input type="text" name="name" placeholder="Tên khách sạn"
-							value="{{ $hotel->name }}" class="form-control" data-parsley-trigger="change" required minlength="4" >
+							<select name="hotel_id" class="form-control" data-parsley-trigger="change" disabled>
+								<option value="{{ $room->hotel->id }}" selected disabled>{{ $room->hotel->name }}</option>
+							</select>
+						</div>
+						@if ($errors->has('hotel_id'))
+							<small class="form-control-feedback text text-danger">
+								{{ $errors->first('hotel_id') }}
+							</small>
+						@endif
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3"><label for="room_type_id" class=" form-control-label">Loại phòng<span class="text text-danger">*</span></label></div>
+						<div class="col-12 col-md-9">
+							<select name="room_type_id" class="form-control" data-parsley-trigger="change" required >
+								@if (count($room_types) > 0)
+									@foreach ($room_types as $room_type)
+										<option value="{{ $room_type->id }}"
+											@if ($room->room_type->id == $room_type->id)
+												selected
+											@endif
+										>{{ $room_type->room_type }}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+						@if ($errors->has('room_type_id'))
+							<small class="form-control-feedback text text-danger">
+								{{ $errors->first('room_type_id') }}
+							</small>
+						@endif
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3"><label for="room_status_id" class=" form-control-label">Trạng thái<span class="text text-danger">*</span></label></div>
+						<div class="col-12 col-md-9">
+							<select name="room_status_id" class="form-control" data-parsley-trigger="change" required >
+								@if (count($room_statuses) > 0)
+									@foreach ($room_statuses as $room_status)
+										<option value="{{ $room_status->id }}"
+											@if ($room->room_status->id == $room_status->id)
+												selected
+											@endif	
+										>{{ $room_status->room_status }}</option>
+									@endforeach
+								@endif
+							</select>
+						</div>
+						@if ($errors->has('room_status_id'))
+							<small class="form-control-feedback text text-danger">
+								{{ $errors->first('room_status_id') }}
+							</small>
+						@endif
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3"><label for="name" class=" form-control-label">Tên phòng <span class="text text-danger">*</span></label></div>
+						<div class="col-12 col-md-9">
+							<input type="text" name="name" placeholder="Tên phòng"
+							value="{{ $room->name }}" class="form-control" data-parsley-trigger="change" required minlength="3">
 						</div>
 						@if ($errors->has('name'))
 							<small class="form-control-feedback text text-danger">
@@ -40,109 +95,68 @@
 						@endif
 					</div>
 					<div class="row form-group">
-						<div class="col col-md-3"><label for="hotel_star" class=" form-control-label">Số sao</label></div>
+						<div class="col col-md-3"><label for="floor" class=" form-control-label">Tầng<span class="text text-danger">*</span></label></div>
 						<div class="col-12 col-md-9">
-							<input type="number" name="hotel_star" placeholder="Số sao từ 1 đến 5"
-							value="{{ $hotel->hotel_star }}" class="form-control" data-parsley-trigger="change" required min="1" max="5" >
+							<input type="number" name="floor" placeholder="Tầng"
+							value="{{ $room->floor }}" class="form-control" data-parsley-trigger="change" required min="1">
 						</div>
-						@if ($errors->has('hotel_star'))
+						@if ($errors->has('floor'))
 							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('hotel_star') }}
+								{{ $errors->first('floor') }}
 							</small>
 						@endif
 					</div>
 					<div class="row form-group">
-						<div class="col col-md-3"><label for="motto" class=" form-control-label">Châm ngôn</label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="motto" placeholder="Châm ngôn" class="form-control" data-parsley-trigger="change" value="{{ $hotel->motto }}">
-						</div>
+							<div class="col col-md-3"><label for="price" class=" form-control-label">Giá <span class="text text-danger">*</span></label></div>
+							<div class="col-12 col-md-9">
+								<input type="number" name="price" placeholder="Giá"
+								value="{{ $room->price}}" class="form-control" data-parsley-trigger="change" required>
+							</div>
+							@if ($errors->has('price'))
+								<small class="form-control-feedback text text-danger">
+									{{ $errors->first('price') }}
+								</small>
+							@endif
 					</div>
 					<div class="row form-group">
-						<div class="col col-md-3"><label for="address" class=" form-control-label">Địa chỉ<span class="text text-danger">*</span></label></div>
+							<div class="col col-md-3"><label for="discount" class=" form-control-label">Phần trăm giảm giá <span class="text text-danger">*</span></label></div>
+							<div class="col-12 col-md-9">
+								<input type="number" name="discount" placeholder="Phần trăm giảm giá"
+								value="{{ $room->discount}}" class="form-control" data-parsley-trigger="change" required max="100">
+								<small>Đơn vị: %</small>
+							</div>
+							@if ($errors->has('discount'))
+								<small class="form-control-feedback text text-danger">
+									{{ $errors->first('discount') }}
+								</small>
+							@endif
+					</div>
+					<div class="row form-group">
+						<div class="col col-md-3"><label for="description" class=" form-control-label">Mô tả</label></div>
 						<div class="col-12 col-md-9">
-							<input type="text" name="address" placeholder="Địa chỉ" class="form-control" data-parsley-trigger="change" required minlength="6" value="{{ $hotel->address }}">
+							<textarea name="description" cols="55" placeholder="Mô tả"> {{ $room->description }}</textarea>
 						</div>
-						@if ($errors->has('address'))
+						@if ($errors->has('description'))
 							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('address') }}
+								{{ $errors->first('description') }}
 							</small>
 						@endif
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="address_2" class=" form-control-label">Địa chỉ 2</label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="address_2" placeholder="Địa chỉ 2" class="form-control" data-parsley-trigger="change" value="{{ $hotel->address_2 }}">
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="city" class=" form-control-label">Thành phố <span class="text text-danger">*</span></label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="city" placeholder="Thành phố" class="form-control" data-parsley-trigger="change" required minlength="3" value="{{ $hotel->city}}">
-						</div>
-						@if ($errors->has('city'))
-							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('city') }}
-							</small>
-						@endif
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="country" class=" form-control-label">Quốc gia <span class="text text-danger">*</span></label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="country" placeholder="Quốc gia" class="form-control" data-parsley-trigger="change" required minlength="3" value="{{ $hotel->city }}">
-						</div>
-						@if ($errors->has('country'))
-							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('country') }}
-							</small>
-						@endif
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="main_phone_number" class=" form-control-label">Số điện thoại chính<span class="text text-danger">*</span></label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="main_phone_number" placeholder="Số điện thoại chính" 
-							value="{{ $hotel->main_phone_number }}" class="form-control" data-parsley-trigger="change" required minlength="6" maxlength="15" pattern="[0-9]{1,12}">
-						</div>
-						@if ($errors->has('main_phone_number'))
-							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('main_phone_number') }}
-							</small>
-						@endif
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="toll_free_number" class=" form-control-label">Số điện thoại miễn cước</label></div>
-						<div class="col-12 col-md-9">
-							<input type="text" name="toll_free_number" placeholder="Số điện thoại miễn cước" class="form-control" data-parsley-trigger="change" value="{{ $hotel->toll_free_number}}">
-						</div>
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="company_email_address" class=" form-control-label">Email<span class="text text-danger">*</span></label></div>
-						<div class="col-12 col-md-9">
-							<input type="email" name="company_email_address" placeholder="Email" class="form-control" data-parsley-trigger="change" required minlength="8" value="{{ $hotel->company_email_address}}">
-						</div>
-						@if ($errors->has('company_email_address'))
-							<small class="form-control-feedback text text-danger">
-								{{ $errors->first('company_email_address') }}
-							</small>
-						@endif
-					</div>
-					<div class="row form-group">
-						<div class="col col-md-3"><label for="website_address" class=" form-control-label">Địa chỉ trang web</label></div>
-						<div class="col-12 col-md-9">
-							<input type="url" name="website_address" placeholder="Địa chỉ trang web" class="form-control" data-parsley-trigger="change"  value="{{ $hotel->website_address }}">
-						</div>
 					</div>
 					<div class="row form-group">
 						<div class="col col-md-3"><label for="image_link" class=" form-control-label">Link ảnh thay thế</label></div>
 						<div class="col-12 col-md-9">
-							<input type="url" name="image_link" placeholder="Link ảnh thay thế" class="form-control" data-parsley-trigger="change" value="{{ $hotel->image_link }}">
+							<input type="url" name="image_link" placeholder="Link ảnh thay thế" class="form-control" data-parsley-trigger="change" value="{{ $room->image_link}}">
 						</div>
 					</div>
               	</div>
               	<div class="col-4">
                   	<div class="row form-group">
-						<div class="col-12"><label for="image" class=" form-control-label">Hình ảnh</label></div>
 						<div class="col-12">
-							<img class="mt-4" id="preview_avatar" src="{{ asset('upload/images') . '/' . $hotel->image }}" alt="ảnh đại điện">
+							<label for="image" class=" form-control-label">Hình ảnh <span class="text text-danger"></span></label><br/>
+							<small class="text text-primary">Đây là hình ảnh chính để hiển thị, bạn có thể bổ sung hình ảnh khác sau</small>
+						</div>
+						<div class="col-12">
+							<img class="mt-4" id="preview_avatar" src="{{ asset('upload/images').'/'.$room->image }}" alt="ảnh đại điện">
 							<input type="file" id="image" name="image" class="form-control-file" value="{{old('image')}}">
 						</div>
 						@if ($errors->has('image'))

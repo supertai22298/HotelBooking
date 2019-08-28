@@ -21,7 +21,7 @@ class CreateRoomsTable extends Migration
             $table->string('name');
 		    $table->integer('floor');
             $table->text('description')->nullable();
-            $table->float('price', 8, 2);
+            $table->string('price');
             $table->integer('discount')->default(0);
             $table->string('image')->default('default.png');
             $table->string('image_link')->nullable();

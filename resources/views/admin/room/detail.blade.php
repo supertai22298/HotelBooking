@@ -2,17 +2,17 @@
 @section('css')
 @endsection
 @section('title')
-  Chi tiết khách sạn {{ $hotel->name }}
+  Chi tiết khách sạn {{ $room->name }}
 @endsection
 
 @section('content')
-@if (!empty($hotel))
+@if (!empty($room))
     <div class="bg-white p-4">
         <div class="row">
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-header">
-                  <strong>Thông tin khách sạn</strong>
+                  <strong>Thông tin phòng</strong>
                 </div>
                 @if (session('success'))
                 <div class="alert alert-success">{{ session('success') }}</div>
@@ -22,17 +22,17 @@
                 @endif
                 <div class="card-body">
                   <div>
-                    <img src="{{ asset('upload/images'). '/' . $hotel->image }}" height="300px" alt="...">
+                    <img src="{{ asset('upload/images'). '/' . $room->image }}" height="300px" alt="...">
                   </div>
                   <div>
                     <p>
-                      <strong >Khách sạn {{ $hotel->name }}</strong>
-                      <strong>Địa chỉ : </strong>{{ $hotel->address }}, {{ $hotel->city }}, {{ $hotel->country }} <br/>
-                      <strong>Số điện thoại : </strong>{{ $hotel->main_phone_number }} <br/>
-                      <strong>Email : </strong>{{ $hotel->company_email_address }} <br/>
-                      <strong>Số phòng hiện có : </strong>{{ count($hotel->rooms) }} <br/>
+                      <strong>Phòng {{ $room->name }}</strong>
+                      <strong>Khách sạn : </strong>{{ $room->hotel->name }}, {{ $room->hotel->city }}, {{ $room->hotel->country }} <br/>
+                      <strong>Loại phòng : </strong>{{ $room->room_type->room_type }} <br/>
+                      <strong>Tình trạng : </strong>{{ $room->room_status->room_status }} <br/>
+                      <strong>Giá : </strong>{{ $room->price }} <br/>
                     </p>  
-                      <a class="btn btn-warning" href="{{ route('get-hotel-edit', ['id' => $hotel->id ]) }}">Chỉnh sửa</a>
+                      <a class="btn btn-warning" href="{{ route('get-room-edit', ['id' => $room->id ]) }}">Chỉnh sửa</a>
                   </div>
                 </div>
               </div>
@@ -40,48 +40,81 @@
               <!--utility-->
               <div class="card">
                 <div class="card-header">
-                  <strong> Tiện ích và hình ảnh</strong>
-                  <a class="btn btn-primary btn-md" href="{{ route('get-utility-create', ['id' => $hotel->id]) }}"><span><i class="fa fa-plus"></i></span> Thêm mới</a>
+                  <strong> Hình ảnh</strong>
+                  @if (session('success'))
+                  <div class="alert alert-success">{{ session('success') }}</div>
+                  @endif
+                  @if (session('errorSQL'))
+                    <div class="alert alert-danger">{{ session('errorSQL') }}</div>
+                  @endif
+                  <p>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapse-{{ $room->id }}" aria-expanded="false" aria-controls="collapseExample">
+                      <span><i class="fa fa-plus"></i> Thêm hình ảnh</span>
+                    </button>
+                  </p>
+                  <div class="collapse" id="collapse-{{ $room->id }}">
+                    <div class="card card-body">
+                      <form action="/admin/room-image/upload-multi-image/{{ $room->id }}" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="card">
+                          <div class="card-header">
+                            <label class="card-title" for="image"><strong>Hình ảnh bổ sung</strong></label><br>
+                            <small class="text text-danger">Chọn tối đa 5 hình</small><br>
+                            <small class="text text-danger">Hình ảnh nhỏ hơn 500kb</small>
+                          </div>
+                          <div class="card-body">
+                              <div>
+                                <input type="file" name="images[]" required multiple>
+                              </div>
+                              @if ($errors->has('images'))
+                                <small class="form-control-feedback text text-danger">
+                                  {{ $errors->first('images') }}
+                                </small>
+                              @endif
+                          </div>
+                          <div class="card-body">
+                              <button type="submit" class="btn btn-primary">Xác nhận</button>
+                              <button type="reset" class="btn btn-secondary">Đặt lại</button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
                 </div>
                 <div class="card-body">
                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
                       <thead>
                           <tr>
                               <th>Id</th>
-                              <th>Tên tiện ích</th>
-                              <th>Mô tả</th>
                               <th>Hình ảnh</th>
-                              <th>Chức nẵng</th>
+                              <th>Chức năng</th>
                           </tr>
                       </thead>
                       <tbody>
-                        @if (count($hotel->hotel_utilities) > 0)
-                          @foreach ($hotel->hotel_utilities as $utility)
+                        @if (1 > 0)
+                          @foreach ($room->room_images as $image)
                             <tr>
-                              <td>{{ $utility->id }}</td>
-                              <td>{{ $utility->utility }}</td>
-                              <td>{{ $utility->description }}</td>
-                              <td><img src="{{ asset('upload/images') .'/'. $utility->image  }}" height="60px"> </td>
+                              <td>{{ $image->id }}</td>
+                              <td><img src="{{ asset('upload/images') .'/'. $image->image  }}" height="60px"> </td>
                               <td>
-                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$utility->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
-                                  <a class="btn btn-warning btn-sm" href="{{ route('get-utility-edit', ['id' => $utility->id]) }}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                  <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$utility->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$image->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
+                                  <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{ $image->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
                                             
                                     <!-- model delete-->
-                                    <div style="text-align: left;" id="myModal{{$utility->id}}" class="modal fade" role="dialog">
+                                    <div style="text-align: left;" id="myModal{{$image->id}}" class="modal fade" role="dialog">
                                         <div class="modal-dialog">
                                             <!-- Modal content-->
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                    <h4 class="modal-title alert alert-danger">Xác Nhận Nội dung tiện tích</h4>
+                                                    <h4 class="modal-title alert alert-danger">Xác Nhận Xoá Hình ảnh</h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p><strong>{{ $utility->utility }} của khách sạn {{ $hotel->name }}</strong></p>
+                                                    <img src="{{ asset('upload/images') .'/'. $image->image  }}"> 
                                                     <p>Bạn có chắc chắn muốn xóa không?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <a class="btn btn-danger" href="{{ route('get-utility-delete', ['id' => $utility->id]) }}">Đồng ý xoá</a>
+                                                    <a class="btn btn-danger" href="{{ route('get-room-image-delete', ['id' => $image->id]) }}">Đồng ý xoá</a>
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
                                                 </div>
                                             </div>
@@ -91,7 +124,7 @@
                                     <!-- end model-->
 
                                     <!-- Modal View -->
-                                    <div class="modal fade" id="myModal-{{$utility->id}}">
+                                    <div class="modal fade" id="myModal-{{$image->id}}">
                                       <div class="modal-dialog">
                                         <div class="modal-content">
                                           <!-- Modal Header -->
@@ -102,25 +135,17 @@
                                           <!-- Modal body -->
                                           <div class="modal-body">
                                             <div>
-                                              <img src="{{ asset('upload/images') .'/'. $utility->image  }}" alt="">
+                                              <img src="{{ asset('upload/images') .'/'. $image->image  }}" alt="">
                                             </div>
                                             <table class="table table-boderless">
                                               <tr>
                                                 <th>Id: </th>
-                                                <td>{{$utility->id}}</td>
+                                                <td>{{$image->id}}</td>
                                               </tr>
-                                              <tr>
-                                                <th>Tiện ích: </th>
-                                                <td>{{$utility->utility}}</td>
-                                              </tr>
-                                              <tr>
-                                                <th>Mô tả: </th>
-                                                <td>{{$utility->description}}</td>
-                                              </tr>
+                                             
                                             </table>
                                           </div>
                                           <div class="modal-footer">
-                                            <a class="btn btn-warning" href={{route('get-utility-edit', ['id'=>$utility->id])}}> <span><i class="fa fa-edit"></i></span> Sửa</a>
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                           </div>
                                         </div>
