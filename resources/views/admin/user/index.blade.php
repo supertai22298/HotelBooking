@@ -84,7 +84,7 @@
                                 <th>Tên tài khoản</th>
                                 <th>Loại tài khoản</th>
                                 <th>Trạng thái</th>
-                                <th>Option</th>
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>

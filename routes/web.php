@@ -30,6 +30,13 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'UserController@delete')->name('get-user-delete');
     });
 
+    // quản lý liên hệ
+    Route::group(['prefix' => 'contact'], function(){
+        Route::get('/', 'ContactController@view')->name('get-contact-view');
+
+        Route::get('delete/{id}', 'ContactController@delete')->name('get-contact-delete');
+    });
+
     Route::group(['prefix' => 'room-type'], function(){
         Route::get('/', 'RoomTypeController@view');
 
