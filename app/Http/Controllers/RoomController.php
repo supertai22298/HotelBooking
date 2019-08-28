@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Helper;
 use App\Hotel;
+use App\Http\Requests\RoomRequest;
 use Illuminate\Http\Request;
 use App\Room;
+use App\RoomStatus;
 use App\RoomType;
 
 class RoomController extends Controller
@@ -27,10 +30,15 @@ class RoomController extends Controller
      */
     public function create()
     {
-        $roomTypes = RoomType::all();
+        $room_types = RoomType::all();
+        $room_statuses = RoomStatus::all();
         $hotels = Hotel::all();
-        return view('admin.room.add', compact([$roomTypes, $hotels]));
-        
+        return view('admin.room.add',
+         [
+            'hotels' => $hotels,
+            'room_types' => $room_types,
+            'room_statuses' => $room_statuses
+        ]);
     }
 
     /**
@@ -38,7 +46,7 @@ class RoomController extends Controller
      * @param Illuminate\Http\Request
      * @return view back() with success| back() with error
      */
-    public function store(Request $request)
+    public function store(RoomRequest $request)
     {
         $room = new Room();
         $imageName = 'default.png';
@@ -57,9 +65,7 @@ class RoomController extends Controller
             $room->discount = request('discount');
             $room->image_link = request('image_link');
             $room->image = $imageName;
-           
-
-            //$room->save();
+            $room->save();
         } catch (Exception $e) {
             return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
         }
@@ -90,7 +96,14 @@ class RoomController extends Controller
      */
     public function edit($id){
         $room = Room::findOrFail($id);
-        return view('admin.room.edit', ['room' => $room]);
+        $room_types = RoomType::all();
+        $room_statuses = RoomStatus::all();
+        return view('admin.room.edit',
+         [
+            'room' => $room,
+            'room_types' => $room_types,
+            'room_statuses' => $room_statuses
+        ]);
     }
     
     /**
@@ -99,7 +112,29 @@ class RoomController extends Controller
      * @param Request $request
      * @return back() with success or errorSQL
      */
-    public function update($id, HotelRequest $request){
+    public function update($id, RoomRequest $request){
+        $room = Room::findOrFail($id);
+        $imageName = $room->image;
+        try {
+            if($request->hasFile('image')){
+                $helper = new Helper();
+                $imageName = $helper->uploadFile(request('image'));
+            }
+            $room->hotel_id = $room->hotel_id;
+            $room->room_type_id = request('room_type_id');
+            $room->room_status_id = request('room_status_id');
+            $room->name = request('name');
+            $room->floor = request('floor');
+            $room->description = request('description');
+            $room->price = request('price');
+            $room->discount = request('discount');
+            $room->image_link = request('image_link');
+            $room->image = $imageName;
+            $room->save();
+        } catch (Exception $e) {
+            return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
+        }
+        return redirect()->back()->with('success', 'Sửa thành công');
     }
     /**
      * Get method
@@ -108,7 +143,7 @@ class RoomController extends Controller
      */
     public function detail($id){
         $room = Room::findOrFail($id);
-        return view('admin.room.detail', ['Room' => $room]);
+        return view('admin.room.detail', ['room' => $room]);
     }
 
 }

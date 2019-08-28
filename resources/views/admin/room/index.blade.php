@@ -8,7 +8,7 @@
 @endsection
 
 @section('title')
-    Quản lý khách sạn
+    Quản lý phòng
 @endsection
 
 @section('breadcrumbs')
@@ -26,8 +26,8 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="">Dashboard</a></li>
-                              <li><a href="#">Quản lý khách sạn</a></li>
+                            <li><a href="">Dashboard</a></li>
+                            <li><a href="#">Quản lý phòng</a></li>
                           </ol>
                       </div>
                   </div>
@@ -43,8 +43,8 @@
       <div class="col-md-12">
           <div class="card">
               <div class="card-header">
-                  <strong class="card-title">Danh sách khách sạn</strong>
-                  <a class="btn btn-primary btn-md" href={{route('get-hotel-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
+                  <strong class="card-title">Danh sách phòng</strong>
+                  <a class="btn btn-primary btn-md" href={{route('get-room-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{session('success')}}
@@ -57,43 +57,47 @@
                         <tr>
                             <th>Id</th>
                             <th>Tên khách sạn</th>
+                            <th>Loại phòng</th>
+                            <th>Số phòng</th>
                             <th>Hình ảnh</th>
-                            <th>Thành phố</th>
-                            <th>Số điện thoại</th>
-                            <th>Email</th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
+                            <th>Trạng thái</th>
                             <th>Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
-                      @if (!empty($hotels) )
-                        @foreach ($hotels as $hotel)
+                      @if (!empty($rooms) )
+                        @foreach ($rooms as $room)
                         <tr>
-                            <td>{{$hotel->id}}</td>
-                            <td>{{$hotel->name}}</td>
-                            <td><img src="{{ asset('upload/images/') }}/{{$hotel->image}}" height="60px"> </td>
-                            <td>{{$hotel->city}}</td>
-                            <td>{{$hotel->main_phone_number}}</td>
-                            <td>{{$hotel->company_email_address}}</td>
+                            <td>{{$room->id}}</td>
+                            <td>{{$room->hotel->name}}</td>
+                            <td>{{$room->room_type->room_type}}</td>
+                            <td>{{$room->name}}</td>
+                            <td><img src="{{ asset('upload/images/') }}/{{$room->image}}" height="60px"> </td>
+                            <td>{{$room->price}}</td>
+                            <td>{{$room->discount}}</td>
+                            <td>{{$room->room_status->room_status}}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{{route('get-hotel-detail', ['id'=>$hotel->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
-                          		<a class="btn btn-warning btn-sm" href="{{route('get-hotel-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$hotel->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                <a class="btn btn-success btn-sm" href="{{route('get-room-detail', ['id'=>$room->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm" href="{{route('get-room-edit', ['id' => $room->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$room->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
                                         
                                 <!-- model delete-->
-                                <div style="text-align: left;" id="myModal{{$hotel->id}}" class="modal fade" role="dialog">
+                                <div style="text-align: left;" id="myModal{{$room->id}}" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title alert alert-danger">Xác Nhận Xoá Khách Sạn</h4>
+                                                <h4 class="modal-title alert alert-danger">Xác Nhận Xoá Phòng</h4>
                                             </div>
                                             <div class="modal-body">
-                                                <p><strong>Khách sạn {{ $hotel->name }} hiện có {{ count($hotel->rooms) }} phòng</strong></p>
-                                                <p>Bạn có chắc chắn muốn xóa khách sạn: "{{ $hotel->name }}" không?</p>
+                                                <p><strong>Phòng {{ $room->name }} thuộc khách sạn "{{ $room->hotel->name }}"</strong></p>
+                                                <p>Bạn có chắc chắn muốn xóa phòng: "{{ $room->name }}" không?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a class="btn btn-danger" href="{{route('get-hotel-delete', ['id'=>$hotel->id])}}">Đồng ý xoá</a>
+                                                <a class="btn btn-danger" href="{{route('get-room-delete', ['id'=>$room->id])}}">Đồng ý xoá</a>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Không</button>
                                             </div>
                                         </div>

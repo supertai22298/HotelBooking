@@ -23,10 +23,10 @@ use Illuminate\Http\Request;
 class AjaxController extends Controller
 {
     public function getRoom($idHotel){
-    	$room = Room::where('hotel_id',$idHotel)->get();
-    	foreach($room as $roo)
+    	$rooms = Room::where('hotel_id',$idHotel)->get();
+    	foreach($rooms as $room)
     	{
-    		echo "<option value='".$roo->id."'>".$roo->name." </option>   ";
+    		echo "<option value='".$room->id."'>".$room->name." </option>   ";
     	} 
 
     }

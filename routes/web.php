@@ -79,7 +79,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'room'], function(){
-        Route::get('/', 'HotelController@view');
+        Route::get('/', 'RoomController@view');
 
         Route::get('add', 'RoomController@create')->name('get-room-create');
         Route::post('add', 'RoomController@store')->name('post-room-store');
@@ -91,7 +91,11 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('detail/{id}', 'RoomController@detail')->name('get-room-detail');
     });
-
+    
+    Route::group(['prefix' => 'room-image'], function () {
+        Route::post('upload-multi-image/{room_id}', 'RoomImageController@uploadMultiImage');
+        Route::get('delete/{id}', 'RoomImageController@delete')->name('get-room-image-delete');
+    });
     Route::group(['prefix' => 'roombooking'], function(){
         Route::get('/', 'RoomBookingController@View');
 
