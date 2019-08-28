@@ -11,6 +11,7 @@
     Quản lý tình trạng phòng
 @endsection
 
+
 @section('breadcrumbs')
   <div class="breadcrumbs">
       <div class="breadcrumbs-inner">
@@ -26,8 +27,8 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="">Dashboard</a></li>
-                              <li><a href="#">Quản lý tình trạng phòng</a></li>
+                          <li><a href="{{ route('get-admin-index') }}">Dashboard</a></li>
+                              <li><a href="{{ route('get-room-status-index') }}">Tình trạng phòng</a></li>    
                           </ol>
                       </div>
                   </div>
@@ -36,7 +37,6 @@
       </div>
   </div>
 @endsection
-
 @section('content')
 <div class="animated fadeIn">
     <div class="row">
