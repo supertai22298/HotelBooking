@@ -27,7 +27,7 @@
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
                           <li><a href="">Dashboard</a></li>
-                              <li><a href="#">Quản lý liên hệ</a></li>
+                          <li><a href="{{route('get-contact-view')}}">Quản lý liên hệ</a></li>
                           </ol>
                       </div>
                   </div>

@@ -23,11 +23,23 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('add', 'UserController@create')->name('get-user-add');
         Route::post('add', 'UserController@store')->name('post-user-store');
 
-
         Route::get('edit/{id}', 'UserController@edit')->name('get-user-edit');
         Route::post('edit/{id}', 'UserController@update')->name('post-user-update');
 
         Route::get('delete/{id}', 'UserController@delete')->name('get-user-delete');
+    });
+
+    // quản lý bai dang
+    Route::group(['prefix' => 'blog'], function(){
+        Route::get('/', 'BlogController@view')->name('get-blog-view');
+
+        Route::get('add', 'BlogController@create')->name('get-blog-add');
+        Route::post('add', 'BlogController@store')->name('post-blog-store');
+
+        Route::get('edit/{id}', 'BlogController@edit')->name('get-blog-edit');
+        Route::post('edit/{id}', 'BlogController@update')->name('post-blog-update');
+
+        Route::get('delete/{id}', 'BlogController@delete')->name('get-blog-delete');
     });
 
     // quản lý liên hệ
