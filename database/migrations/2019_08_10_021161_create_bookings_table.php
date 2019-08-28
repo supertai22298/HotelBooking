@@ -21,6 +21,10 @@ class CreateBookingsTable extends Migration
       $table->dateTime('date_from');
       $table->dateTime('date_to');
       $table->timestamps();
+      $table->string('customer_name')->nullable();
+      $table->string('customer_email')->nullable();
+      $table->string('customer_phone')->nullable();
+      $table->string('description')->nullable();
       $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
       $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
       $table->foreign('booking_status_id')->references('id')->on('booking_statuses')->onDelete('cascade');

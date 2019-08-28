@@ -22,30 +22,44 @@
 		@endif
         <div class="card-body card-block">
           {{-- form data --}}
-          <form id="data_add" action="{{Route('post-roombooking-store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+          <form id="data_edit" action="{{route('post-roombooking-update', ['id'=>$booking->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
           @csrf 
             <div class="row">
               <div class="col-8">
                 <div class="row form-group">
                   <div class="col col-md-3"><label for="text-input" class=" form-control-label">Họ và tên khách hàng</label></div>
                   <div class="col-12 col-md-9">
-                    <input type="text" id="text-input" name="customer_name" placeholder="" class="form-control" data-parsley-trigger="change" required="" >
+                  <input type="text" id="text-input" name="customer_name"  value="{{$booking->customer_name}}" class="form-control" data-parsley-trigger="change" required="" >
                   </div>
               </div>
               <div class="row form-group">
-                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại</label></div>
-                <div class="col-12 col-md-9"><input type="text" id="text-input" name="customer_phone" placeholder="" class="form-control" data-parsley-trigger="change" required=""></div>
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Username đặt</label></div>
+                    <div class="col-12 col-md-9"><input type="text" readonly id="text-input" name="username" value="{{$booking->user->username}}" class="form-control" data-parsley-trigger="change" required=""></div>
+                </div>
+              <div class="row form-group">
+                <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại khách hàng</label></div>
+                <div class="col-12 col-md-9"><input type="text" id="text-input" name="customer_phone" value="{{$booking->customer_phone}}" class="form-control" data-parsley-trigger="change" required=""></div>
             </div>
             <div class="row form-group">
-                <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email</label></div>
-                <div class="col-12 col-md-9"><input type="email" id="email-input" name="customer_email" placeholder="" class="form-control" data-parsley-trigger="change" required=""></div>
-            </div>
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email khách hàng</label></div>
+                    <div class="col-12 col-md-9"><input type="email" id="email-input" name="customer_email" value="{{$booking->customer_email}}" class="form-control" data-parsley-trigger="change" ></div>
+                </div>
+            <div class="row form-group">
+                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Số điện thoại người đặt</label></div>
+                    <div class="col-12 col-md-9"><input type="text" id="text-input" name="booker_phone" readonly value="{{$booking->user->phone_number}}" class="form-control" data-parsley-trigger="change" ></div>
+                </div>
+    
+            <div class="row form-group">
+                    <div class="col col-md-3"><label for="email-input" class=" form-control-label">Email người đặt</label></div>
+                    <div class="col-12 col-md-9"><input type="email" id="email-input" name="booker_email" readonly value="{{$booking->user->email}}" class="form-control" data-parsley-trigger="change" ></div>
+                </div>
               <div class="row form-group">
                 <div class="col col-md-3"><label for="select" class=" form-control-label">Tên khách sạn</label></div>
                 <div class="col-12 col-md-9">
-                    <select name="hotel_name" id="hotel_name" class="form-control" data-parsley-trigger="change">
+                    <select name="hotel_name" id="hotel_name" class="form-control" data-parsley-trigger="change">                          
+                        <option value="{{$booking->room->hotel->id}}" selected="selected">{{$booking->room->hotel->name}}</option>
                         @foreach($hotel as $hote)
-                    <option value="{{$hote->id}}">{{$hote->name}}</option>
+                        <option value="{{$hote->id}}">{{$hote->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -54,6 +68,7 @@
                 <div class="col col-md-3"><label for="select" class=" form-control-label">Tên phòng</label></div>
                 <div class="col-12 col-md-9">
                     <select name="room_name" id="room_name" class="form-control" data-parsley-trigger="change">
+                            <option value="{{$booking->room->id}}" selected="selected">{{$booking->room->name}}</option>
                         {{-- @foreach($room as $roo)
                     <option value="{{$roo->id}}">{{$roo->name}}</option>
                         @endforeach --}}
@@ -63,13 +78,13 @@
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="password-input" class=" form-control-label">Ngày nhận</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="date" id="date-input" name="date_from" placeholder="" class="form-control" data-parsley-trigger="change" required="">
+                    <input type="date" id="date-input" name="date_from" value="{{substr($booking->date_from,0,-9)}}" class="form-control" data-parsley-trigger="change" required="">
                     </div>
                 </div>
                 <div class="row form-group">
                     <div class="col col-md-3"><label for="text-input" class=" form-control-label">Ngày trả</label></div>
                     <div class="col-12 col-md-9">
-                      <input type="date" id="date-input" name="date_to" placeholder="" class="form-control" data-parsley-trigger="change" required="">
+                      <input type="date" id="date-input" name="date_to" value="{{substr($booking->date_to,0,-9)}}" class="form-control" data-parsley-trigger="change" required="">
                     </div>
                 </div>
                 
@@ -87,12 +102,12 @@
             </div>
             <div class="row form-group">
               <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Ghi chú</label></div>
-              <div class="col-12 col-md-10"><textarea name="note" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
+              <div class="col-12 col-md-10"><textarea name="note" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change">{{$booking->description}}</textarea></div>
           </div>
             
           <input type='text' data-parsley-multiple-of='3' />
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit"  class="btn btn-primary">
                   <i class="fa fa-dot-circle-o"></i> Lưu
               </button>
               <button type="reset" class="btn btn-danger">
