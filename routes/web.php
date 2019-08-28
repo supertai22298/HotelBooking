@@ -107,13 +107,15 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/', 'RoomBookingController@View');
 
          Route::get('add', 'RoomBookingController@getAdd');
-        // Route::post('add', 'UserController@store');
+         Route::post('add', 'RoomBookingController@store')->name('post-roombooking-store');
 
 
-        // Route::get('edit/{id}', 'UserController@edit');
-        // Route::post('edit/{id}', 'UserController@update');
+         Route::get('edit/{id}', 'RoomBookingController@edit')->name('get-roombooking-edit');
+         Route::post('edit/{id}', 'RoomBookingController@update')->name('post-roombooking-update');
 
-        // Route::post('delete/{id}', 'UserController@delete');
+         Route::get('delete/{id}', 'RoomBookingController@delete')->name('get-roombooking-delete');
+         
+         Route::post('edit/status/{id}', 'RoomBookingController@editStatus')->name('post-roombooking-edit-status');
     });
 
     Route::group(['prefix'=>'ajax'],function(){
