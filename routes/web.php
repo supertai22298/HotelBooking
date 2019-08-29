@@ -60,6 +60,22 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'RoomStatusController@delete')->name('get-room-status-delete');
     });
 
+    Route::group(['prefix' => 'payment-type'], function(){
+        Route::get('/', 'PaymentTypeController@view');
+
+        Route::get('add', 'PaymentTypeController@create')->name('get-payment-type-create');
+        Route::post('add', 'PaymentTypeController@store')->name('post-payment-type-store');
+
+        Route::get('edit/{id}', 'PaymentTypeController@edit')->name('get-payment-type-edit');
+        Route::post('edit/{id}', 'PaymentTypeController@update')->name('post-payment-type-update');
+
+        Route::get('delete/{id}', 'PaymentTypeController@delete')->name('get-payment-type-delete');
+
+        Route::get('detail/{id}', 'PaymentTypeController@detail')->name('get-payment-type-detail');
+
+        Route::post('edit/status/{id}', 'PaymentTypeController@editActive')->name('post-payment-type-edit-active');
+    });
+
     Route::group(['prefix' => 'hotel'], function(){
         Route::get('/', 'HotelController@view')->name('get-hotel-index');
 

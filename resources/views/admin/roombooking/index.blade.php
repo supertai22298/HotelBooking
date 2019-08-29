@@ -87,7 +87,7 @@
                                         <button type="submit"  class="btn btn-primary">
                                             <i class="fa fa-dot-circle-o"></i> Lưu
                                         </button>
-                                        <button  class="btn btn-primary"></i> Hủy</button>
+                                        <button  class="btn btn-danger"></i> Hủy</button>
                                         @else
                                         <select name="booking_status" id="booking_status" class="form-control" data-parsley-trigger="change">                          
                                             <option value="1"  >Đã xác nhận</option>
@@ -96,7 +96,7 @@
                                         <button type="submit"  class="btn btn-primary">
                                             <i class="fa fa-dot-circle-o"></i> Lưu
                                         </button>
-                                        <button  class="btn btn-primary"></i> Hủy</button>
+                                        <button type="reset" class="btn btn-danger"></i> Hủy</button>
                                         @endif
                                     </form>
                                 </td>
