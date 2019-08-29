@@ -110,4 +110,6 @@ class RoomBookingController extends Controller
         }
         return redirect()->back()->with('success', 'Cập nhật tình trạng mới thành công');
     }
+
+    
 }
