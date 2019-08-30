@@ -5,7 +5,7 @@
             <form>
                 <div class="form-group">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search..." required />
+                        <input type="text" class="form-control" placeholder="Tìm kiếm..." required />
                         <span class="input-group-btn"><button type="submit" class="btn"><span><i class="fa fa-search"></i></span></button></span>
                     </div><!-- end input-group -->
                 </div><!-- end form-group -->

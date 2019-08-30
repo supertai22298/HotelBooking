@@ -22,8 +22,8 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="{{ route('get-admin-index') }}">Dashboard</a></li>
-                          <li><a href="{{ route('get-hotel-index') }}">Khách sạn</a></li>
+                          <li><a href="{{ route('get-admin-view') }}">Dashboard</a></li>
+                          <li><a href="{{ route('get-hotel-view') }}">Khách sạn</a></li>
                           <li><a href="{{ route('get-utility', ['id' => $utility->hotel->id]) }}">Tiện ích</a></li>
                           <li><a href="{{ route('get-utility-edit', ['id' => $utility->id] ) }}">Chỉnh sửa</a></li>    
                           </ol>

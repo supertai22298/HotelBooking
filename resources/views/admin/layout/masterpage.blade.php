@@ -12,6 +12,7 @@
     <base href={{asset('')}}>
     <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
     <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+  
 
     <link rel="stylesheet" href="admin_page_asset/css/normalize.min.css">
     <link rel="stylesheet" href="admin_page_asset/css/bootstrap.min.css">

@@ -44,7 +44,7 @@
           <div class="card">
               <div class="card-header">
                   <strong class="card-title">Loại thanh toán</strong>
-                  <a class="btn btn-primary btn-md" href={{route('get-room-type-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
+                  <a class="btn btn-primary btn-md" href={{route('get-payment-type-create')}}><span><i class="fa fa-plus"></i></span> Thêm mới</a>
                 @if (session('success'))
                     <div class="alert alert-success">
                         {{session('success')}}

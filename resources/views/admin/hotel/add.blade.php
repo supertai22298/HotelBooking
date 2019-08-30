@@ -23,7 +23,7 @@ Thêm khách sạn mới
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="{{ route('get-admin-index') }}">Dashboard</a></li>
+                          <li><a href="{{ route('get-admin-view') }}">Dashboard</a></li>
                               <li><a href="{{ route('get-hotel-index') }}">Quản lý khách sạn</a></li>
                               <li><a href="{{ route('get-hotel-create') }}">Thêm mới khách sạn</a></li>
                           </ol>

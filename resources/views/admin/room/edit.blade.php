@@ -22,8 +22,8 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="{{ route('get-admin-index') }}">Dashboard</a></li>
-                              <li><a href="{{ route('get-room-index') }}">Quản lý phòng</a></li>
+                          <li><a href="{{ route('get-admin-view') }}">Dashboard</a></li>
+                              <li><a href="{{ route('get-room-view') }}">Quản lý phòng</a></li>
                               <li><a href="{{ route('get-room-edit', ['id' => $room->id]) }}">Chỉnh sửa phòng</a></li>
                           </ol>
                       </div>
