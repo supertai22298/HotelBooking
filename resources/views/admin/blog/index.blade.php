@@ -69,7 +69,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">Bài đăng</strong>
-                    <a class="btn btn-primary" href="{{route('get-user-add')}}"><i class="fa fa-plus"></i> Thêm </a>
+                    <a class="btn btn-primary" href="{{route('get-blog-add')}}"><i class="fa fa-plus"></i> Thêm </a>
                     @if(session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -93,7 +93,7 @@
                             <tr>
                                 <td class="text-center">{{$stt++}}</td>
                                 <td>{{$post->title}}</td>
-                                <td>
+                                <td class="text-center">
                                     @if ($post->image)
                                     <img width="120px" src="upload/images/{{$post->image}}" alt="">
                                     @else
@@ -166,7 +166,14 @@
                                             <div>
                                                 <h6>Nội dung:</h6>
                                                 <hr>
-                                                <p class="text-body" style="font-size: 13px;">{{$post->description}}</p>
+                                                <p class="text-body" style="font-size: 13px;">
+                                                    @if (strlen($post->description) >200)
+                                                        {{str_limit($post->description,200)}}
+                                                    <a href="{{route('get-blog-detail',['id' => $post->id])}}" class="text-primary">xem thêm</a>
+                                                    @else
+                                                        {{$post->description}}
+                                                    @endif
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="modal-footer">

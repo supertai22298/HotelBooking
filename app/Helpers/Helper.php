@@ -67,4 +67,17 @@ class Helper{
 
         $user->update($input);
     }
+    // update for Blog controller
+    public static function updateBlog($id,Request $request)
+    {
+        $post = User::find($id);
+        
+        $imageFile = $request->file('image');
+
+        dd($imageFile);
+
+        
+
+        // $post->update($input);
+    }
 }
