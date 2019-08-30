@@ -133,7 +133,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'RoomImageController@delete')->name('get-room-image-delete');
     });
     Route::group(['prefix' => 'roombooking'], function(){
-        Route::get('/', 'RoomBookingController@View');
+        Route::get('/', 'RoomBookingController@View')->name('get-roombooking-view');
 
          Route::get('add', 'RoomBookingController@getAdd');
          Route::post('add', 'RoomBookingController@store')->name('post-roombooking-store');
