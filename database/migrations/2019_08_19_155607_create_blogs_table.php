@@ -19,7 +19,7 @@ class CreateBlogsTable extends Migration
             $table->string('author');
             $table->text('description');
             $table->integer('active')->default(1);
-            $table->string('image')->default('default_image.png');
+            $table->string('image')->nullable();
             $table->string('image_link')->nullable();
             $table->timestamps();
             $table->softDeletes();

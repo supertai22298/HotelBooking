@@ -68,7 +68,7 @@
                         <div class="row form-group">
                             <div class="col col-md-3"><label for="email-input" class=" form-control-label">Ngày sinh</label></div>
                             <div class="col-12 col-md-9">
-                            <input type="date" id="email-input" name="date_of_birth" value="{{$user->date_of_birth}}" placeholder="Ngày sinh" class="form-control" data-parsley-trigger="change">
+                            <input type="date" id="email-input" name="date_of_birth" value="{{substr($user->date_of_birth,0,-9)}}" placeholder="Ngày sinh" class="form-control" data-parsley-trigger="change">
                                 @if($errors->has('date_of_birth'))
                                     <small class="text-danger w-100">
                                         {{$errors->first('date_of_birth')}}

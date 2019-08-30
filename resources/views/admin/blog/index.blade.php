@@ -6,11 +6,12 @@
 
 <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
 
-{{-- css fix bug UI when open multiple modal --}}
 <style>
+    /* css fix bug UI when open multiple modal */
     body{
         padding: 0 !important;
     }
+
     .p-5px{
         margin-bottom: 5px !important;
     }
@@ -31,7 +32,7 @@
 @endsection
 
 @section('title')
-    Quản lý người dùng
+    Quản lý bài đăng
 @endsection
 
 @section('breadcrumbs')
@@ -50,7 +51,7 @@
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
                           <li><a href="">Dashboard</a></li>
-                          <li><a href="{{route('get-user-view')}}">Quản lý người dùng</a></li>
+                          <li><a href="{{route('get-blog-view')}}">Quản lý bài đăng</a></li>
                           </ol>
                       </div>
                   </div>
@@ -67,8 +68,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">Người dùng</strong>
-                    <a class="btn btn-primary" href="{{route('get-user-add')}}"><i class="fa fa-plus"></i> Thêm </a>
+                    <strong class="card-title">Bài đăng</strong>
+                    <a class="btn btn-primary" href="{{route('get-blog-add')}}"><i class="fa fa-plus"></i> Thêm </a>
                     @if(session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -80,112 +81,122 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Họ và tên</th>
-                                <th>Tên tài khoản</th>
-                                <th>Loại tài khoản</th>
+                                <th>Tiêu đề</th>
+                                <th>Tác giả</th>
+                                <th>Hình ảnh</th>
                                 <th>Trạng thái</th>
                                 <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($getUsers as $user)
+                            @foreach ($getPosts as $post)
                             <tr>
-                                
                                 <td class="text-center">{{$stt++}}</td>
-                                <td>{{$user->first_name ." ".$user->last_name}}</td>
-                                <td>{{$user->username}}</td>
-                                <td>
-                                    @if($user->role == 1)
-                                        {{'Khách hàng'}}
+                                <td>{{$post->title}}</td>
+                                <td class="text-center">
+                                    @if ($post->image)
+                                    <img width="120px" src="upload/images/{{$post->image}}" alt="">
                                     @else
-                                        {{'Quản trị viên'}}
+                                        @if ($post->image_link)
+                                        <img width="120px" src="{{$post->image_link}}" alt="">
+                                        @else
+                                        Trống
+                                        @endif
+                                    @endif
+                                </td>
+                                <td>{{$post->author}}</td>
+                                <td>
+                                    @if ($post->active)
+                                        <span class="text-success">{{'Hiển thị'}}</span>
+                                    @else
+                                        <span class="text-secondary">{{'Ẩn'}}</span>
                                     @endif
                                 </td>
                                 <td>
-                                    @if($user->active == 1)
-                                        <span class="text-success">{{'Hoạt động'}}</span>
-                                    @else
-                                        <span class="text-warning">{{'Khóa'}}</span>
-                                    @endif
-                                </td>
-                                <td>
-                                    <a class="btn btn-success mt-1" href="" data-toggle="modal" data-target="#myModal{{$user->id}}" data-backdrop="true">Xem</a>
-                                    <a class="btn btn-warning mt-1" href="{{route('get-user-edit',['id' => $user->id])}}">Sửa</a>
-                                <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$user->id}}" data-backdrop="true">Xóa</a>
+                                    <a class="btn btn-success mt-1" href="" data-toggle="modal" data-target="#myModal{{$post->id}}" data-backdrop="true">Xem</a>
+                                    <a class="btn btn-warning mt-1" href="{{route('get-blog-edit',['id' => $post->id])}}">Sửa</a>
+                                <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$post->id}}" data-backdrop="true">Xóa</a>
                                 </td>
                                 {{-- modal --}}
                                 <!-- The Modal -->
-                                <div class="modal fade" id="myModal{{$user->id}}">
+                                <div class="modal fade" id="myModal{{$post->id}}">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
 
                                         <!-- Modal Header -->
                                         <div class="modal-header">
-                                            <h4 class="modal-title">Thông tin tài khoản</h4>
+                                            <h4 class="modal-title">Thông tin bài đăng</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                         </div>
 
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="row">
-                                                <div class="my-center my-center-65">
-                                                    <img src="
-                                                    @if($user->avatar == null)
-                                                        {{'upload/images/default.png'}}
-                                                    @else
-                                                        {{'upload/images/'.$user->avatar}}
-                                                    @endif    
-                                                    " alt="avatar">
-                                                    <h4 class="text-center mt-2">{{$user->first_name ." ".$user->last_name}}</h4>
-                                                        @if ($user->active == 1)
-                                                            <p class="text-center text-success">{{'Hoạt động'}}</p>
-                                                        @else
-                                                            <p class="text-center text-secondary">{{'Khóa'}}</p>
-                                                        @endif
-                                                    <hr>
+                                                <div class="col-3">
+                                                    <h6>Tiêu đề:</h6>
                                                 </div>
-                                                <div class="my-center my-center-85">
-                                                    <div class="row">
-                                                    <p class="col-6 p-5px">Tên đăng nhập :</p><p class="col-6 p-5px text-body">{{$user->username}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                    <p class="col-6 p-5px bg-light">Email :</p><p class="col-6 p-5px text-body bg-light">{{$user->email}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col-6 p-5px">Số điện thoại :</p><p class="col-6 p-5px text-body">{{$user->phone_number}}</p>
-                                                    </div>
-                                                    <div class="row">
-                                                        <p class="col-6 p-5px bg-light">Địa chỉ :</p><p class="col-6 p-5px text-body bg-light">{{$user->address}}</p>
-                                                    </div>
+                                                <div class="col-9">
+                                                    <p class="text-body">{{$post->title}}</p>
                                                 </div>
                                             </div>
-                                            <hr>
-                                            <div class="user-description">
-                                            <h6>Tiểu sử</h6>
-                                            <p>{{$user->description}}</p>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <h6>Tác giả</h6>
+                                                </div>
+                                                <div class="col-9">
+                                                    <p class="text-body">{{$post->author}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <h6>Hình ảnh</h6>
+                                                </div>
+                                                <div class="col-9">
+                                                    @if ($post->image)
+                                                        <img width="120px" src="upload/images/{{$post->image}}" alt="">
+                                                    @else
+                                                        @if ($post->image_link)
+                                                            <img width="120px" src="{{$post->image_link}}" alt="">
+                                                        @else
+                                                            Trống
+                                                        @endif
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <h6>Nội dung:</h6>
+                                                <hr>
+                                                <p class="text-body" style="font-size: 13px;">
+                                                    @if (strlen($post->description) >200)
+                                                        {{str_limit($post->description,200)}}
+                                                    <a href="{{route('get-blog-detail',['id' => $post->id])}}" class="text-primary">xem thêm</a>
+                                                    @else
+                                                        {{$post->description}}
+                                                    @endif
+                                                </p>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                                <a class="btn btn-primary" href="{{route('get-user-edit',['id' => $user->id])}}"><i class="fa fa-edit"></i> Chỉnh sửa</a>
+                                                <a class="btn btn-primary" href="{{route('get-blog-edit',['id' => $post->id])}}"><i class="fa fa-edit"></i> Chỉnh sửa</a>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="modal fade" id="myModalDel{{$user->id}}">
+                                <div class="modal fade" id="myModalDel{{$post->id}}">
                                         <div class="modal-dialog">
                                           <div class="modal-content">
                                             <!-- Modal Header -->
                                             <div class="modal-header">
-                                                <h4 class="modal-title">Xác nhận tài khoản!</h4>
+                                                <h4 class="modal-title">Xác nhận bài đăng!</h4>
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                <p>Bạn đồng ý xóa tài khoản <strong>{{$user->username}}</strong> này không ?</p>
+                                                <p>Bạn đồng ý xóa bài đăng <strong>{{$post->title}}</strong> này không ?</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <a class="btn btn-primary" href="{{route('get-user-delete',['id' => $user->id])}}">Đồng ý</a>
+                                                <a class="btn btn-primary" href="{{route('get-blog-delete',['id' => $post->id])}}">Đồng ý</a>
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                             </div>
                                         </div>
@@ -223,8 +234,5 @@
     $(document).ready(function() {
       $('#bootstrap-data-table-export').DataTable();
     });
-    function hideNoti(){
-        $('#success').addClass('d-none');
-    }
   </script>
 @endsection
