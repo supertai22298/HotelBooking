@@ -11,9 +11,11 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::group(['prefix' => 'admin'], function () {
     
-    Route::get('/', 'AdminController@index')->name('get-admin-index');
+    Route::get('/', 'AdminController@index')->name('get-admin-view');
     Route::get('/index', 'AdminController@index');
 
     // quản lý user
@@ -51,7 +53,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'room-type'], function(){
-        Route::get('/', 'RoomTypeController@view')->name('get-room-type-index');
+        Route::get('/', 'RoomTypeController@view')->name('get-room-type-view');
 
         Route::get('add', 'RoomTypeController@create')->name('get-room-type-create');
         Route::post('add', 'RoomTypeController@store')->name('post-room-type-store');
@@ -62,7 +64,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'RoomTypeController@delete')->name('get-room-type-delete');
     });
     Route::group(['prefix' => 'room-status'], function(){
-        Route::get('/', 'RoomStatusController@view')->name('get-room-status-index');
+        Route::get('/', 'RoomStatusController@view')->name('get-room-status-view');
 
         Route::get('add', 'RoomStatusController@create')->name('get-room-status-create');
         Route::post('add', 'RoomStatusController@store')->name('post-room-status-store');
@@ -74,7 +76,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'payment-type'], function(){
-        Route::get('/', 'PaymentTypeController@view');
+        Route::get('/', 'PaymentTypeController@view')->name('get-payment-type-view');
 
         Route::get('add', 'PaymentTypeController@create')->name('get-payment-type-create');
         Route::post('add', 'PaymentTypeController@store')->name('post-payment-type-store');
@@ -90,7 +92,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'hotel'], function(){
-        Route::get('/', 'HotelController@view')->name('get-hotel-index');
+        Route::get('/', 'HotelController@view')->name('get-hotel-view');
 
         Route::get('add', 'HotelController@create')->name('get-hotel-create');
         Route::post('add', 'HotelController@store')->name('post-hotel-store');
@@ -115,7 +117,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     Route::group(['prefix' => 'room'], function(){
-        Route::get('/', 'RoomController@view')->name('get-room-index');
+        Route::get('/', 'RoomController@view')->name('get-room-view');
 
         Route::get('add', 'RoomController@create')->name('get-room-create');
         Route::post('add', 'RoomController@store')->name('post-room-store');
@@ -150,4 +152,11 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix'=>'ajax'],function(){
 		Route::get('room/{idHotel}','AjaxController@getRoom');
 	});
+});
+
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', function () {
+        return view('page_layout.page_masterpage');
+    });
+    
 });
