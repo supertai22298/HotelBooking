@@ -167,11 +167,11 @@
                                                 <h6>Nội dung:</h6>
                                                 <hr>
                                                 <p class="text-body" style="font-size: 13px;">
-                                                    @if (strlen($post->description) >200)
-                                                        {{str_limit($post->description,200)}}
-                                                    <a href="{{route('get-blog-detail',['id' => $post->id])}}" class="text-primary">xem thêm</a>
+                                                    @if (strlen($post->description) >150)
+                                                        {!!str_limit($post->description,150)!!}
+                                                    <a class="text-primary" href="{{route('get-blog-detail',['id' => $post->id])}}"> xem thêm</a>
                                                     @else
-                                                        {{$post->description}}
+                                                        {!!$post->description!!}
                                                     @endif
                                                 </p>
                                             </div>
