@@ -30,7 +30,7 @@
             </div>
             <hr>
             <div>
-                <p class="text-body">{{$post->description}}</p>
+                <p class="text-body">{!!$post->description!!}</p>
             </div>
         </div>
     </div>
