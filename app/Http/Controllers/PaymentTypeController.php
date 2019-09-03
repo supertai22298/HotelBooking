@@ -91,4 +91,16 @@ class PaymentTypeController extends Controller
         
         return back()->with('success','Sửa thành công');
     }
+
+    public function delete($id)
+    {
+        try{
+            $paymenttype = PaymentType::where('id', $id)->delete();
+        }
+        catch(Exception $e)
+        {
+            return back()->with('errors', $e);
+        }
+        return back()->with('success','Thao tác thành công');
+    }
 }
