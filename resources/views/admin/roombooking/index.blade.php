@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">Bảng dữ liệu</strong>
-                    <a class="btn btn-primary btn-sm" href="">Thêm</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('get-roombooking-create') }}">Thêm</a>
                     @if (session('success'))
                       <div class="alert alert-success">
                           {{session('success')}}

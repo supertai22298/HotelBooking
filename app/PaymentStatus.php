@@ -10,6 +10,10 @@ class PaymentStatus extends Model
     use SoftDeletes;
     protected $table = 'payment_statuses';
     public $timestamp = true;
+    protected $fillable =  [
+        'payment_status','description', 'active'
+    ];
+
 
     // one - many relationship between payment_status -> payments
     public function payments(){

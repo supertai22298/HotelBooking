@@ -137,7 +137,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['prefix' => 'roombooking'], function(){
         Route::get('/', 'RoomBookingController@View')->name('get-roombooking-view');
 
-         Route::get('add', 'RoomBookingController@getAdd');
+         Route::get('add', 'RoomBookingController@getAdd')->name('get-roombooking-create');
          Route::post('add', 'RoomBookingController@store')->name('post-roombooking-store');
 
 
@@ -148,15 +148,26 @@ Route::group(['prefix' => 'admin'], function () {
          
          Route::post('edit/status/{id}', 'RoomBookingController@editStatus')->name('post-roombooking-edit-status');
     });
+    Route::group(['prefix' => 'payment-status'], function(){
+        Route::get('/', 'PaymentStatusController@view')->name('get-payment-status-view');
 
+        Route::get('add', 'PaymentStatusController@create')->name('get-payment-status-create');
+        Route::post('add', 'PaymentStatusController@store')->name('post-payment-status-store');
+
+        Route::get('edit/{id}', 'PaymentStatusController@edit')->name('get-payment-status-edit');
+        Route::post('edit/{id}', 'PaymentStatusController@update')->name('post-payment-status-update');
+
+        Route::get('delete/{id}', 'PaymentStatusController@delete')->name('get-payment-status-delete');
+    });
     Route::group(['prefix'=>'ajax'],function(){
 		Route::get('room/{idHotel}','AjaxController@getRoom');
 	});
 });
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/', function () {
-        return view('page_layout.page_masterpage');
-    });
+    Route::get('/', 'PageController@view')->name('get-page-index');
+    Route::get('/login', 'PageController@getLogin')->name('get-page-getLogin');
+    Route::get('/hotel-detail', 'PageController@getHotel')->name('get-page-getHotel');
+    Route::get('/hotel-grid', 'PageController@getGrid')->name('get-page-getGrid');
     
 });
