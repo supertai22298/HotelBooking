@@ -95,7 +95,7 @@
                           <td>
                                 <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$pt->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
                           		<a class="btn btn-warning btn-sm mr-2" href="{{route('get-payment-type-edit', ['id' => $pt->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$pt->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                              <a class="btn btn-danger btn-sm mr-2" href="{{route('get-payment-type-delete', ['id' => $pt->id])}}"> <span><i class="fa fa-delete"></i></span> Xóa</a>
                                         
                                   <!-- model delete-->
                                   <div style="text-align: left;" id="myModal{{$pt->id}}" class="modal fade" role="dialog">
