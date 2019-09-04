@@ -157,6 +157,10 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['prefix' => '/'], function () {
     Route::get('/', function () {
         return view('page_layout.page_masterpage');
-    });
+    })->name('master-page');
+
+    Route::get('login', 'LoginController@getLogin')->name('get-login');
+    Route::post('login', 'LoginController@postLogin')->name('post-login');
+    Route::get('logout', 'LoginController@getLogout')->name('get-logout');
     
 });
