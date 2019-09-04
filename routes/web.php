@@ -173,14 +173,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 
 Route::group(['prefix' => '/'], function () {
-    Route::get('/', 'PageController@view')->name('get-page-index');
-    Route::get('/login', 'PageController@getLogin')->name('get-page-getLogin');
-    Route::get('/hotel-detail', 'PageController@getHotel')->name('get-page-getHotel');
-    Route::get('/hotel-grid', 'PageController@getGrid')->name('get-page-getGrid');
+
+    Route::get('/', function () {
+        return view('page.index');
+    })->name('master-page');
+
+    Route::get('login', 'LoginController@getLogin')->name('get-login');
+    Route::post('login', 'LoginController@postLogin')->name('post-login');
+    Route::get('logout', 'LoginController@getLogout')->name('get-logout');
+    
 });
-Route::get('/', function () {
-    return view('page_layout.page_masterpage');
-});
+
+
 
 
 Route::group(['prefix' => 'errors'], function () {
@@ -188,3 +192,4 @@ Route::group(['prefix' => 'errors'], function () {
         return view('error.404');
     });
 });
+

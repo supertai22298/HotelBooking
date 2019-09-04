@@ -31,15 +31,34 @@
                         <div class="flex-content">
                             <div class="custom-form custom-form-fields">
                                 <h3>Login</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <form id="loginForm" action="" method="POST">
-                                    @csrf
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                    {{session('success')}}
+                                    </div>
+                                @endif
+                                @if (session('errorSQL'))
+                                    <div class="alert alert-danger">
+                                    {{session('errorSQL')}}
+                                    </div>
+                                @endif
+
+                                @if (isset(Auth::user()->username))
+                                    <script>window.location="{{route('master-page')}}"</script>
+                                @endif
+                                @if ($message = Session::get('error'))
+                                    <div class="alert alert-danger">
+                                    {{$message}}
+                                    </div>
+                                @endif
+                                <form id="login" action="{{route('post-login')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+                                    @csrf 
                                     <div class="form-group">
-                                            <input name="username" type="text" class="form-control" placeholder="Username"  required/>
+                                            <input type="text" name="username" class="form-control" placeholder="Username"  required/>
                                             <span><i class="fa fa-user"></i></span>
                                     </div>
                                     <div class="form-group">
-                                            <input name="password" type="password" class="form-control" placeholder="Password"  required/>
+                                            <input type="password" name="password" class="form-control" placeholder="Password"  required/>
+
                                             <span><i class="fa fa-lock"></i></span>
                                     </div>
                                     <div class="checkbox">
