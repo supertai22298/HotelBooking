@@ -58,12 +58,13 @@
                                     </div>
                                     <div class="form-group">
                                             <input type="password" name="password" class="form-control" placeholder="Password"  required/>
+
                                             <span><i class="fa fa-lock"></i></span>
                                     </div>
                                     <div class="checkbox">
                                             <label><input type="checkbox"> Remember me</label>
                                     </div>
-                                    <button type="submit" class="btn btn-orange btn-block" >Login</button>
+                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
                                 </form>
                                 
                                 <div class="other-links">

@@ -72,26 +72,15 @@
                       <input type="date" id="date-input" name="date_to" placeholder="" class="form-control" data-parsley-trigger="change" required="">
                     </div>
                 </div>
-                
+                <div class="row form-group">
+                  <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Ghi chú</label></div>
+                  <div class="col-12 col-md-9"><textarea name="note" id="textarea-input" rows="4" cols="5" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
+                </div>
                 
               </div>
-              <div class="col-4">
-                  <div class="row form-group">
-                    <div class="col-12"><label for="file-input" class=" form-control-label">Avatar</label></div>
-                    <div class="col-12">
-                      <img class="mt-4" id="preview_avatar" src="admin_page_asset/images/default.png" alt="ảnh đại điện">
-                      <input type="file" id="avatar" name="file-input" class="form-control-file">
-                    </div>
-                  </div>
-                </div>
+             
             </div>
-            <div class="row form-group">
-              <div class="col col-md-2"><label for="textarea-input" class=" form-control-label">Ghi chú</label></div>
-              <div class="col-12 col-md-10"><textarea name="note" id="textarea-input" rows="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change"></textarea></div>
-          </div>
-            
-          <input type='text' data-parsley-multiple-of='3' />
-
+          
               <button type="submit" class="btn btn-primary">
                   <i class="fa fa-dot-circle-o"></i> Lưu
               </button>
@@ -107,43 +96,22 @@
     
   {{-- xem anh trc khi upload --}}
     <script src="admin_page_asset/js/validation/jquery.min.js"></script>
-    <script>
-    function readURL(file){
-      if(file.files && file.files[0]){
-        var reader = new FileReader();
-
-        reader.onload = function(e){
-          $('#preview_avatar').attr('src',e.target.result);
-        }
-        reader.readAsDataURL(file.files[0]);
-      }
-    };
-
-    $("#avatar").change(function(){
-      readURL(this)
-    })
-    </script>
     {{-- Xử lí ajax cho phòng và khách sạn --}}
     <script>
             $(document).ready(function(){               //Mỗi khi f5 trang thì sẽ thực hiện
-                $("#hotel_name").change(function(){        //mỗi khi id="Hotel" có sự thay đổi thì thực hiện
-                    var idHotel=$(this).val();        //lấy idHotel = chính id Hotel đc chọn 
-                    $.get("index.php/admin/ajax/room/"+idHotel,function(data){ //Gọi trang ajax lên và tạo một function, truyền dữ liệu vô biến data
-                    //   alert(data);
-                        $("#room_name").html(data);       //truyền dữ liệu lên <select id="Room">
-    
-    
-                    });                                          
-                });
-                      //mỗi khi id="Hotel" có sự thay đổi thì thực hiện
-                    var idHotel=$("#hotel_name").val();        //lấy idTheLoai = chính id Hotel đc chọn 
-                    $.get("index.php/admin/ajax/room/"+idHotel,function(data){ //Gọi trang ajax lên và tạo một function, truyền dữ liệu vô biến data
-                      //  alert(data);
-                        $("#room_name").html(data);       //truyền dữ liệu lên <select id="Room_name">
-    
-    
-                                                          
-                });
+              $("#hotel_name").change(function(){        //mỗi khi id="Hotel" có sự thay đổi thì thực hiện
+                var idHotel=$(this).val();        //lấy idHotel = chính id Hotel đc chọn 
+                $.get("index.php/admin/ajax/room/"+idHotel,function(data){ //Gọi trang ajax lên và tạo một function, truyền dữ liệu vô biến data
+                //   alert(data);
+                    $("#room_name").html(data);       //truyền dữ liệu lên <select id="Room">
+                });                                          
+              });
+                    //mỗi khi id="Hotel" có sự thay đổi thì thực hiện
+              var idHotel=$("#hotel_name").val();        //lấy idTheLoai = chính id Hotel đc chọn 
+              $.get("index.php/admin/ajax/room/"+idHotel,function(data){ //Gọi trang ajax lên và tạo một function, truyền dữ liệu vô biến data
+                //  alert(data);
+                  $("#room_name").html(data);       //truyền dữ liệu lên <select id="Room_name">
+              });
             });
         </script>
 
