@@ -14,8 +14,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Auth'], function () {
-    Route::get('admin-login', 'LoginController@getAdminLogin');
-    Route::post('admin-login', 'LoginController@postAdminLogin')->name('post-admin-login');
+    Route::get('admin/login', 'LoginController@getAdminLogin');
+    Route::post('admin/login', 'LoginController@postAdminLogin')->name('post-admin-login');
 
     Route::get('logout', 'LoginController@logout')->name('logout');
 });

@@ -79,7 +79,7 @@
   </div>
     <div class="card">
         <div class="card-body">
-            Xin Chào {{ session()->get('user')['first_name'] . session()->get('user')['first_name'] }}
+            Xin Chào {{ Auth::user()->first_name . Auth::user()->last_name}}
         </div>
     </div>
 @endsection

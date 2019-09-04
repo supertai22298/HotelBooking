@@ -1,115 +1,122 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="">
 <head>
-    <title>@yield('title')</title>
-    <base href="{{asset('')}}">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="icon" href="page_asset/images/favicon.png" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i%7CMerriweather:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-
-    <!-- Bootstrap Stylesheet -->
-    <link rel="stylesheet" href="page_asset/css/bootstrap.min.css">
-
-    <!-- Font Awesome Stylesheet -->
-    <link rel="stylesheet" href="page_asset/css/font-awesome.min.css">
-
-    <!-- Custom Stylesheets -->
-    <link rel="stylesheet" href="page_asset/css/style.css">
-    <link rel="stylesheet" id="cpswitch" href="page_asset/css/orange.css">
-    <link rel="stylesheet" href="page_asset/css/responsive.css">
-
-    <!-- Owl Carousel Stylesheet -->
-    <link rel="stylesheet" href="page_asset/css/owl.carousel.css">
-    <link rel="stylesheet" href="page_asset/css/owl.theme.css">
-
-    <!-- Flex Slider Stylesheet -->
-    <link rel="stylesheet" href="page_asset/css/flexslider.css" type="text/css" />
-
-    <!--Date-Picker Stylesheet-->
-    <link rel="stylesheet" href="page_asset/css/datepicker.css">
-
-    <!-- Magnific Gallery -->
-    <link rel="stylesheet" href="page_asset/css/magnific-popup.css">
-
-    <!-- Slick Stylesheet -->
-		<link rel="stylesheet" href="page_asset/css/slick.css">
-    <link rel="stylesheet" href="page_asset/css/slick-theme.css">
-    
-
+	<title>Đăng nhập</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="/admin_page_asset/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/vendor/animate/animate.css">
+<!--===============================================================================================-->	
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/admin_page_asset/css/main.css">
+<!--===============================================================================================-->
+<style>
+    .box-beauty{
+    box-shadow: 1px 2px 2px 5px rgba(128, 128, 128, 0.6);
+    border-radius: 5px;
+    padding: 15px;
+}
+</style>
 </head>
 <body>
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="/admin_page_asset/images/img-01.png" alt="IMG">
+				</div>
 
-    <!--====== LOADER =====-->
-    <div class="loader"></div>
+            <form class="login100-form validate-form box-beauty" action="{{route('post-admin-login')}}" method="POST">
+                @csrf
+                    <span class="login100-form-title">
+						Đăng nhập
+					</span>
 
+					<div class="wrap-input100 validate-input" data-validate = "Không được để trống">
+						<input class="input100" type="text" name="username" placeholder="Tên tài khoản">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+                    </div>
+                    @if($errors->has('username'))
+                        <p class="text-danger">
+                            {{$errors->first('username')}}
+                        </p>
+                    @endif
 
-    <!--======== SEARCH-OVERLAY =========-->
-    @include('page_layout.search_overlay')
+					<div class="wrap-input100 validate-input" data-validate = "Không được để trống">
+						<input class="input100" type="password" name="password" placeholder="Mật khẩu">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+                    </div>
+                    @if($errors->has('password'))
+                        <p class="text-danger">
+                            {{$errors->first('password')}}
+                        </p>
+                    @endif
+                    @if (session('msg'))
+                    <p class="text-danger mt-1">{{session('msg')}}
+                        </p>
+                    @endif
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Đăng nhập
+						</button>
+					</div>
 
-    <!--================ NAV BAR===============-->
-    @include('page_layout.nav_bar')
+					{{-- <div class="text-center p-t-12">
+						<span class="txt1">
+							Forgot
+						</span>
+						<a class="txt2" href="#">
+							Username / Password?
+						</a>
+					</div> --}}
 
-    <section class="innerpage-wrapper">
-        <div id="login" class="innerpage-section-padding">
-            <div class="container" style="    display: flex; justify-content: center;">
-                    <div class="col-sm-8">
-                        <div class="flex-content">
-                            <div class="custom-form custom-form-fields">
-                                <h3>Login</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <form id="loginForm" action="" method="POST">
-                                    @csrf
-                                    <div class="form-group">
-                                            <input name="username" type="text" class="form-control" placeholder="Username"  required/>
-                                            <span><i class="fa fa-user"></i></span>
-                                    </div>
-                                    <div class="form-group">
-                                            <input name="password" type="password" class="form-control" placeholder="Password"  required/>
-                                            <span><i class="fa fa-lock"></i></span>
-                                    </div>
-                                    <div class="checkbox" style="margin-bottom: 10px;">
-                                            <label><input type="checkbox"> Remember me</label>
-                                    </div>
-                                    @if (session('msg'))
-                                        <p class=" alert alert-danger">
-                                        {{session('msg')}}
-                                        </p>
-                                    @endif
-                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
-                                </form>
-                                
-                                <div class="other-links">
-                                    <p class="link-line">New Here ? <a href="#">Signup</a></p>
-                                    <a class="simple-link" href="#">Forgot Password ?</a>
-                                </div><!-- end other-links -->
-                            </div><!-- end custom-form -->
-                        </div><!-- end form-content -->
-                </div><!-- end row -->
-            </div><!-- end container -->         
-        </div><!-- end login -->
-    </section><!-- end innerpage-wrapper -->
+					{{-- <div class="text-center p-t-136">
+						<a class="txt2" href="#">
+							Create your Account
+							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div> --}}
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
 
-    <!--======================= FOOTER =======================-->
-    @include('page_layout.footer')
+	
+<!--===============================================================================================-->	
+	<script src="/admin_page_asset/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/admin_page_asset/vendor/bootstrap/js/popper.js"></script>
+	<script src="/admin_page_asset/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/admin_page_asset/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="/admin_page_asset/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >
+		$('.js-tilt').tilt({
+			scale: 1.1
+		})
+	</script>
+<!--===============================================================================================-->
+	<script src="/admin_page_asset/js/mainAdmin.js"></script>
 
-
-<!-- Page Scripts Starts -->
-<script src="page_asset/js/jquery.min.js"></script>
-<script src="page_asset/js/jquery.magnific-popup.min.js"></script>
-<script src="page_asset/js/bootstrap.min.js"></script>
-<script src="page_asset/js/jquery.flexslider.js"></script>
-<script src="page_asset/js/bootstrap-datepicker.js"></script>
-<script src="page_asset/js/owl.carousel.min.js"></script>
-<script src="page_asset/js/custom-navigation.js"></script>
-<script src="page_asset/js/custom-flex.js"></script>
-<script src="page_asset/js/custom-owl.js"></script>
-<script src="page_asset/js/custom-date-picker.js"></script>
-<script src="page_asset/js/custom-gallery.js"></script>
-<script src="page_asset/js/slick.min.js"></script>
-<script src="page_asset/js/custom-slick.js"></script>
-<!-- Page Scripts Ends -->
 </body>
 </html>

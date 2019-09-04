@@ -85,10 +85,10 @@
           <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img class="user-avatar rounded-circle" src="
-                @if(session()->get('user')['avatar'] == null)
+                @if(Auth::user()->avatar == null)
                     {{'upload/images/default.png'}}
                 @else
-                    {{'upload/images/' . session()->get('user')['avatar'] }}
+                    {{'upload/images/' . Auth::user()->avatar }}
                 @endif
               " alt="User Avatar">
               </a>
