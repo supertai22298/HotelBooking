@@ -13,13 +13,20 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'admin'], function () {
-    
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('admin-login', 'LoginController@getAdminLogin');
+    Route::post('admin-login', 'LoginController@postAdminLogin')->name('post-admin-login');
+
+    Route::get('logout', 'LoginController@logout')->name('logout');
+});
+
+Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
+
     Route::get('/', 'AdminController@index')->name('get-admin-view');
     Route::get('/index', 'AdminController@index');
 
     // quản lý user
-    Route::group(['prefix' => 'user'], function(){
+    Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'UserController@view')->name('get-user-view');
 
         Route::get('add', 'UserController@create')->name('get-user-add');
@@ -32,7 +39,7 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     // quản lý bai dang
-    Route::group(['prefix' => 'blog'], function(){
+    Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@view')->name('get-blog-view');
         Route::get('/detail/{id}', 'BlogController@detail')->name('get-blog-detail');
 
@@ -46,13 +53,13 @@ Route::group(['prefix' => 'admin'], function () {
     });
 
     // quản lý liên hệ
-    Route::group(['prefix' => 'contact'], function(){
+    Route::group(['prefix' => 'contact'], function () {
         Route::get('/', 'ContactController@view')->name('get-contact-view');
 
         Route::get('delete/{id}', 'ContactController@delete')->name('get-contact-delete');
     });
 
-    Route::group(['prefix' => 'room-type'], function(){
+    Route::group(['prefix' => 'room-type'], function () {
         Route::get('/', 'RoomTypeController@view')->name('get-room-type-view');
 
         Route::get('add', 'RoomTypeController@create')->name('get-room-type-create');
@@ -63,7 +70,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('delete/{id}', 'RoomTypeController@delete')->name('get-room-type-delete');
     });
-    Route::group(['prefix' => 'room-status'], function(){
+    Route::group(['prefix' => 'room-status'], function () {
         Route::get('/', 'RoomStatusController@view')->name('get-room-status-view');
 
         Route::get('add', 'RoomStatusController@create')->name('get-room-status-create');
@@ -75,7 +82,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'RoomStatusController@delete')->name('get-room-status-delete');
     });
 
-    Route::group(['prefix' => 'payment-type'], function(){
+    Route::group(['prefix' => 'payment-type'], function () {
         Route::get('/', 'PaymentTypeController@view')->name('get-payment-type-view');
 
         Route::get('add', 'PaymentTypeController@create')->name('get-payment-type-create');
@@ -91,7 +98,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('edit/status/{id}', 'PaymentTypeController@editActive')->name('post-payment-type-edit-active');
     });
 
-    Route::group(['prefix' => 'hotel'], function(){
+    Route::group(['prefix' => 'hotel'], function () {
         Route::get('/', 'HotelController@view')->name('get-hotel-view');
 
         Route::get('add', 'HotelController@create')->name('get-hotel-create');
@@ -104,7 +111,7 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('detail/{id}', 'HotelController@detail')->name('get-hotel-detail');
     });
-    Route::group(['prefix' => 'utility'], function(){
+    Route::group(['prefix' => 'utility'], function () {
         Route::get('/{id}', 'HotelController@detail')->name('get-utility');
 
         Route::get('add/{hotel_id}', 'UtilityController@create')->name('get-utility-create');
@@ -116,7 +123,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('delete/{id}', 'UtilityController@delete')->name('get-utility-delete');
     });
 
-    Route::group(['prefix' => 'room'], function(){
+    Route::group(['prefix' => 'room'], function () {
         Route::get('/', 'RoomController@view')->name('get-room-view');
 
         Route::get('add', 'RoomController@create')->name('get-room-create');
@@ -129,34 +136,41 @@ Route::group(['prefix' => 'admin'], function () {
 
         Route::get('detail/{id}', 'RoomController@detail')->name('get-room-detail');
     });
-    
+
     Route::group(['prefix' => 'room-image'], function () {
         Route::post('upload-multi-image/{room_id}', 'RoomImageController@uploadMultiImage');
         Route::get('delete/{id}', 'RoomImageController@delete')->name('get-room-image-delete');
     });
-    Route::group(['prefix' => 'roombooking'], function(){
+    Route::group(['prefix' => 'roombooking'], function () {
         Route::get('/', 'RoomBookingController@View')->name('get-roombooking-view');
 
-         Route::get('add', 'RoomBookingController@getAdd');
-         Route::post('add', 'RoomBookingController@store')->name('post-roombooking-store');
+        Route::get('add', 'RoomBookingController@getAdd');
+        Route::post('add', 'RoomBookingController@store')->name('post-roombooking-store');
 
 
-         Route::get('edit/{id}', 'RoomBookingController@edit')->name('get-roombooking-edit');
-         Route::post('edit/{id}', 'RoomBookingController@update')->name('post-roombooking-update');
+        Route::get('edit/{id}', 'RoomBookingController@edit')->name('get-roombooking-edit');
+        Route::post('edit/{id}', 'RoomBookingController@update')->name('post-roombooking-update');
 
-         Route::get('delete/{id}', 'RoomBookingController@delete')->name('get-roombooking-delete');
-         
-         Route::post('edit/status/{id}', 'RoomBookingController@editStatus')->name('post-roombooking-edit-status');
+        Route::get('delete/{id}', 'RoomBookingController@delete')->name('get-roombooking-delete');
+
+        Route::post('edit/status/{id}', 'RoomBookingController@editStatus')->name('post-roombooking-edit-status');
     });
 
-    Route::group(['prefix'=>'ajax'],function(){
-		Route::get('room/{idHotel}','AjaxController@getRoom');
-	});
+    Route::group(['prefix' => 'ajax'], function () {
+        Route::get('room/{idHotel}', 'AjaxController@getRoom');
+    });
 });
+
+
 
 Route::group(['prefix' => '/'], function () {
     Route::get('/', function () {
         return view('page_layout.page_masterpage');
     });
-    
+});
+
+Route::group(['prefix' => 'errors'], function () {
+    Route::get('404', function () {
+        return view('error.404');
+    });
 });

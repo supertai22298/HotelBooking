@@ -32,19 +32,20 @@
                             <div class="custom-form custom-form-fields">
                                 <h3>Login</h3>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                <form>
+                                <form id="loginForm" action="" method="POST">
+                                    @csrf
                                     <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Username"  required/>
+                                            <input name="username" type="text" class="form-control" placeholder="Username"  required/>
                                             <span><i class="fa fa-user"></i></span>
                                     </div>
                                     <div class="form-group">
-                                            <input type="password" class="form-control" placeholder="Password"  required/>
+                                            <input name="password" type="password" class="form-control" placeholder="Password"  required/>
                                             <span><i class="fa fa-lock"></i></span>
                                     </div>
                                     <div class="checkbox">
                                             <label><input type="checkbox"> Remember me</label>
                                     </div>
-                                    <button class="btn btn-orange btn-block">Login</button>
+                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
                                 </form>
                                 
                                 <div class="other-links">
