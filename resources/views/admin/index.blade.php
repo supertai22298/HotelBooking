@@ -77,5 +77,9 @@
         </div>
     </div>
   </div>
-    Quản lí ở đây
+    <div class="card">
+        <div class="card-body">
+            Xin Chào {{ session()->get('user')['first_name'] . session()->get('user')['first_name'] }}
+        </div>
+    </div>
 @endsection
