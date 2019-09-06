@@ -138,24 +138,38 @@
                                         <!-- Modal body -->
                                         <div class="modal-body">
                                             <div class="row">
-                                                <div class="col-3">
-                                                    <h6>Tiêu đề:</h6>
+                                                <div class="col-3 border-right">
+                                                    <h6 class="p-1">Tiêu đề:</h6>
                                                 </div>
                                                 <div class="col-9">
-                                                    <p class="text-body">{!!$post->title!!}</p>
+                                                    <p class="text-body p-1 mb-0" >{!!$post->title!!}</p>
+                                                </div>
+                                            </div>
+                                            <div class="row bg-light">
+                                                <div class="col-3 border-right">
+                                                    <h6 class="p-1">Tác giả</h6>
+                                                </div>
+                                                <div class="col-9">
+                                                    <p class="text-body p-1 mb-0" >{{$post->author}}</p>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-3">
-                                                    <h6>Tác giả</h6>
-                                                </div>
-                                                <div class="col-9">
-                                                    <p class="text-body">{{$post->author}}</p>
-                                                </div>
+                                                    <div class="col-3 border-right">
+                                                        <h6 class="p-1">Ngày đăng</h6>
+                                                    </div>
+                                                    <div class="col-9">
+                                                        <p class="text-body p-1 mb-0">
+                                                            @if ($post->created_at == null)
+                                                                {{'Chưa cập nhật'}}
+                                                            @else
+                                                                {{$post->created_at}}
+                                                            @endif
+                                                        </p>
+                                                    </div>
                                             </div>
-                                            <div class="row">
-                                                <div class="col-3">
-                                                    <h6>Hình ảnh</h6>
+                                            <div class="row bg-light">
+                                                <div class="col-3 border-right">
+                                                    <h6 class="p-1">Hình ảnh</h6>
                                                 </div>
                                                 <div class="col-9">
                                                     @if ($post->image)
@@ -170,7 +184,7 @@
                                                 </div>
                                             </div>
                                             <div>
-                                                <h6>Nội dung:</h6>
+                                                <h6 class="p-1">Nội dung:</h6>
                                                 <hr>
                                                 <div class="text-body pl-3" style="font-size: 13px;">
                                                     @if (strlen($post->description) >150)
