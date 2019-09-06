@@ -14,10 +14,10 @@
 
         <div class="collapse navbar-collapse" id="myNavbar1">
             <ul class="nav navbar-nav navbar-right">
-                <li class=" active"><a href="#"   >Trang chủ  </a>
+                <li class=" active"><a href="/"   >Trang chủ  </a>
                     
                 </li>
-                <li class=""><a href="#"   >Khách sạn  </a>
+                <li class=""><a href="{{ route('get-page-hotelGrid') }}"   >Khách sạn  </a>
                     
                 </li>
                 <li class=""><a href="#">Blog</a>

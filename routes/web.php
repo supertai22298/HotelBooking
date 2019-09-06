@@ -175,10 +175,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
 Route::group(['prefix' => '/'], function () {
 
-    Route::get('/', function () {
-        return view('page.index');
-    })->name('master-page');
+    Route::get('/', 'PageController@view')->name('get-page-view');
 
+    Route::group(['prefix' => '/hotel'], function(){
+        Route::get('/', 'PageController@hotelGrid')->name('get-page-hotelGrid');
+        Route::get('detail/{id}', 'PageController@hotelDetail')->name('get-page-hotelDetail');
+    });
+
+    Route::group(['prefix' => 'room'], function () {
+      
+    });
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');

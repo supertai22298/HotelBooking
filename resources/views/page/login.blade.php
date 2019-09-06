@@ -33,17 +33,17 @@
                                 <h3>Login</h3>
                                 @if (session('success'))
                                     <div class="alert alert-success">
-                                    {{session('success')}}
+                                        {{session('success')}}
                                     </div>
                                 @endif
                                 @if (session('errorSQL'))
                                     <div class="alert alert-danger">
-                                    {{session('errorSQL')}}
+                                        {{session('errorSQL')}}
                                     </div>
                                 @endif
 
                                 @if (isset(Auth::user()->username))
-                                    <script>window.location="{{route('master-page')}}"</script>
+                                    <script>window.location="{{route('get-page-view')}}"</script>
                                 @endif
                                 @if ($message = Session::get('error'))
                                     <div class="alert alert-danger">
