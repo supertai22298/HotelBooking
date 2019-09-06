@@ -236,7 +236,7 @@
                         <i class="fa fa-dot-circle-o"></i> Lưu
                     </button>
                     <button type="reset" class="btn btn-warning">
-                        <i class="fa fa-ban"></i> Đặt lại
+                        <i class="fa fa-undo"></i> Đặt lại
                     </button>
                     <a href="{{route('get-user-view')}}" class="btn btn-danger">
                         <i class="fa fa-ban"></i> Hủy

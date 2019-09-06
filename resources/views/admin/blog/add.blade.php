@@ -57,7 +57,7 @@
     <form id="data_add" action="{{route('post-blog-store')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
         @csrf
         <div class="row">
-            <div class="col-8">
+            <div class="col-lg-8 col-md-12">
                 <div class="form-group" id="text-area">
                     <div class=""><label for="textarea-input" class=" form-control-label">Nội dung *:</label></div>
                     <div class=""><textarea name="description" id="editor" rows="9" cols="9" placeholder="Nội dung..." class="form-control" data-parsley-trigger="change" required=""></textarea></div>
@@ -68,7 +68,7 @@
                     @endif
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-lg-4 col-md-12">
                 <div class=" form-group">
                    <div class=""><label for="email-input" class=" form-control-label">Tiêu đề *: </label></div>
                    <div class="">
@@ -115,9 +115,12 @@
                 <button type="submit" class="btn btn-primary">
                     <i class="fa fa-dot-circle-o"></i> Lưu
                 </button>
-                <button type="reset" class="btn btn-danger">
-                    <i class="fa fa-ban"></i> Đặt lại
+                <button type="reset" class="btn btn-warning">
+                  <i class="fa fa-undo"></i> Đặt lại
                 </button>
+                <a href="{{route('get-blog-view')}}" class="btn btn-danger">
+                    <i class="fa fa-ban"></i> Hủy
+                </a>
             </div>
             </div>
       </form>
