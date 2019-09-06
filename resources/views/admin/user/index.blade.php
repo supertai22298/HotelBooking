@@ -138,7 +138,7 @@
                                                     " alt="avatar">
                                                     <h4 class="text-center mt-2">{{$user->first_name ." ".$user->last_name}}</h4>
                                                         @if ($user->role == 1)
-                                                            <p class="text-center p-5px text-primary">{{'Admin'}}</p>
+                                                            <p class="text-center p-5px text-primary">{{'Quản trị viên'}}</p>
                                                         @else
                                                             <p class="text-center p-5px text-secondary">{{'Khách hàng'}}</p>
                                                         @endif
