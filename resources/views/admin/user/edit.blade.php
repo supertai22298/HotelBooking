@@ -6,7 +6,32 @@
 @section('title')
   Chỉnh sửa người dùng
 @endsection
-
+@section('breadcrumbs')
+  <div class="breadcrumbs">
+      <div class="breadcrumbs-inner">
+          <div class="row m-0">
+              <div class="col-sm-4">
+                  <div class="page-header float-left">
+                      <div class="page-title">
+                          <h1>Bảng điều khiển</h1>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-8">
+                  <div class="page-header float-right">
+                      <div class="page-title">
+                          <ol class="breadcrumb text-right">
+                          <li><a href="{{'/admin'}}">Bảng điều khiển</a></li>
+                          <li><a href="{{route('get-user-view')}}">Quản lý người dùng</a></li>
+                          <li><a href="{{route('get-user-edit',['id' => $user->id])}}">Chỉnh sửa người dùng</a></li>
+                          </ol>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+@endsection
 @section('content')
     <div class="card">
         <div class="card-header">
@@ -146,7 +171,7 @@
                           <div class="col col-md-3"><label for="select" class=" form-control-label">Loại người dùng *</label></div>
                           <div class="col-12 col-md-9">
                                 <select name="role" id="select" class="form-control" data-parsley-trigger="change">
-                                    @if($user->role == 0)
+                                    @if($user->role == 1)
                                     <option value="0">Khách hàng</option>
                                     <option value="1" selected>Quản trị viên</option>
                                     @else
@@ -185,7 +210,13 @@
                         <div class="row form-group">
                           <div class="col-12"><label for="file-input" class=" form-control-label">Avatar</label></div>
                           <div class="col-12">
-                              <img class="my-2" id="preview_avatar" src="upload/images/{{$user->avatar}}" alt="ảnh đại điện">
+                              <img class="my-2" id="preview_avatar" src="
+                              @if ($user->avatar != null)
+                                {{'upload/images/' .$user->avatar}}
+                              @else
+                                {{'upload/images/default.png'}}  
+                              @endif
+                              " alt="ảnh đại điện">
                               <input type="file" id="avatar" name="avatar" class="form-control-file">
                               @if($errors->has('avatar'))
                                   <small class="text-danger w-100">
@@ -204,9 +235,12 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="fa fa-dot-circle-o"></i> Lưu
                     </button>
-                    <button type="reset" class="btn btn-danger">
+                    <button type="reset" class="btn btn-warning">
                         <i class="fa fa-ban"></i> Đặt lại
                     </button>
+                    <a href="{{route('get-user-view')}}" class="btn btn-danger">
+                        <i class="fa fa-ban"></i> Hủy
+                    </a>
             </form>
           {{-- end form data --}}
         </div>

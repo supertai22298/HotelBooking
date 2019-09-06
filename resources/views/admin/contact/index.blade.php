@@ -58,7 +58,7 @@
                             <th>Tên</th>
                             <th>Email</th>
                             <th>Tiêu đề</th>
-                            <th>Chức Năng</th>
+                            <th style="width: 159px !important;">Chức Năng</th>
                         </tr>
                     </thead>
                     <tbody>

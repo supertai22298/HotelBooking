@@ -41,7 +41,7 @@
               <div class="col-sm-4">
                   <div class="page-header float-left">
                       <div class="page-title">
-                          <h1>Dashboard</h1>
+                          <h1>Bảng điều khiển</h1>
                       </div>
                   </div>
               </div>
@@ -49,7 +49,7 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="">Dashboard</a></li>
+                          <li><a href="{{'/admin'}}">Bảng điều khiển</a></li>
                           <li><a href="{{route('get-user-view')}}">Quản lý người dùng</a></li>
                           </ol>
                       </div>
@@ -67,8 +67,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">Người dùng</strong>
-                    <a class="btn btn-primary" href="{{route('get-user-add')}}"><i class="fa fa-plus"></i> Thêm </a>
+                    <strong class="card-title mr-2">Người dùng</strong>
+                    <a class="btn btn-primary" href="{{route('get-user-add')}}"><i class="fa fa-plus"></i>Thêm </a>
                     @if(session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -84,7 +84,7 @@
                                 <th>Tên tài khoản</th>
                                 <th>Loại tài khoản</th>
                                 <th>Trạng thái</th>
-                                <th>Chức năng</th>
+                                <th style="width: 159px !important;">Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -96,9 +96,9 @@
                                 <td>{{$user->username}}</td>
                                 <td>
                                     @if($user->role == 1)
-                                        {{'Khách hàng'}}
-                                    @else
                                         {{'Quản trị viên'}}
+                                    @else
+                                        {{'Khách hàng'}}
                                     @endif
                                 </td>
                                 <td>
@@ -137,12 +137,17 @@
                                                     @endif    
                                                     " alt="avatar">
                                                     <h4 class="text-center mt-2">{{$user->first_name ." ".$user->last_name}}</h4>
-                                                        @if ($user->active == 1)
-                                                            <p class="text-center text-success">{{'Hoạt động'}}</p>
+                                                        @if ($user->role == 1)
+                                                            <p class="text-center p-5px text-primary">{{'Admin'}}</p>
                                                         @else
-                                                            <p class="text-center text-secondary">{{'Khóa'}}</p>
+                                                            <p class="text-center p-5px text-secondary">{{'Khách hàng'}}</p>
                                                         @endif
-                                                    <hr>
+                                                        @if ($user->active == 1)
+                                                            <p class="text-center p-5px"><small class="text-success">{{'Hoạt động'}}</small></p>
+                                                        @else
+                                                            <p class="text-center p-5px"><small class="text-secondary">{{'Khóa'}}</small></p>
+                                                        @endif
+                                                    <hr class="my-1">
                                                 </div>
                                                 <div class="my-center my-center-85">
                                                     <div class="row">
@@ -152,14 +157,36 @@
                                                     <p class="col-6 p-5px bg-light">Email :</p><p class="col-6 p-5px text-body bg-light">{{$user->email}}</p>
                                                     </div>
                                                     <div class="row">
+                                                        <p class="col-6 p-5px">Ngày sinh :</p><p class="col-6 p-5px text-body">
+                                                            @if ($user->date_of_birth == null)
+                                                                <small>{{'Chưa cập nhật'}}</small>
+                                                            @else
+                                                                {{substr($user->date_of_birth,0,-9)}}
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                    <div class="row">
+                                                        <p class="col-6 p-5px bg-light">Giới tính :</p><p class="col-6 p-5px text-body bg-light">
+                                                            @if ($user->gender == null)
+                                                                <small>{{'Chưa cập nhật'}}</small>
+                                                            @else
+                                                                @if ($user->gender == 1)
+                                                                    {{'Nam'}}                                                                    
+                                                                @else
+                                                                    {{'Nữ'}}
+                                                                @endif
+                                                            @endif
+                                                        </p>
+                                                    </div>
+                                                    <div class="row">
                                                         <p class="col-6 p-5px">Số điện thoại :</p><p class="col-6 p-5px text-body">{{$user->phone_number}}</p>
                                                     </div>
                                                     <div class="row">
-                                                        <p class="col-6 p-5px bg-light">Địa chỉ :</p><p class="col-6 p-5px text-body bg-light">{{$user->address}}</p>
+                                                        <p class="col-6 p-5px bg-light">Địa chỉ :</p><p class="col-6 p-5px text-body bg-light">{{$user->address . $user->city . $user->country}}</p>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <hr>
+                                            <hr class="my-1">
                                             <div class="user-description">
                                             <h6>Tiểu sử</h6>
                                             <p>{{$user->description}}</p>
