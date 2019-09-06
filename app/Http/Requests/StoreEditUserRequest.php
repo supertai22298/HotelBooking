@@ -42,13 +42,13 @@ class StoreEditUserRequest extends FormRequest
 
             'active'        => 'boolean',
 
-            'city'          => 'alpha|min:2|nullable',
+            'city'          => 'min:2|nullable',
 
-            'country'       => 'alpha|min:2|nullable',
+            'country'       => 'min:2|nullable',
 
             'date_of_birth' => 'before:today|nullable',
 
-            'phone_number'  => 'regex:/(0)[0-9]{1,12}/|nullable',
+            'phone_number'  => 'nullable',
 
             'avatar'        => 'image',
         ];
@@ -78,10 +78,8 @@ class StoreEditUserRequest extends FormRequest
 
             'active.boolean'        => 'Trạng thái không hợp lệ',
 
-            'city.alpha'            => 'Tên thành phố không hợp lệ',
             'city.min'              => 'Tên thành phố không hợp lệ',
 
-            'country.alpha'         => 'Tên quốc gia không hợp lệ',
             'country.min'           => 'Tên quốc gia không hợp lệ',
 
             'avatar.image'          => 'Ảnh đại diện không hợp lệ',
