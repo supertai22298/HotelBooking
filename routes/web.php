@@ -192,8 +192,6 @@ Route::group(['prefix' => '/'], function () {
 });
 
 
-
-
 Route::group(['prefix' => 'errors'], function () {
     Route::get('404', function () {
         return view('error.404');
