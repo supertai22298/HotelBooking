@@ -84,7 +84,7 @@
 
           <div class="user-area dropdown float-right">
               <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img class="user-avatar rounded-circle" src="
+              <img class="user-avatar rounded-circle" width="40px" height="40px" src="
                 @if(Auth::user()->avatar == null)
                     {{'upload/images/default.png'}}
                 @else

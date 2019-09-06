@@ -42,15 +42,15 @@ class StoreUserRequest extends FormRequest
 
             'last_name'     => 'required|min:2',
 
-            'gender'        => 'boolean',
+            'gender'        => 'regex:/[0-1]{1}/',
 
-            'role'          => 'boolean',
+            'role'          => 'regex:/[0-1]{1}/',
 
-            'active'        => 'boolean',
+            'active'        => 'regex:/[0-1]{1}/',
 
-            'city'          => 'alpha|min:2',
+            'city'          => 'min:2',
 
-            'country'       => 'alpha|min:2',
+            'country'       => 'min:2',
 
             'date_of_birth' => 'before:today',
 
@@ -88,16 +88,14 @@ class StoreUserRequest extends FormRequest
             'phone_number.max'      => 'Số điện thoại không hợp lệ',
             'phone_number.numeric'  => 'Số điện thoại không hợp lệ',
 
-            'gender.boolean'        => 'Giới tính không hợp lệ',
+            'gender.regex'        => 'Giới tính không hợp lệ',
 
-            'role.boolean'          => 'Quyền không hợp lệ',
+            'role.regex'          => 'Quyền không hợp lệ',
 
-            'active.boolean'        => 'Trạng thái không hợp lệ',
+            'active.regex'        => 'Trạng thái không hợp lệ',
 
-            'city.alpha'            => 'Tên thành phố không hợp lệ',
             'city.min'              => 'Tên thành phố không hợp lệ',
 
-            'country.alpha'         => 'Tên thành phố không hợp lệ',
             'country.min'           => 'Tên thành phố không hợp lệ',
 
             'avatar.image'          => 'Ảnh đại diện không hợp lệ',

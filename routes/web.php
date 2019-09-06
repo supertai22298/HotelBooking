@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     // quản lý bai dang
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@view')->name('get-blog-view');
+        
         Route::get('/detail/{id}', 'BlogController@detail')->name('get-blog-detail');
 
         Route::get('add', 'BlogController@create')->name('get-blog-add');

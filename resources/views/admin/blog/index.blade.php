@@ -42,7 +42,7 @@
               <div class="col-sm-4">
                   <div class="page-header float-left">
                       <div class="page-title">
-                          <h1>Dashboard</h1>
+                          <h1>Bảng điều khiển</h1>
                       </div>
                   </div>
               </div>
@@ -50,7 +50,7 @@
                   <div class="page-header float-right">
                       <div class="page-title">
                           <ol class="breadcrumb text-right">
-                          <li><a href="">Dashboard</a></li>
+                          <li><a href="{{'/admin'}}">Bảng điều khiển</a></li>
                           <li><a href="{{route('get-blog-view')}}">Quản lý bài đăng</a></li>
                           </ol>
                       </div>
@@ -68,7 +68,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <strong class="card-title">Bài đăng</strong>
+                    <strong class="card-title mr-2">Bài đăng</strong>
                     <a class="btn btn-primary" href="{{route('get-blog-add')}}"><i class="fa fa-plus"></i> Thêm </a>
                     @if(session('noti'))
                     <small id="success" class="alert alert-success p-2">
@@ -81,18 +81,24 @@
                         <thead>
                             <tr>
                                 <th>STT</th>
-                                <th>Tiêu đề</th>
+                                <th style="width: 180px !important;">Tiêu đề</th>
                                 <th>Tác giả</th>
                                 <th>Hình ảnh</th>
-                                <th>Trạng thái</th>
-                                <th>Chức năng</th>
+                                <th style="width: 57px !important;">Trạng thái</th>
+                                <th style="width: 159px !important;">Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($getPosts as $post)
                             <tr>
                                 <td class="text-center">{{$stt++}}</td>
-                                <td>{{$post->title}}</td>
+                                <td>
+                                    @if (strlen($post->title) >50)
+                                        {!!str_limit($post->title,50)!!}
+                                    @else
+                                        {!!$post->title!!}
+                                    @endif
+                                </td>
                                 <td class="text-center">
                                     @if ($post->image)
                                     <img width="120px" src="upload/images/{{$post->image}}" alt="">
@@ -115,7 +121,7 @@
                                 <td>
                                     <a class="btn btn-success mt-1" href="" data-toggle="modal" data-target="#myModal{{$post->id}}" data-backdrop="true">Xem</a>
                                     <a class="btn btn-warning mt-1" href="{{route('get-blog-edit',['id' => $post->id])}}">Sửa</a>
-                                <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$post->id}}" data-backdrop="true">Xóa</a>
+                                    <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$post->id}}" data-backdrop="true">Xóa</a>
                                 </td>
                                 {{-- modal --}}
                                 <!-- The Modal -->
@@ -136,7 +142,7 @@
                                                     <h6>Tiêu đề:</h6>
                                                 </div>
                                                 <div class="col-9">
-                                                    <p class="text-body">{{$post->title}}</p>
+                                                    <p class="text-body">{!!$post->title!!}</p>
                                                 </div>
                                             </div>
                                             <div class="row">
@@ -166,14 +172,16 @@
                                             <div>
                                                 <h6>Nội dung:</h6>
                                                 <hr>
-                                                <p class="text-body" style="font-size: 13px;">
+                                                <div class="text-body pl-3" style="font-size: 13px;">
                                                     @if (strlen($post->description) >150)
                                                         {!!str_limit($post->description,150)!!}
-                                                    <a class="text-primary" href="{{route('get-blog-detail',['id' => $post->id])}}"> xem thêm</a>
                                                     @else
                                                         {!!$post->description!!}
                                                     @endif
-                                                </p>
+                                                </div>
+                                                @if (strlen($post->description) >150)
+                                                    <a href="{{route('get-blog-detail',['id' => $post->id])}}" class="text-primary pl-1" style="font-size: 13px;">..xem thêm</a>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -217,6 +225,11 @@
 
 @section('script')
   {{-- scrip data table --}}
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#bootstrap-data-table-export').DataTable();
+    });
+  </script>
   <script src="admin_page_asset/js/lib/data-table/datatables.min.js"></script>
   <script src="admin_page_asset/js/lib/data-table/dataTables.bootstrap.min.js"></script>
   <script src="admin_page_asset/js/lib/data-table/dataTables.buttons.min.js"></script>
@@ -229,10 +242,4 @@
   <script src="admin_page_asset/js/init/datatables-init.js"></script>
 
   <script src="admin_page_asset/js/functionscript.js"></script>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $('#bootstrap-data-table-export').DataTable();
-    });
-  </script>
 @endsection
