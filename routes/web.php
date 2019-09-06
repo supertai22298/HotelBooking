@@ -188,6 +188,12 @@ Route::group(['prefix' => '/'], function () {
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');
+
+    // user's feature
+    Route::group(['prefix' => 'user'], function () {
+        Route::get('/', 'PageUserController@view')->name('get-page-user-view');
+
+    });
     
 });
 
@@ -197,4 +203,6 @@ Route::group(['prefix' => 'errors'], function () {
         return view('error.404');
     });
 });
+
+
 
