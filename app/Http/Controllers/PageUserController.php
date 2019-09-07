@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 class PageUserController extends Controller
 {
     public function view(){
-        return view('page.user_profile');
+        return view('page.user.dashboard');
     }
 
-    
 }

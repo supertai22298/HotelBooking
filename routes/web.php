@@ -185,6 +185,7 @@ Route::group(['prefix' => '/'], function () {
     Route::group(['prefix' => 'room'], function () {
       
     });
+
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');
@@ -192,6 +193,19 @@ Route::group(['prefix' => '/'], function () {
     // user's feature
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'PageUserController@view')->name('get-page-user-view');
+
+        // user profile
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', 'PageUserProfileController@view')->name('get-page-userProfile-view');
+    
+            Route::get('edit/{id}', 'PageUserProfileController@edit')->name('get-page-userProfile-edit');
+            Route::post('edit/{id}', 'PageUserProfileController@update')->name('post-page-userProfile-update');
+        });
+
+        // user profile
+        Route::group(['prefix' => 'booking'], function () {
+            //
+        });
 
     });
     
