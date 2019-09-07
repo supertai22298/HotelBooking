@@ -55,6 +55,8 @@
     <!--================ NAV BAR===============-->
     @include('page_layout.nav_bar')
 
+    @yield('breadcrumb')
+
     @yield('content')
 
     <!--======================= FOOTER =======================-->

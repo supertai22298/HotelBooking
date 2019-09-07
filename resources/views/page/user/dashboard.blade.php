@@ -1,7 +1,7 @@
 @extends('page_layout.page_masterpage')
 
 @section('title')
-Dashboard
+Quản lý tài khoản
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@ Dashboard
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="page-title">My Account</h1>
+                    <h1 class="page-title">Tài khoản của tôi</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">My Account</li>
+                        <li><a href="{{route('get-page-view')}}">Trang chủ</a></li>
+                        <li class="active">Tài khoản của tôi</li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
@@ -27,22 +27,21 @@ Dashboard
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            <div class="dashboard-heading">
-                                <h2>Travel <span>Profile</span></h2>
-                                <p>Hi Lisa, Welcome to Star Travels!</p>
-                                <p>All your trips booked with us will appear here and you'll be able to manage everything!</p>
-                            </div><!-- end dashboard-heading -->
+                            
+                            {{-- include component wellcome --}}
+                            @include('page.components.wellcome')
+                            {{-- end wellcome --}}
                             
                             <div class="dashboard-wrapper">
                                 <div class="row">
                                 
                                     <div class="col-xs-12 col-sm-2 col-md-2 dashboard-nav">
                                         <ul class="nav nav-tabs nav-stacked text-center">
-                                            <li class="active"><a href="#"><span><i class="fa fa-cogs"></i></span>Dashboard</a></li>
-                                            <li><a href="user-profile.html"><span><i class="fa fa-user"></i></span>Profile</a></li>
-                                            <li><a href="booking.html"><span><i class="fa fa-briefcase"></i></span>Booking</a></li>
-                                            <li><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>Wishlist</a></li>
-                                            <li><a href="cards.html"><span><i class="fa fa-credit-card"></i></span>My Cards</a></li>
+                                            <li class="active"><a href=""><span><i class="fa fa-cogs"></i></span>Bảng điều khiển</a></li>
+                                            <li><a href="{{route('get-page-userProfile-view')}}"><span><i class="fa fa-user"></i></span>Hồ sơ cá nhân</a></li>
+                                            <li><a href="booking.html"><span><i class="fa fa-briefcase"></i></span>Đặt phòng</a></li>
+                                            {{-- <li><a href="wishlist.html"><span><i class="fa fa-heart"></i></span>Wishlist</a></li>
+                                            <li><a href="cards.html"><span><i class="fa fa-credit-card"></i></span>My Cards</a></li> --}}
                                         </ul>
                                     </div><!-- end columns -->
                                     
@@ -85,7 +84,7 @@ Dashboard
                                         </div><!-- end row -->
                                         
                                         <div class="dashboard-listing recent-activity">
-                                            <h3 class="dash-listing-heading">Recent Activites</h3>
+                                            <h3 class="dash-listing-heading">Hoạt động gần đây</h3>
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <tbody>
@@ -124,7 +123,7 @@ Dashboard
                                         </div><!-- end recent-activity -->
                                         
                                         <div class="dashboard-listing invoices">
-                                            <h3 class="dash-listing-heading">Invoices</h3>
+                                            <h3 class="dash-listing-heading">Hóa đơn</h3>
                                             <div class="table-responsive">
                                                 <table class="table table-hover">
                                                     <tbody>
