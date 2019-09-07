@@ -11,13 +11,13 @@ class PageHotelController extends Controller
 {
     public function hotelGrid(){
         $hotels = Hotel::orderBy('created_at', 'desc')->simplePaginate(6);
-        return view('page.hotel_grid', ['hotels' => $hotels]);
+        return view('page.hotel.hotel_grid', ['hotels' => $hotels]);
     }
     public function hotelDetail($id){ 
         $hotel = Hotel::findOrFail($id);
         $rooms = Room::where('hotel_id', $id)->simplePaginate(4);
         $paymentTypes = PaymentType::where('active', 1)->get();
-        return view('page.hotel_detail',
+        return view('page.hotel.hotel_detail',
             [
                 'hotel' => $hotel,
                 'rooms' => $rooms,

@@ -140,11 +140,11 @@
                             
                             <div class="col-xs-12 col-sm-6 col-md-12">    
                                 <div class="side-bar-block support-block">
-                                    <h3>Need Help</h3>
-                                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.</p>
+                                    <h3>Cần hỗ trợ</h3>
+                                    <p>Website hatabook hoạt động 24/24 để đáp ứng nhu cầu khách hàng </p>
                                     <div class="support-contact">
                                         <span><i class="fa fa-phone"></i></span>
-                                        <p>+1 123 1234567</p>
+                                        <p>+84 123 456 789</p>
                                     </div><!-- end support-contact -->
                                 </div><!-- end side-bar-block -->
                             </div><!-- end columns -->
@@ -154,34 +154,34 @@
                     
                     <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side">
                         <div class="row">
-                            @foreach ($hotels as $hotel)
+                            @foreach ($rooms as $room)
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block h-grid-block">
                                     <div class="main-img h-grid-img">
-                                        <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}">
-                                        <img src="{{ asset('upload/images' . '/'. $hotel->image) }}" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />
+                                        <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}">
+                                        <img src="{{ asset('upload/images' . '/'. $room->image) }}" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
-                                                    <li class="price">{{ $hotel->rooms->avg('price') }}<span class="divider">|</span><span class="pkg">1 Đêm</span></li>
+                                                    <li class="price">{{ $room->price }}<span class="divider">|</span><span class="pkg">1 Đêm</span></li>
                                                 </ul>
                                             </div><!-- end main-mask -->
                                     </div><!-- end h-grid-img -->
                                         
                                         <div class="block-info h-grid-info">
                                             <div class="rating">
-                                               @for ($i = 0; $i < $hotel->hotel_star; $i++)
+                                               @for ($i = 0; $i < $room->hotel->hotel_star; $i++)
                                                 <span><i class="fa fa-star orange"></i></span>
                                                @endfor
-                                               @for ($i = 0; $i < (5 -$hotel->hotel_star); $i++)
+                                               @for ($i = 0; $i < (5 -$room->hotel->hotel_star); $i++)
                                                 <span><i class="fa fa-star lightgrey"></i></span>
                                                @endfor
                                             </div><!-- end rating -->
                                             
-                                            <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{ $hotel->name }}</a></h3>
-                                            <p class="block-minor">Từ: {{ $hotel->city }}</p>
+                                            <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{ $room->name }}</a></h3>
+                                            <p class="block-minor">Khách sạn: {{ $room->hotel->name }}, {{ $room->hotel->city }}</p>
                                             <div class="grid-btn">
-                                            <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}" class="btn btn-orange btn-block btn-lg">Xem thêm</a>
+                                            <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>
                                             </div><!-- end grid-btn -->
                                         </div><!-- end h-grid-info -->
                                     </div><!-- end h-grid-block -->
@@ -191,7 +191,7 @@
                         </div><!-- end row -->
                         
                         <div class="row text-center">
-                            {{ $hotels->links() }}
+                            {{ $rooms->links() }}
                         </div><!-- end pages -->
                     </div><!-- end columns -->
     

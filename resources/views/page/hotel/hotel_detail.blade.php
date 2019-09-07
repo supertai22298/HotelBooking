@@ -251,7 +251,7 @@
                                 <div class="list-block main-block room-block">
                                     <div class="list-content">
                                         <div class="main-img list-img room-img">
-                                            <a href="#">
+                                            <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}">
                                                 <img src="{{ asset('upload/images/'. '/'. $room->image) }}" class="img-responsive" alt="room-img" style="width: 360px; height: 240px"/>
                                             </a>
                                             <div class="main-mask">
@@ -280,7 +280,7 @@
                                                     Thông tin đang được cập nhật
                                                 @endif
                                             </p>
-                                            <a href="#" class="btn btn-orange btn-lg">Xem chi tiết</a>
+                                            <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}" class="btn btn-orange btn-lg">Xem chi tiết</a>
                                          </div><!-- end room-info -->
                                     </div><!-- end list-content -->
                                 </div><!-- end room-block -->

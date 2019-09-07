@@ -24,7 +24,7 @@ class LoginController extends Controller
 
   public function getLogout(){
       Auth::logout();
-      return view('page_layout.page_masterpage');
+      return back();
   }
     
 }
