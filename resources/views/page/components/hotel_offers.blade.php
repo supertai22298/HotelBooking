@@ -14,7 +14,7 @@
                             <div class="item">
                                 <div class="main-block hotel-block">
                                     <div class="main-img">
-                                        <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}">
+                                        <a href="{{ route('get-page-hotel-hotelDetail', ['id' => $hotel->id]) }}">
                                             <img src="{{ asset('upload/images/'. '/'. $hotel->image) }}" class="img-responsive" alt="hotel-img" style="width: 360px; height: 240px;" />
                                         </a>
                                         <div class="main-mask">
@@ -37,11 +37,11 @@
                                     
                                     <div class="main-info hotel-info">
                                         <div class="arrow">
-                                            <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}"><span><i class="fa fa-angle-right"></i></span></a>
+                                            <a href="{{ route('get-page-hotel-hotelDetail', ['id' => $hotel->id]) }}"><span><i class="fa fa-angle-right"></i></span></a>
                                         </div><!-- end arrow -->
                                         
                                         <div class="main-title hotel-title">
-                                            <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}">{{ $hotel->name }}</a>
+                                            <a href="{{ route('get-page-hotel-hotelDetail', ['id' => $hotel->id]) }}">{{ $hotel->name }}</a>
                                             <p>Địa điểm: {{ $hotel->city }}</p>
                                         </div><!-- end hotel-title -->
                                     </div><!-- end hotel-info -->
@@ -54,7 +54,7 @@
                 </div><!-- end owl-hotel-offers -->
                 
                 <div class="view-all text-center">
-                    <a href="{{ route('get-page-hotelGrid') }}" class="btn btn-orange">Xem thêm</a>
+                    <a href="{{ route('get-page-hotel-hotelGrid') }}" class="btn btn-orange">Xem thêm</a>
                 </div><!-- end view-all -->
             </div><!-- end columns -->
         </div><!-- end row -->

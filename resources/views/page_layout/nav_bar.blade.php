@@ -17,7 +17,7 @@
                 <li class=" active"><a href="/"   >Trang chủ  </a>
                     
                 </li>
-                <li class=""><a href="{{ route('get-page-hotelGrid') }}"   >Khách sạn  </a>
+                <li class=""><a href="{{ route('get-page-hotel-hotelGrid') }}"   >Khách sạn  </a>
                     
                 </li>
                 <li class=""><a href="#">Blog</a>

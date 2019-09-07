@@ -1,7 +1,7 @@
 @extends('page_layout.page_masterpage')
 
 @section('title')
-   Danh sách khách sạn
+   Danh sách phòng
 @endsection
 
 @section('content')
@@ -12,10 +12,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                <h1 class="page-title">Danh sách khách sạn</h1>
+                <h1 class="page-title">Danh sách phòng</h1>
                     <ul class="breadcrumb">
                         <li><a href="/">Home</a></li>
-                        <li class="active">Danh sách khách sạn</li>
+                        <li class="active">Danh sách phòng</li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
@@ -140,11 +140,11 @@
                             
                             <div class="col-xs-12 col-sm-6 col-md-12">    
                                 <div class="side-bar-block support-block">
-                                    <h3>Cần hỗ trợ</h3>
-                                    <p>Website hatabook hoạt động 24/24 để đáp ứng nhu cầu khách hàng </p>
+                                    <h3>Need Help</h3>
+                                    <p>Lorem ipsum dolor sit amet, ad duo fugit aeque fabulas, in lucilius prodesset pri. Veniam delectus ei vis. Est atqui timeam mnesarchum.</p>
                                     <div class="support-contact">
                                         <span><i class="fa fa-phone"></i></span>
-                                        <p>+84 123 456 789</p>
+                                        <p>+1 123 1234567</p>
                                     </div><!-- end support-contact -->
                                 </div><!-- end side-bar-block -->
                             </div><!-- end columns -->
@@ -158,7 +158,7 @@
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block h-grid-block">
                                     <div class="main-img h-grid-img">
-                                        <a href="{{ route('get-page-hotel-hotelDetail', ['id' => $hotel->id]) }}">
+                                        <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}">
                                         <img src="{{ asset('upload/images' . '/'. $hotel->image) }}" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />
                                             </a>
                                             <div class="main-mask">
@@ -181,7 +181,7 @@
                                             <h3 class="block-title"><a href="hotel-detail-left-sidebar.html">{{ $hotel->name }}</a></h3>
                                             <p class="block-minor">Từ: {{ $hotel->city }}</p>
                                             <div class="grid-btn">
-                                            <a href="{{ route('get-page-hotel-hotelDetail', ['id' => $hotel->id]) }}" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>
+                                            <a href="{{ route('get-page-hotelDetail', ['id' => $hotel->id]) }}" class="btn btn-orange btn-block btn-lg">Xem thêm</a>
                                             </div><!-- end grid-btn -->
                                         </div><!-- end h-grid-info -->
                                     </div><!-- end h-grid-block -->

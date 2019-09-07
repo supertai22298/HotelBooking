@@ -178,12 +178,13 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/', 'PageController@view')->name('get-page-view');
 
     Route::group(['prefix' => '/hotel'], function(){
-        Route::get('/', 'PageController@hotelGrid')->name('get-page-hotelGrid');
-        Route::get('detail/{id}', 'PageController@hotelDetail')->name('get-page-hotelDetail');
+        Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
+        Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
     });
 
     Route::group(['prefix' => 'room'], function () {
       
+        Route::get('/', 'PageRoomController@roomGrid')->name('get-page-room-roomGrid');
     });
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
