@@ -27,7 +27,7 @@ class CheckAdminLogin
                 Auth::logout();
                 $request->session()->flush();
                 $request->session()->regenerate();
-                return redirect('/login')->with('msg','Tài khoản này đã bị khóa hoặc không có quyền');
+                return redirect('admin/login')->with('msg','Tài khoản này đã bị khóa hoặc không có quyền');
             }
         }
         return redirect('admin/login')->with('msg','Hãy đăng nhập để truy cập vào trang này');
