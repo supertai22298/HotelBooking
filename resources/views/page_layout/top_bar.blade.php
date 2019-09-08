@@ -19,7 +19,6 @@
                         @else
                         <li><a href="{{route('get-login')}}"><span><i class="fa fa-lock"></i></span>Đăng Nhập</a></li>
                         <li><a href="registration.html"><span><i class="fa fa-plus"></i></span>Đăng Ký</a></li>
-
                         @endif
 
                     </ul>

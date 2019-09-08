@@ -53,12 +53,7 @@ class LoginController extends Controller
     public function postAdminLogin(StoreAdminLoginRequest $request){
     // check login here1
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'role' => 1])) {
-            
-            if (Auth::user()->active == 1) {
-                return redirect('/admin');   
-            } else {
-                return redirect('/admin/login')->with('msg','Tài khoản này đang bị khóa');
-            }
+            return redirect('/admin');
         } else {
             return redirect('/admin/login')->with('msg','Tài khoản hoặc mật khẩu không hợp lệ');
         }
