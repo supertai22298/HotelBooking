@@ -209,3 +209,12 @@
     @include('page.components.newsletter_1')
 
 @endsection
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.room-status').addClass('active');
+        });
+    
+    </script>
+@endsection
