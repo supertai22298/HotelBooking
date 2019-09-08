@@ -187,6 +187,11 @@ Route::group(['prefix' => '/'], function () {
         Route::get('/', 'PageRoomController@roomGrid')->name('get-page-room-roomGrid');
         Route::get('detail/{id}', 'PageRoomController@roomDetail')->name('get-page-room-roomDetail');
     });
+    Route::group(['prefix' => 'blog'], function () {
+      
+        Route::get('/', 'PageBlogController@blogGrid')->name('get-page-blog-blogGrid');
+        Route::get('detail/{id}', 'PageBlogController@blogDetail')->name('get-page-blog-blogDetail');
+    });
 
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');

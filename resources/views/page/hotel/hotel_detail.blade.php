@@ -308,3 +308,12 @@
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')
 @endsection
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.hotel-status').addClass('active');
+        });
+    
+    </script>
+@endsection
