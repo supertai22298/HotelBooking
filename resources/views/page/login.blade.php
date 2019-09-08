@@ -31,23 +31,9 @@
                         <div class="flex-content">
                             <div class="custom-form custom-form-fields">
                                 <h3>Login</h3>
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{session('success')}}
-                                    </div>
-                                @endif
-                                @if (session('errorSQL'))
+                                @if (session('msg'))
                                     <div class="alert alert-danger">
-                                        {{session('errorSQL')}}
-                                    </div>
-                                @endif
-
-                                @if (isset(Auth::user()->username))
-                                    <script>window.location="{{route('get-page-view')}}"</script>
-                                @endif
-                                @if ($message = Session::get('error'))
-                                    <div class="alert alert-danger">
-                                    {{$message}}
+                                        {{session('msg')}}
                                     </div>
                                 @endif
                                 <form id="login" action="{{route('post-login')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">

@@ -198,7 +198,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');
 
     // user's feature
-    Route::group(['prefix' => 'user'], function () {
+    Route::group(['prefix' => 'user', 'middleware' => 'userLogin'], function () {
         Route::get('/', 'PageUserController@view')->name('get-page-user-view');
 
         // user profile
