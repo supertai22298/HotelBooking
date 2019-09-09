@@ -1,7 +1,7 @@
 @extends('page_layout.page_masterpage')
 
 @section('title')
-   Thông tin chi tiết khách sạn {{ $hotel->name }}
+   Thông tin chi tiết phòng {{ $room->name }}
 @endsection
 
 @section('content')
@@ -10,10 +10,10 @@
       <div class="container">
           <div class="row">
               <div class="col-sm-12">
-                <h1 class="page-title">Thông tin khách sạn</h1>
+                <h1 class="page-title">Thông tin phòng</h1>
                   <ul class="breadcrumb">
                       <li><a href="/">Trang chủ</a></li>
-                      <li class="active">Khách sạn {{ $hotel->name }}</li>
+                      <li class="active">Phòng {{ $room->name }}</li>
                   </ul>
               </div><!-- end columns -->
           </div><!-- end row -->
@@ -29,7 +29,7 @@
                     <div class="col-xs-12 col-sm-12 col-md-3 side-bar left-side-bar">
                         
                         <div class="side-bar-block booking-form-block">
-                            <h2 class="selected-price">VND {{ $hotel->rooms->avg('price') }} <br> <span>1 đêm</span></h2>
+                            <h2 class="selected-price">VND {{ $room->price }} <br> <span>1 đêm</span></h2>
                           <div class="booking-form">
                               <h3>Đặt phòng ngay</h3>
                                 <p>Nhanh chóng tận hưởng du lịch</p>
@@ -156,13 +156,13 @@
                             <div class="col-xs-12 col-sm-6 col-md-12 mt-0">    
                                 <div class="side-bar-block support-block mt-0">
                                     <h3>Cần hỗ trợ</h3>
-                                    <p>{{ $hotel->motto }}</p>
+                                    <p>{{ $room->hotel->motto }}</p>
                                     <p>Liên hệ ngay với chúng tôi để được tư vấn cụ thể</p>
                                     <div class="support-contact">
                                         <span><i class="fa fa-phone"></i></span>
-                                        <p>+ {{ $hotel->main_phone_number }}</p>
+                                        <p>+ {{ $room->hotel->main_phone_number }}</p>
                                         <span><i class="fa fa-envelope "></i></span>
-                                        <p>{{ $hotel->company_email_address }}</p>
+                                        <p>{{ $room->hotel->company_email_address }}</p>
                                     </div><!-- end support-contact -->
                                 </div><!-- end side-bar-block -->
                             </div><!-- end columns -->
@@ -174,40 +174,28 @@
                         
                         <div class="detail-slider">
                             <div class="feature-slider">
-                                <div><img src="{{ asset('upload/images/' . '/'. $hotel->image) }}" class="img-responsive" alt="feature-img" style="width: 848px; height: 494px;"/></div>
+                                <div><img src="{{ asset('upload/images/' . '/'. $room->image) }}" class="img-responsive" alt="feature-img" style="width: 848px; height: 494px;"/></div>
                                 {{-- Lấy ra những ảnh của phòng thuộc khách sạn --}}
-                                @foreach ($hotel->rooms as $room)
-                                    <div><img src="{{ asset('upload/images/' . '/'. $room->image) }}" class="img-responsive" alt="feature-img" style="width: 848px; height: 494px;"/></div>
+                                @foreach ($room->room_images as $image)
+                                    <div><img src="{{ asset('upload/images/' . '/'. $image->image) }}" class="img-responsive" alt="feature-img" style="width: 848px; height: 494px;"/></div>
                                 @endforeach
 
-                                {{-- Lấy ra những ảnh của utility thuộc khách sạn --}}
-                                @foreach ($hotel->hotel_utilities as $utility)
-                                    <div><img src="{{ asset('upload/images/' . '/'. $utility->image) }}" class="img-responsive" alt="feature-img" style="width: 848px; height: 494px;"/></div>
-                                @endforeach
                             </div><!-- end feature-slider -->
                           
                             <div class="feature-slider-nav">
-                                <div><img src="{{ asset('upload/images/' . '/'. $hotel->image) }}" class="img-responsive" alt="feature-img" style=" height: 120px;"/></div>
+                                <div><img src="{{ asset('upload/images/' . '/'. $room->image) }}" class="img-responsive" alt="feature-img" style=" height: 120px;"/></div>
 
                                 {{-- Lấy ra những ảnh của phòng thuộc khách sạn --}}
-                                @foreach ($hotel->rooms as $room)
-                                    <div><img src="{{ asset('upload/images/' . '/'. $room->image) }}" class="img-responsive" alt="feature-img" style="height: 120px;"/></div>
+                                @foreach ($room->room_images as $image)
+                                    <div><img src="{{ asset('upload/images/' . '/'. $image->image) }}" class="img-responsive" alt="feature-img" style="height: 120px;"/></div>
                                 @endforeach
 
-                                {{-- Lấy ra những ảnh của utility thuộc khách sạn --}}
-                                @foreach ($hotel->hotel_utilities as $utility)
-                                    <div><img src="{{ asset('upload/images/' . '/'. $utility->image) }}" class="img-responsive" alt="feature-img" style="height: 120px;"/></div>
-                                @endforeach
                             </div><!-- end feature-slider-nav -->
                         </div>  <!-- end detail-slider -->
 
                         <div class="detail-tabs">
                             <ul class="nav nav-tabs nav-justified">
-                                <li class="active"><a href="#hotel-overview" data-toggle="tab">Tổng quan khách sạn</a></li>
-                                @foreach ($hotel->hotel_utilities as $utility)
-                                <li><a href="#utility-{{ $utility->id }}" data-toggle="tab">{{ $utility->utility }}</a></li>
-                                @endforeach
-
+                                <li class="active"><a href="#hotel-overview" data-toggle="tab">Chi tiết phòng</a></li>
                             </ul>
                           
                             <div class="tab-content">
@@ -215,54 +203,41 @@
                                 <div id="hotel-overview" class="tab-pane in active">
                                   <div class="row">
                                     <div class="col-sm-4 col-md-4 tab-img">
-                                        <img src="{{ asset('upload/images/' .'/'. $hotel->image) }}" class="img-responsive" alt="hotel-detail-img" style="width: 216px; height: 193px;" />
+                                        <img src="{{ asset('upload/images/' .'/'. $room->image) }}" class="img-responsive" alt="hotel-detail-img" style="width: 216px; height: 193px;" />
                                         </div><!-- end columns -->
                                       
                                         <div class="col-sm-8 col-md-8 tab-text">
-                                        <h3>Tổng quan khách sạn</h3>
-                                            <p>Khách sạn {{ $hotel->name }} thuộc thành phố {{ $hotel->city }} với hệ thống phòng siêu hiện 
-                                                đại cùng các tiện ích phong phú. Cùng tận hưởng 1 mùa hè tươi mới, khoẻ khoắn cùng những cảnh 
-                                                đẹp vô cùng hấp dẫn với chúng tôi</p>
+                                        <h3>Chi tiết phòng</h3>
+                                            <p>Loại phòng: {{ $room->room_status->room_status }}</p>
+                                            <h4>Giá gốc: {{ $room->price }}</h4>
+                                            <h4 class="text text-danger">Giá ưu đãi: {{ ($room->price * (100 - $room->discount)/100)  }}</h4>
+                                            <p>{{ $room->description }}</p>
                                         </div><!-- end columns -->
                                     </div><!-- end row -->
                                 </div><!-- end hotel-overview -->
-                              
-                                @foreach ($hotel->hotel_utilities as $utility)
-                                    <div id="utility-{{ $utility->id }}" class="tab-pane">
-                                        <div class="row">
-                                            <div class="col-sm-4 col-md-4 tab-img">
-                                                <img src="{{ asset('upload/images' . '/'. $utility->image) }}" class="img-responsive" style="width: 216px; height: 193px;"/>
-                                            </div><!-- end columns -->
-                                            
-                                            <div class="col-sm-8 col-md-8 tab-text">
-                                            <h3>{{ $utility->utility }}</h3>
-                                                <p>{{ $utility->description }}</p>
-                                            </div><!-- end columns -->
-                                        </div><!-- end row -->
-                                    </div><!-- end restaurant -->
-                                @endforeach
+                            
                             </div><!-- end tab-content -->
                         </div><!-- end detail-tabs -->
                         
                         <div class="available-blocks" id="available-rooms">
-                          <h2>Phòng hiện có</h2>
+                          <h2>Phòng tương tự</h2>
                             @if ($rooms)
                                 @foreach ($rooms as $room)
                                 <div class="list-block main-block room-block">
                                     <div class="list-content">
                                         <div class="main-img list-img room-img">
-                                            <a href="#">
+                                            <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}">
                                                 <img src="{{ asset('upload/images/'. '/'. $room->image) }}" class="img-responsive" alt="room-img" style="width: 360px; height: 240px"/>
                                             </a>
                                             <div class="main-mask">
                                                 <ul class="list-unstyled list-inline offer-price-1">
                                                     <li class="price">{{ $room->price }}<span class="divider">|</span><span class="pkg">1 đêm</span></li>
                                                     <li class="rating">
-                                                        @for ($i = 0; $i < $hotel->hotel_star; $i++)
+                                                        @for ($i = 0; $i < $room->hotel->hotel_star; $i++)
                                                             <span><i class="fa fa-star orange"></i></span>
                                                         @endfor
                                                         
-                                                        @for ($i = 0; $i < (5 - $hotel->hotel_star); $i++)
+                                                        @for ($i = 0; $i < (5 - $room->hotel->hotel_star); $i++)
                                                             <span><i class="fa fa-star lightgrey"></i></span>
                                                         @endfor
                                                     </li>
@@ -280,7 +255,7 @@
                                                     Thông tin đang được cập nhật
                                                 @endif
                                             </p>
-                                            <a href="#" class="btn btn-orange btn-lg">Xem chi tiết</a>
+                                            <a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}" class="btn btn-orange btn-lg">Xem chi tiết</a>
                                          </div><!-- end room-info -->
                                     </div><!-- end list-content -->
                                 </div><!-- end room-block -->
@@ -307,4 +282,13 @@
 
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')
+@endsection
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.room-status').addClass('active');
+        });
+    
+    </script>
 @endsection

@@ -55,6 +55,8 @@
     <!--================ NAV BAR===============-->
     @include('page_layout.nav_bar')
 
+    @yield('breadcrumb')
+
     @yield('content')
 
     <!--======================= FOOTER =======================-->
@@ -77,5 +79,11 @@
 <script src="page_asset/js/custom-slick.js"></script>
 <!-- Page Scripts Ends -->
 @yield('javascript')
+<script>
+  $(document).ready(function(){
+    $('.home-staus').removeClass('active');
+  });
+
+</script>
 </body>
 </html>

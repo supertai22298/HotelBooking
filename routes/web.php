@@ -178,8 +178,8 @@ Route::group(['prefix' => '/'], function () {
     Route::get('/', 'PageController@view')->name('get-page-view');
 
     Route::group(['prefix' => '/hotel'], function(){
-        Route::get('/', 'PageController@hotelGrid')->name('get-page-hotelGrid');
-        Route::get('detail/{id}', 'PageController@hotelDetail')->name('get-page-hotelDetail');
+        Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
+        Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
     });
 
     Route::group(['prefix' => 'booking'], function () {
@@ -188,12 +188,37 @@ Route::group(['prefix' => '/'], function () {
 
     Route::group(['prefix' => 'room'], function () {
       
+        Route::get('/', 'PageRoomController@roomGrid')->name('get-page-room-roomGrid');
+        Route::get('detail/{id}', 'PageRoomController@roomDetail')->name('get-page-room-roomDetail');
     });
-
+    Route::group(['prefix' => 'blog'], function () {
+      
+        Route::get('/', 'PageBlogController@blogGrid')->name('get-page-blog-blogGrid');
+        Route::get('detail/{id}', 'PageBlogController@blogDetail')->name('get-page-blog-blogDetail');
+    });
 
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');
+
+    // user's feature
+    Route::group(['prefix' => 'user', 'middleware' => 'userLogin'], function () {
+        Route::get('/', 'PageUserController@view')->name('get-page-user-view');
+
+        // user profile
+        Route::group(['prefix' => 'profile'], function () {
+            Route::get('/', 'PageUserProfileController@view')->name('get-page-userProfile-view');
+    
+            Route::get('edit/{id}', 'PageUserProfileController@edit')->name('get-page-userProfile-edit');
+            Route::post('edit/{id}', 'PageUserProfileController@update')->name('post-page-userProfile-update');
+        });
+
+        // user profile
+        Route::group(['prefix' => 'booking'], function () {
+            //
+        });
+
+    });
     
 });
 
@@ -203,4 +228,6 @@ Route::group(['prefix' => 'errors'], function () {
         return view('error.404');
     });
 });
+
+
 

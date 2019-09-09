@@ -6,7 +6,7 @@ use App\User;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
-class CheckAdminLogin
+class CheckUserLogin
 {
     /**
      * Handle an incoming request.
@@ -19,17 +19,17 @@ class CheckAdminLogin
     {
         if (Auth::check()) {
             $id = Auth::user()->id;
-        //kiểm tra admin hiện tại có bị khóa hay không  
-            $admin = User::find($id);
-            if ($admin->active == 1 && $admin->role == 1) {
+        //kiểm tra admin hiện tại có bị khóa hay không 
+            $user = User::find($id);
+            if ($user->active == 1) {
                 return $next($request);
             } else {
                 Auth::logout();
                 $request->session()->flush();
                 $request->session()->regenerate();
-                return redirect('admin/login')->with('msg','Tài khoản này đã bị khóa hoặc không có quyền');
+                return redirect('/login')->with('msg','Tài khoản này đã bị khóa!');
             }
         }
-        return redirect('admin/login')->with('msg','Hãy đăng nhập để truy cập vào trang này');
+        return redirect('/login')->with('msg','Hãy đăng nhập để truy cập vào trang này');
     }
 }
