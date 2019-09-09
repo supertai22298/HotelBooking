@@ -182,9 +182,15 @@ Route::group(['prefix' => '/'], function () {
         Route::get('detail/{id}', 'PageController@hotelDetail')->name('get-page-hotelDetail');
     });
 
+    Route::group(['prefix' => 'booking'], function () {
+        Route::get('/','BookingController@view');
+    });
+
     Route::group(['prefix' => 'room'], function () {
       
     });
+
+
     Route::get('login', 'LoginController@getLogin')->name('get-login');
     Route::post('login', 'LoginController@postLogin')->name('post-login');
     Route::get('logout', 'LoginController@getLogout')->name('get-logout');

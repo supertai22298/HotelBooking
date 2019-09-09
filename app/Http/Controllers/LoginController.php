@@ -14,7 +14,7 @@ class LoginController extends Controller
     public function postLogin(Request $request ){
     $username = $request->username;
     $password = $request->password;
-    $checklogin = array('username' => $username, 'password' => $password,'role'=>0);
+    $checklogin = array('username' => $username, 'password' => $password);
     if (Auth::attempt($checklogin)) {
         return back()->with('success', 'Đăng nhập thành công')->withInput();;
     } else {
