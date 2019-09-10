@@ -33,8 +33,19 @@
                           <div class="booking-form">
                               <h3>Đặt phòng ngay</h3>
                                 <p>Nhanh chóng tận hưởng du lịch</p>
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                {{session('success')}}
+                                </div>
+                                @endif
+                                @if (session('errorSQL'))
+                                    <div class="alert alert-danger">
+                                    {{session('errorSQL')}}
+                                    </div>
+                                @endif
                                 
-                                <form>
+                                <form action={{ route('post-page-room-booking',['id' => $room->id])}} method="post">
+                                @csrf
                                   <div class="form-group">
                                     <input type="text" 
                                         name="first_name" 
@@ -95,23 +106,23 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		<i class="fa fa-calendar"></i>
+                                    <input type="date" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		<i class="fa fa-calendar"></i>
+                                    <input type="date" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
                                     </div>
                                     
                                     <div class="row">
                                       <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
                                             <div class="form-group right-icon">
-                                                <input type="number" min="1"  name="" class="form-control" placeholder="Số phòng" required/>  
+                                                <input type="number" min="1"  name="room_num" class="form-control" placeholder="Số phòng" required/>  
                                             </div>
                                         </div>
                                         
                                         <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
                                             <div class="form-group right-icon">
-                                                <input type="number" min="1" name="" class="form-control" placeholder="Giường" required/>  
+                                                <input type="number" min="1" name="bed_num" class="form-control" placeholder="Giường" required/>  
                                             </div>
                                         </div>
                                     </div>
@@ -119,19 +130,22 @@
                                     <div class="row">
                                       <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
                                             <div class="form-group right-icon">
-                                                <input type="number" min="1" name="" class="form-control" placeholder="Người lớn" required/>  
+                                                <input type="number" min="1" name="adult_num" class="form-control" placeholder="Người lớn" required/>  
                                             </div>
                                         </div>
                                         
                                         <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
                                             <div class="form-group right-icon">
-                                                <input type="number" min="0" name="" class="form-control " placeholder="Trẻ em" required/>  
+                                                <input type="number" min="0" name="kid_num" class="form-control " placeholder="Trẻ em" />  
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <textarea rows="4" cols="50" name="noti" class="form-control" placeholder="Lời nhắn">Ghi chú </textarea>    
                                     </div>
                                     
                                     <div class="form-group right-icon">
-                                        <select class="form-control">
+                                        <select class="form-control" name="payment">
                                             <option selected>Phương thức thanh toán</option>
                                             @foreach ($paymentTypes as $paymentType)
                                                 <option value="{{ $paymentType->id }}">{{ $paymentType->payment_type }}</option>
@@ -208,7 +222,8 @@
                                       
                                         <div class="col-sm-8 col-md-8 tab-text">
                                         <h3>Chi tiết phòng</h3>
-                                            <p>Loại phòng: {{ $room->room_status->room_status }}</p>
+                                            <p>Loại phòng: {{ $room->room_type->room_type }}</p>
+                                            <p>Tình trạng: {{ $room->room_status->room_status }}</p>
                                             <h4>Giá gốc: {{ $room->price }}</h4>
                                             <h4 class="text text-danger">Giá ưu đãi: {{ ($room->price * (100 - $room->discount)/100)  }}</h4>
                                             <p>{{ $room->description }}</p>

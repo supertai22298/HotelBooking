@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
 use App\Profile;
 use App\User;
 use App\Blog;
@@ -18,9 +20,12 @@ use App\Room;
 use App\RoomImage;
 use App\RoomStatus;
 use App\RoomType;
-use Illuminate\Http\Request;
-
-class BookingController extends Controller
+class PageBookingController extends Controller
 {
-    
+    public function view()
+    {
+        $hotel = Hotel::all();
+        $room  = Room::all();
+        return view('page.bookings', ['hotel' => $hotel, 'room' => $room]);
+    }
 }

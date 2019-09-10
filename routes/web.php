@@ -182,15 +182,14 @@ Route::group(['prefix' => '/'], function () {
         Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
     });
 
-    Route::group(['prefix' => 'booking'], function () {
-        Route::get('/','BookingController@view');
-    });
 
     Route::group(['prefix' => 'room'], function () {
       
         Route::get('/', 'PageRoomController@roomGrid')->name('get-page-room-roomGrid');
         Route::get('detail/{id}', 'PageRoomController@roomDetail')->name('get-page-room-roomDetail');
+        Route::post('roombooking/{id}','PageRoomController@roomBooking')->name('post-page-room-booking');
     });
+
     Route::group(['prefix' => 'blog'], function () {
       
         Route::get('/', 'PageBlogController@blogGrid')->name('get-page-blog-blogGrid');

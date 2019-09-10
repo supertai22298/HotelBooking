@@ -152,13 +152,13 @@
                                             <strong>Tình trạng xác nhận:{{$bk->booking_status->booking_status}} </strong>                                         
                                           </div> --}}
                                           <div>
-                                            <strong>Tên khách hàng: {{$bk->user->username}} </strong>                                         
+                                            <strong>Tên khách hàng: {{$bk->customer_name}} </strong>                                         
                                           </div>
                                           <div>
-                                            <strong>Số điện thoại: {{$bk->user->phone_number}}  </strong>                                         
+                                            <strong>Số điện thoại: {{$bk->customer_phone}}  </strong>                                         
                                           </div>
                                           <div>
-                                            <strong>Email: {{$bk->user->email}} </strong>                                         
+                                            <strong>Email: {{$bk->customer_mail}} </strong>                                         
                                           </div>
                                           <div>
                                           <a class="btn btn-primary btn-sm" href="">Chỉnh sửa</a>
@@ -166,8 +166,8 @@
                                         </div>
                                         </div>
                                         <div class="user-description">
-                                          <h6>Tiểu sử</h6>
-                                          <p>bla bla...</p>
+                                          <h6>Ghi chú</h6>
+                                          <p>{{$bk->description}}</p>
                                         </div>
                                       </div>
 
