@@ -22,6 +22,6 @@ class ContactController extends Controller
     {
         $contact = Message::find($id);
         $contact->delete();
-        return back()->with('noti','Xóa tài khoản thành công!!');
+        return back()->with('noti','Xóa liên hệ thành công!!');
     }
 }

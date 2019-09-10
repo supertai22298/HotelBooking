@@ -216,6 +216,9 @@ Route::group(['prefix' => '/'], function () {
 
     });
     
+    Route::post('/subscribeEmail', 'PageContactController@subscribeEmail')->name('post-page-contact-subscribeEmail');
+    Route::get('/contact', 'PageContactController@contact')->name('get-page-contact-contact');
+    Route::post('/storeContact', 'PageContactController@storeContact')->name('post-page-contact-storeContact');
 });
 
 

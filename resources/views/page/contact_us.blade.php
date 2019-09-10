@@ -11,10 +11,10 @@ Liên hệ với chúng tôi
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="page-title">Contact Us</h1>
+                    <h1 class="page-title">Liên hệ với chúng tôi</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Contact Us Page</li>
+                        <li><a href="/">Trang chủ</a></li>
+                        <li class="active">Liên hệ</li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
@@ -26,41 +26,47 @@ Liên hệ với chúng tôi
         <div id="contact-us" class="innerpage-section-padding">
             <div class="container">
                 <div class="row">
+                    <div class="d-none" id="div-message">
 
+                    </div>
                     <div class="col-sm-12 col-md-5 no-pd-r">
                         <div class="custom-form contact-form">
-                            <h3>Contact Us</h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et.</p>
-                            <form>
+                            <h3>Liên hệ ngay</h3>
+                            <p>Chúng tôi luôn luôn lắng nghe khách hàng nhằm cải thiện dịch vụ</p>
+                            <div id="frm-contact" >
                                     
                                 <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Name"  required/>
+                                        <input type="text" name="name" class="form-control" placeholder="Họ và tên"  required/>
                                         <span><i class="fa fa-user"></i></span>
                                 </div>
 
                                 <div class="form-group">
-                                        <input type="email" class="form-control" placeholder="Email"  required/>
+                                        <input type="email" name="email" class="form-control" placeholder="Email"  required/>
                                         <span><i class="fa fa-envelope"></i></span>
                                 </div>
                                 
                                 <div class="form-group">
-                                        <input type="text" class="form-control" placeholder="Subject"  required/>
-                                        <span><i class="fa fa-info-circle"></i></span>
+                                    <input type="text" name="subject" class="form-control" placeholder="Tiêu đề"  required/>
+                                    <span><i class="fa fa-info-circle"></i></span>
                                 </div>
 
                                 <div class="form-group">
-                                    <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                    <textarea class="form-control" name="message" rows="4" placeholder="Tin nhắn của bạn" required></textarea>
                                     <span><i class="fa fa-pencil"></i></span>
                                 </div>
+                                <div >
+                                    <input type="checkbox" value="1" name="is_received_news" placeholder="Bạn có muốn nhận thông báo"/>
+                                    <label for="is_received_news" >Đăng ký nhận thông tin</label>
+                                </div>
                                 
-                                <button class="btn btn-orange btn-block">Send</button>
-                            </form>
+                                <button id="btn-contact"  class="btn btn-orange btn-block">Gửi</button>
+                            </div>
                         </div><!-- end contact-form -->
                     </div><!-- end columns -->
                     
                     <div class="col-sm-12 col-md-7 no-pd-l">
                         <div class="map">
-                            <iframe src=		"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6509729.487836256!2d-123.77686152799836!3d37.1864783963941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia!5e0!3m2!1sen!2s!4v1490695907554" allowfullscreen></iframe>
+                            <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAPrSkaBK4HPR-vFfJ-farhnl7sYPdWBb8%20&q=Duy+Tan+University,Da%20Nang,%20Viet%20Nam%22" allowfullscreen></iframe>
                         </div><!-- end map -->
                     </div><!-- end columns -->
                     
@@ -76,3 +82,4 @@ Liên hệ với chúng tôi
     @include('page.components.newsletter_1')
 
 @endsection
+

@@ -53,7 +53,7 @@
           {{-- form data --}}
           @if (!empty($roomStatus))
               
-        <form id="data_add" action="/admin/room-status/edit/{{$roomStatus->id}}" method="POST" class="form-horizontal" data-parsley-validate="">
+        <form id="data_add" action="{{ route('post-room-status-update', ['id' => $roomStatus->id]) }}" method="POST" class="form-horizontal" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="row">
               <div class="col-8">

@@ -32,7 +32,10 @@
                     <a href="{{ route('get-room-status-view') }}" > <i class="menu-icon fa fa-indent"></i>Trạng thái phòng</a>
                 </li>
                 <li >
-                    <a href="{{ route('get-payment-type-view') }}" > <i class="menu-icon ti-wallet"></i>Trạng loại thanh toán</a>
+                    <a href="{{ route('get-payment-type-view') }}" > <i class="menu-icon ti-wallet"></i>Loại thanh toán</a>
+                </li>
+                <li >
+                    <a href="{{ route('get-payment-status-view') }}" > <i class="menu-icon ti-wallet"></i>Trạng thái thanh toán</a>
                 </li>
            
             </ul>

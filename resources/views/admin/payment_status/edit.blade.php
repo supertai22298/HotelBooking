@@ -53,7 +53,7 @@
           {{-- form data --}}
           @if (!empty($paymentStatus))
               
-        <form id="data_add" action="/admin/payment-status/edit/{{$paymentStatus->id}}" method="POST" class="form-horizontal" data-parsley-validate="">
+        <form id="data_add" action="{{ route('post-payment-status-update', ['id' => $paymentStatus->id]) }}" method="POST" class="form-horizontal" data-parsley-validate="">
             {{ csrf_field() }}
             <div class="row">
               <div class="col-8">

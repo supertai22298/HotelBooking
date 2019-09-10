@@ -4,6 +4,7 @@
 	<title>Đăng nhập</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="{{ asset('') }}">
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="/admin_page_asset/images/icons/favicon.ico"/>
 <!--===============================================================================================-->

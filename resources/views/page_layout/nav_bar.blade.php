@@ -19,7 +19,7 @@
                 <li class="room-status"><a href="{{ route('get-page-room-roomGrid') }}">Phòng</a></li>
                 <li class="blog-status"><a href="{{ route('get-page-blog-blogGrid') }}">Blog</a></li>
                 <li class="introduce-status"><a href="#">Giới thiệu</a></li>
-                <li class="contact-status"><a href="#">Liên hệ</a></li>
+                <li class="contact-status"><a href="{{ route('get-page-contact-contact') }}">Liên hệ</a></li>
                 <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>
             </ul>
         </div><!-- end navbar collapse -->
@@ -40,7 +40,7 @@
                 <a href="{{ route('get-page-room-roomGrid') }}" class="room-status list-group-item"  ><span><i class="fa fa-building link-icon"></i></span>Phòng </a>
                 <a href="{{ route('get-page-blog-blogGrid') }}" class="blog-status list-group-item"  ><span><i class="fa fa-newspaper-o link-icon"></i></span>Blog </a>
                 <a href="#" class="introduce-status list-group-item"  ><span><i class="fa fa-ship link-icon"></i></span>Giới thiệu</a>
-                <a href="#" class="contact-status list-group-item"  ><span><i class="fa fa-car link-icon"></i></span>Liên hệ</a>
+                <a href="{{ route('get-page-contact-contact') }}" class="contact-status list-group-item"  ><span><i class="fa fa-car link-icon"></i></span>Liên hệ</a>
             </div><!-- end list-group -->
         </div><!-- end main-menu -->
     </div><!-- end mySidenav -->
