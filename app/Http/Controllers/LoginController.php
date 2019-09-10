@@ -20,6 +20,7 @@ class LoginController extends Controller
         }else {
             return redirect('/login')->with('msg','Tài khoản hoặc mật khẩu không hợp lệ');
         }
+
     }
 
     public function getLogout(Request $request){

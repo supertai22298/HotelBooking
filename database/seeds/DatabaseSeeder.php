@@ -62,6 +62,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             HotelUtilitySeeder::class
         ]);
+        
         // $this->call([
         //     HotelUtilitySeeder::class
         // ]);
