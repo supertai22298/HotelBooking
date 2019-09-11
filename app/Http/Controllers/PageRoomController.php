@@ -52,7 +52,11 @@ class PageRoomController extends Controller
             $booking->customer_name = $request->first_name." ".$request->last_name;
             $booking->customer_phone = $request->phone_number;
             $booking->customer_email = $request->email;
-            $booking->user_id     = Auth::user()->id ;
+            if(isset(Auth::user()->username)){
+                $booking->user_id     = Auth::user()->id ;
+            }else{
+                return back()->with('errorSQL', 'Bạn cần phải đăng nhập mới có thể đặt phòng!')->withInput();
+            }
             $booking->room_id    = $room->id;
             $booking->date_from = $request->date_from;
             $booking->date_to = $request->date_to;

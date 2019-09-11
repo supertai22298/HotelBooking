@@ -106,11 +106,11 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
+                                    <input type="text" onfocus="(this.type='date')" name="date_from" class="form-control" placeholder="Ngày đến" required/>                                       		
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
+                                    <input type="text" onfocus="(this.type='date')" name="date_to" class="form-control" placeholder="Ngày đi" required/>                                       		
                                     </div>
                                     
                                     <div class="row">
