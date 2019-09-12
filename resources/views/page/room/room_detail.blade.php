@@ -106,11 +106,11 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
+                                    <input type="text" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
+                                    <input type="text" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
                                     </div>
                                     
                                     <div class="row">
@@ -141,7 +141,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                            <textarea rows="4" cols="50" name="noti" class="form-control" placeholder="Lời nhắn">Ghi chú </textarea>    
+                                            <textarea rows="4" cols="50" name="noti" class="form-control" placeholder="Ghi chú"></textarea>    
                                     </div>
                                     
                                     <div class="form-group right-icon">
