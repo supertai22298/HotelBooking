@@ -5,7 +5,7 @@ namespace App\Helpers;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use App\User;
-
+use Illuminate\Support\Facades\File;
 
 class Helper{
 
@@ -26,6 +26,14 @@ class Helper{
             $imageFile->move('upload/images/', $imageName);
         }
         return $imageName;
+    }
+
+    public function deleteFile($fileName = null)
+    {
+        $image_path = "upload/images/" . $fileName;  // Value is not URL but directory file path
+        if(File::exists($image_path)) {
+            File::delete($image_path);
+        }
     }
 
     /**
@@ -68,16 +76,14 @@ class Helper{
         $user->update($input);
     }
     // update for Blog controller
-    public static function updateBlog($id,Request $request)
-    {
-        $post = User::find($id);
+    // public static function updateBlog($id,Request $request)
+    // {
+    //     $post = User::find($id);
         
-        $imageFile = $request->file('image');
+    //     $imageFile = $request->file('image');
 
-        dd($imageFile);
+    //     dd($imageFile);
 
-        
-
-        // $post->update($input);
-    }
+    //     // $post->update($input);
+    // }
 }

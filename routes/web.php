@@ -207,9 +207,10 @@ Route::group(['prefix' => '/'], function () {
         // user profile
         Route::group(['prefix' => 'profile'], function () {
             Route::get('/', 'PageUserProfileController@view')->name('get-page-userProfile-view');
-    
-            Route::get('edit/{id}', 'PageUserProfileController@edit')->name('get-page-userProfile-edit');
-            Route::post('edit/{id}', 'PageUserProfileController@update')->name('post-page-userProfile-update');
+            Route::post('edit', 'PageUserProfileController@update')->name('post-page-userProfile-update-ajax');
+        
+            Route::get('editPass', 'PageUserProfileController@editPassword')->name('get-page-userProfile-editPassword');
+            Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
         });
 
         // user profile

@@ -2,6 +2,7 @@
 <html class="no-js" lang="">
 <head>
     <meta charset="utf-8">
+    <base href="{{asset('')}}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     
