@@ -54,7 +54,7 @@ class StoreUserRequest extends FormRequest
 
             'date_of_birth' => 'before:today',
 
-            'phone_number'  => 'regex:/(0)[0-9]{2,10}/|nullable',
+            'phone_number'  => 'regex:/(0)[0-9]{10}/|max:11|nullable',
 
             'avatar'        => 'image',
 
@@ -85,8 +85,8 @@ class StoreUserRequest extends FormRequest
 
             'date_of_birth.before'  => 'Ngày sinh không hợp lệ',
 
-            'phone_number.max'      => 'Số điện thoại không hợp lệ',
-            'phone_number.numeric'  => 'Số điện thoại không hợp lệ',
+            'phone_number.regex'    => 'Số điện thoại không hợp lệ',
+            'phone_number.max'    => 'Số điện thoại không hợp lệ',
 
             'gender.regex'        => 'Giới tính không hợp lệ',
 
@@ -96,7 +96,7 @@ class StoreUserRequest extends FormRequest
 
             'city.min'              => 'Tên thành phố không hợp lệ',
 
-            'country.min'           => 'Tên thành phố không hợp lệ',
+            'country.min'           => 'Quốc tịch không hợp lệ',
 
             'avatar.image'          => 'Ảnh đại diện không hợp lệ',
         ];
