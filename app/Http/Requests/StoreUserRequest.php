@@ -54,7 +54,7 @@ class StoreUserRequest extends FormRequest
 
             'date_of_birth' => 'before:today',
 
-            'phone_number'  => 'regex:/(0)[0-9]{10}/|max:11|nullable',
+            'phone_number'  => 'regex:/[0-9]/|max:11|nullable',
 
             'avatar'        => 'image',
 
