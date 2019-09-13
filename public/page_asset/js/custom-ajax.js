@@ -10,18 +10,22 @@ $(document).ready(function() {
     });
     $("button#btn-email").click(function(e) {
         var email = $("#emailSubscription").val();
-        $.ajax({
-            type: "POST",
-            url: "/subscribeEmail",
-            data: {
-                email: email
-            },
-            dataType: "json",
-            success: function(response) {
-                alert(response.msg);
-                $("#emailSubscription").val("");
-            }
-        });
+        if(email != ''){
+            $.ajax({
+                type: "POST",
+                url: "/subscribeEmail",
+                data: {
+                    email: email
+                },
+                dataType: "json",
+                success: function(response) {
+                    alert(response.msg);
+                    $("#emailSubscription").val("");
+                }
+            });
+        }else{
+            alert('Vui lòng không để trống trường email');
+        }
     });
     //end-------------------------------------
     $("form#frm-email").submit(function(e) {
@@ -36,30 +40,34 @@ $(document).ready(function() {
         if($('input[name="is_received_news"]').prop('checked') == true){
             is_received_news = 1;
         }
-        $.ajax({
-            type: "POST",
-            url: "/storeContact",
-            data: {
-                name: name,
-                email: email,
-                subject: subject,
-                message: message,
-                is_received_news: is_received_news
-            },
+        if(name == '' || email == '' || subject == '' || message == ''){
+            alert('Vui lòng không để trống');
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "/storeContact",
+                data: {
+                    name: name,
+                    email: email,
+                    subject: subject,
+                    message: message,
+                    is_received_news: is_received_news
+                },
 
-            dataType: "json",
-            success: function(response) {
-                $('div#div-messages').html(response.msg).removeClass('d-none').addClass(response.class);
-                $('input[name="name"]').val('');
-                $('input[name="email"]').val('');
-                $('input[name="subject"]').val('');
-                $('textarea[name="message"]').val('');
-                $('input[name="is_received_news"]').prop('checked', false);
-            },
-            error: function(error){
-                console.log(error);
-            }
+                dataType: "json",
+                success: function(response) {
+                    $('div#div-message').html(response.msg).removeClass('d-none').addClass(response.class);
+                    $('input[name="name"]').val('');
+                    $('input[name="email"]').val('');
+                    $('input[name="subject"]').val('');
+                    $('textarea[name="message"]').val('');
+                    $('input[name="is_received_news"]').prop('checked', false);
+                },
+                error: function(error){
+                    console.log(error);
+                }
 
-        });
+            });
+        }
     });
 });
