@@ -83,6 +83,7 @@
         .user-area .user-avatar {
             float: right;
             width: 30px;
+            border: 2px solid #849896;
         }
         .rounded-circle {
             border-radius: 50%!important;

@@ -27,7 +27,7 @@
                             </a>
               
                             <div class="user-menu dropdown-menu">
-                                <a class="user-options" href="{{route('get-page-user-view')}}"><i class="fa fa- user"></i>Quản lý tài khoản</a>
+                                <a class="user-options" href="{{route('get-page-userProfile-view')}}"><i class="fa fa- user"></i>Quản lý tài khoản</a>
             
                                 <a class="user-options" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
               
@@ -36,7 +36,7 @@
                                 <a class="user-options" href="{{route('get-logout')}}"><i class="fa fa-power -off"></i>Logout</a>
                             </div>
                         </div>
-                        <li><a href="{{route('get-page-user-view')}}"><span><i class="fa fa-lock"></i></span>Xin chào {{Auth::user()->username}}</a></li>
+                        <li><a href="{{route('get-page-userProfile-view')}}"><span><i class="fa fa-lock"></i></span>Xin chào {{Auth::user()->username}}</a></li>
                         @else
                         <li><a href="{{route('get-login')}}"><span><i class="fa fa-lock"></i></span>Đăng Nhập</a></li>
                         <li><a href="registration.html"><span><i class="fa fa-plus"></i></span>Đăng Ký</a></li>

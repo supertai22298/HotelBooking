@@ -3,81 +3,128 @@
 @section('title')
 Đổi mật khẩu
 @endsection
-@section('content')
-
-    <!--================ PAGE-COVER =================-->
-    <section class="page-cover" id="cover-registration">
+@section('css')
+    <style>
+    .user-profile .panel-default {
+        box-shadow: 1px 1px 10px 2px #b5b1b1;
+    }
+    .panel-body {
+        padding: 25px 40px !important;
+    }
+    .bg-light{
+        background: #efeff0;
+        padding: 20px 40px;
+    }
+    .bg-light p{
+        margin-bottom: 0px !important;
+    }
+    .custom-form{
+        background: none !important;
+        padding: 20px 40px;
+    }
+    .input-edit input{
+        padding-left: 5px;
+        box-shadow: 1px 1px 3px 1px grey;
+        border: none !important;
+        margin: 5px 5px 0px 5px;
+        border-radius: 3px !important;
+        width: 100%;
+        display: block;
+    }
+    .dashboard-content .btn,.panel-heading h4 {
+        font-weight: bold !important;
+    }
+    .alert {
+    padding: 10px !important;
+    }
+    </style>
+@endsection
+@section('breadcrumb')
+    <!--========== PAGE-COVER =========-->
+    <section class="page-cover dashboard">
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="page-title">Đổi mật khẩu</h1>
+                    <h1 class="page-title">Tài khoản của tôi</h1>
                     <ul class="breadcrumb">
                         <li><a href="{{route('get-page-view')}}">Trang chủ</a></li>
-                        <li><a href="{{route('get-page-user-view')}}">Tài khoản của tôi</a></li>
+                        <li><a href="{{route('get-page-userProfile-view')}}">Tài khoản của tôi</a></li>
                         <li class="active">Đổi mật khẩu</li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
         </div><!-- end container -->
     </section><!-- end page-cover -->
-       
+@endsection
+@section('content')
 
     <!--===== INNERPAGE-WRAPPER ====-->
     <section class="innerpage-wrapper">
-        <div id="registration" class="innerpage-section-padding">
+        <div id="dashboard" class="innerpage-section-padding">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12">
-                        <div class="flex-content">
-                            <div class="custom-form custom-form-fields">
-                                <h3>Đổi mật khẩu</h3>
-                                <p style="margin-bottom: 20px">Xác nhận các thông tin sau để thay đổi mật khẩu</p>
-                                <span id="noti" class="">
-                                </span>
-                                <form id="formData">
-                                    @csrf
-                                    
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" name="password" placeholder="Mật khẩu cũ"  required/>
-                                        <span><i class="fa fa-lock"></i></span>
-                                        <span id="noti_password" class="noti-valid"></span>
-                                    </div>
-    
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" name="new_password" placeholder="Mật khẩu mới"  required/>
-                                        <span><i class="fa fa-lock"></i></span>
-                                        <span id="noti_new_password" class="noti-valid"></span>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <input type="password" class="form-control" name="cfnew_password" placeholder="Nhập lại mật khẩu mới"  required/>
-                                        <span><i class="fa fa-lock"></i></span>
-                                        <span id="noti_cfnew_password" class="noti-valid"></span>
-                                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-                                    <button id="save" type="button" class="btn btn-orange btn-block">Thay đổi</button>
-                                </form>
-                                
-                                <div class="other-links">
-                                    <p class="link-line"><a href="#">Quên mật khẩu ?</a></p>
-                                </div><!-- end other-links -->
-                            </div><!-- end custom-form -->
-                            
-                            <div class="flex-content-img custom-form-img">
-                                <img src="page_asset/images/registration.jpg" class="img-responsive" alt="registration-img" />
-                            </div><!-- end custom-form-img -->
-                        </div><!-- end form-content -->
+                        {{-- include component wellcome --}}
+                        @include('page.components.wellcome')
+                        {{-- end wellcome --}}
                         
+                        <div class="dashboard-wrapper">
+                            <div class="row">
+                            
+                                @include('page.components.user_dasboard')
+                                <div class="col-xs-12 col-sm-10 col-md-10 dashboard-content user-profile">
+                                    <h2 class="dash-content-title">Đổi mật khẩu</h2>
+                                    <div class="panel panel-default">
+                                            <div class="panel-heading">
+                                                <h4 style="display: inline; margin-right: 20px">Đổi mật khẩu</h4>
+                                                <span id="noti" class="">
+                                                </span>
+                                            </div>
+                                            <div class="panel-body">
+                                                <div class="row">
+                                                <div class="bg-light">
+                                                    <p>Xác nhận các thông tin sau để thay đổi mật khẩu</p>
+                                                </div>
+                                                <div class="custom-form custom-form-fields">
+                                                    <form id="formData">
+                                                        @csrf
+                                                        <div class="form-group input-edit">
+                                                            <input type="password" class="form-control" name="password" placeholder="Mật khẩu hiện tại"  required/>
+                                                            <span><i class="fa fa-lock"></i></span>
+                                                            <span id="noti_password" class="noti-valid"></span>
+                                                        </div>
+                        
+                                                        <div class="form-group input-edit">
+                                                            <input type="password" class="form-control" name="new_password" placeholder="Mật khẩu mới"  required/>
+                                                            <span><i class="fa fa-lock"></i></span>
+                                                            <span id="noti_new_password" class="noti-valid"></span>
+                                                        </div>
+                                                        
+                                                        <div class="form-group input-edit">
+                                                            <input type="password" class="form-control" name="cfnew_password" placeholder="Nhập lại mật khẩu mới"  required/>
+                                                            <span><i class="fa fa-lock"></i></span>
+                                                            <span id="noti_cfnew_password" class="noti-valid"></span>
+                                                        </div>
+
+                                                        <button id="save" type="button" class="btn btn-orange center-block">Thay đổi</button>
+                                                    </form>
+                                                    
+                                                    <div class="other-links">
+                                                        <p class="link-line"><a href="#">Quên mật khẩu ?</a></p>
+                                                    </div><!-- end other-links -->
+                                                </div><!-- end custom-form -->
+                                                </div><!-- end row -->
+                                        </div><!-- end panel-body -->
+                                    </div><!-- end panel-detault -->
+                                </div><!-- end columns -->    
+                            </div><!-- end row -->
+                        </div><!-- end dashboard-wrapper -->
                     </div><!-- end columns -->
                 </div><!-- end row -->
-            </div><!-- end container -->         
-        </div><!-- end registration -->
+            </div><!-- end container -->          
+        </div><!-- end dashboard -->
     </section><!-- end innerpage-wrapper -->
-
-
-    <!--======================= BEST FEATURES =====================-->
-    @include('page.components.best_features')
-
 
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')

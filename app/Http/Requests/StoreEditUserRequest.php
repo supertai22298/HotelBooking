@@ -48,7 +48,7 @@ class StoreEditUserRequest extends FormRequest
 
             'date_of_birth' => 'before:today|nullable',
 
-            'phone_number'  => 'nullable|regex:/(0)[0-9]{10}/|max:11',
+            'phone_number'  => 'nullable|regex:/[0-9]/|max:11',
 
             'avatar'        => 'image',
         ];

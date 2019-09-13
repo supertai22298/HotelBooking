@@ -202,16 +202,16 @@ Route::group(['prefix' => '/'], function () {
 
     // user's feature
     Route::group(['prefix' => 'user', 'middleware' => 'userLogin'], function () {
-        Route::get('/', 'PageUserController@view')->name('get-page-user-view');
 
         // user profile
-        Route::group(['prefix' => 'profile'], function () {
-            Route::get('/', 'PageUserProfileController@view')->name('get-page-userProfile-view');
-            Route::post('edit', 'PageUserProfileController@update')->name('post-page-userProfile-update-ajax');
+        Route::get('/', 'PageUserProfileController@view')->name('get-page-userProfile-view');
+        Route::post('edit', 'PageUserProfileController@update')->name('post-page-userProfile-update-ajax');
+        // change password
+        Route::get('editPass', 'PageUserProfileController@editPassword')->name('get-page-userProfile-editPassword');
+        Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
+
         
-            Route::get('editPass', 'PageUserProfileController@editPassword')->name('get-page-userProfile-editPassword');
-            Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
-        });
+
 
         // user profile
         Route::group(['prefix' => 'booking'], function () {

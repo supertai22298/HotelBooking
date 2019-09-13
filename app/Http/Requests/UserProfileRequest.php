@@ -34,7 +34,7 @@ class UserProfileRequest extends FormRequest
 
             'date_of_birth' => 'before:today',
 
-            'phone_number'  => 'nullable|regex:/[0-9]{11}/|max:11',
+            'phone_number'  => 'nullable|regex:/[0-9]/|max:11',
 
             'avatar'        => 'image',
 
