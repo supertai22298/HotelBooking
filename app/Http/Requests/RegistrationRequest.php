@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreUserRequest extends FormRequest
+class RegistrationRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -31,36 +31,17 @@ class StoreUserRequest extends FormRequest
                             'alpha_num',
             ],
 
-            'email'     => 'required|email', 
+            'email'     => 'required|email|unique:users,email',
             
             'password'  => ['required',
                             'min:3',
                             'max:35',
             ],
-
-            'first_name'    => 'required|min:2',
-
-            'last_name'     => 'required|min:2',
-
-            'gender'        => 'regex:/[0-1]{1}/',
-
-            'role'          => 'regex:/[0-1]{1}/',
-
-            'active'        => 'regex:/[0-1]{1}/',
-
-            'city'          => 'min:2',
-
-            'country'       => 'min:2',
-
-            'date_of_birth' => 'before:today',
-
-            'phone_number'  => 'regex:/[0-9]/|max:11|nullable',
-
-            'avatar'        => 'image',
-
+            'cf_password'  => ['required',
+                            'same:new_password',
+            ],
         ];
     }
-
     public function messages()
     {
         return [
@@ -72,33 +53,14 @@ class StoreUserRequest extends FormRequest
 
             'email.required'        => 'Email không được để trống',
             'email.email'           => 'Email không hợp lệ',
+            'email.unique'           => 'Email đã được đăng ký',
 
             'password.required'     => 'Mật khẩu không được để trống',
             'password.min'          => 'Mật khẩu quá ngắn',
             'password.max'          => 'Mật khẩu quá dài',
 
-            'first_name.required'   => 'Họ không được để trống',
-            'first_name.min'        => 'Họ quá ngắn',
-
-            'last_name.required'    => 'Tên không được để trống',
-            'last_name.min'         => 'Tên quá ngắn',
-
-            'date_of_birth.before'  => 'Ngày sinh không hợp lệ',
-
-            'phone_number.regex'    => 'Số điện thoại không hợp lệ',
-            'phone_number.max'    => 'Số điện thoại không hợp lệ',
-
-            'gender.regex'        => 'Giới tính không hợp lệ',
-
-            'role.regex'          => 'Quyền không hợp lệ',
-
-            'active.regex'        => 'Trạng thái không hợp lệ',
-
-            'city.min'              => 'Tên thành phố không hợp lệ',
-
-            'country.min'           => 'Quốc tịch không hợp lệ',
-
-            'avatar.image'          => 'Ảnh đại diện không hợp lệ',
+            'cf_password.required'          => 'Mật khẩu không được để trống',
+            'cf_password.same'          => 'Không khớp mật khẩu',
         ];
     }
 }
