@@ -24,7 +24,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
     Route::get('/', 'AdminController@index')->name('get-admin-view');
     Route::get('/index', 'AdminController@index');
-
+    //profile
+    // quản lý user
+    Route::group(['prefix' => 'profile'], function () {
+        Route::get('/', 'AdminController@profile')->name('get-admin-profile-view');
+    });
     // quản lý user
     Route::group(['prefix' => 'user'], function () {
         Route::get('/', 'UserController@view')->name('get-user-view');
@@ -219,7 +223,7 @@ Route::group(['prefix' => '/'], function () {
 
 
 
-        // user profile
+        // user booking
         Route::group(['prefix' => 'booking'], function () {
             //
         });
