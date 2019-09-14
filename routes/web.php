@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     // quản lý bai dang
     Route::group(['prefix' => 'blog'], function () {
         Route::get('/', 'BlogController@view')->name('get-blog-view');
-        
+
         Route::get('/detail/{id}', 'BlogController@detail')->name('get-blog-detail');
 
         Route::get('add', 'BlogController@create')->name('get-blog-add');
@@ -177,21 +177,21 @@ Route::group(['prefix' => '/'], function () {
 
     Route::get('/', 'PageController@view')->name('get-page-view');
 
-    Route::group(['prefix' => '/hotel'], function(){
+    Route::group(['prefix' => '/hotel'], function () {
         Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
         Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
     });
 
 
     Route::group(['prefix' => 'room'], function () {
-      
+
         Route::get('/', 'PageRoomController@roomGrid')->name('get-page-room-roomGrid');
         Route::get('detail/{id}', 'PageRoomController@roomDetail')->name('get-page-room-roomDetail');
-        Route::post('roombooking/{id}','PageRoomController@roomBooking')->name('post-page-room-booking');
+        Route::post('roombooking/{id}', 'PageRoomController@roomBooking')->name('post-page-room-booking');
     });
 
     Route::group(['prefix' => 'blog'], function () {
-      
+
         Route::get('/', 'PageBlogController@blogGrid')->name('get-page-blog-blogGrid');
         Route::get('detail/{id}', 'PageBlogController@blogDetail')->name('get-page-blog-blogDetail');
     });
@@ -210,20 +210,38 @@ Route::group(['prefix' => '/'], function () {
         Route::get('editPass', 'PageUserProfileController@editPassword')->name('get-page-userProfile-editPassword');
         Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
 
-        
+
 
 
         // user profile
         Route::group(['prefix' => 'booking'], function () {
             //
         });
-
     });
-    
+
     Route::post('/subscribeEmail', 'PageContactController@subscribeEmail')->name('post-page-contact-subscribeEmail');
     Route::get('/contact', 'PageContactController@contact')->name('get-page-contact-contact');
     Route::post('/storeContact', 'PageContactController@storeContact')->name('post-page-contact-storeContact');
 });
+
+// Chưa đăng nhập mới đc sử dụng
+Route::group(['prefix' => '/', 'middleware' => 'checkLogout'], function () {
+    //register
+    Route::group(['prefix' => 'register'], function () {
+
+        Route::get('/', 'RegistrationController@view')->name('get-page-registration-view');
+        Route::post('/', 'RegistrationController@store')->name('post-page-registration-store');
+
+        Route::get('/verify/{code}', 'RegistrationController@verify')->name('get-page-verify');
+    });
+
+    //forgot password
+    Route::group(['prefix' => 'forgot'], function () {
+        Route::get('/', 'ForgotPasswordController@view')->name('get-page-forgot-view');
+        Route::post('/', 'ForgotPasswordController@store')->name('post-page-forgot-store');
+    });
+});
+
 
 
 Route::group(['prefix' => 'errors'], function () {
@@ -231,6 +249,3 @@ Route::group(['prefix' => 'errors'], function () {
         return view('error.404');
     });
 });
-
-
-

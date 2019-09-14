@@ -1,7 +1,7 @@
 @extends('page_layout.page_masterpage')
 
 @section('title')
-Đăng nhập
+Quên mật khẩu
 @endsection
 
 @section('content')
@@ -11,10 +11,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
-                    <h1 class="page-title">Login Page</h1>
+                    <h1 class="page-title">Quên mật khẩu</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Login Page</li>
+                        <li><a href="{{route('get-page-view')}}">Trang chủ</a></li>
+                        <li class="active">Quên mật khẩu</li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->
@@ -30,42 +30,42 @@
                     <div class="col-sm-12">
                         <div class="flex-content">
                             <div class="custom-form custom-form-fields">
-                                <h3>Login</h3>
+                                <h3>Đăng ký tài khoản mới</h3>
                                 @if (session('msg'))
                                     <div class="alert alert-danger">
                                         {{session('msg')}}
                                     </div>
                                 @endif
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{session('success')}}
-                                    </div>
-                                @endif
-                                <form id="login" action="{{route('post-login')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
+                                <form action="" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
                                     @csrf 
                                     <div class="form-group">
-                                            <input type="text" name="username" class="form-control" placeholder="Tên tài khoản"  required/>
-                                            <span><i class="fa fa-user"></i></span>
+                                        <input type="text" name="username" class="form-control" placeholder="Tên tài khoản"  required/>
+                                        <span><i class="fa fa-user"></i></span>
+                                        @if($errors->has('username'))
+                                            <small class="text-danger w-100">
+                                                {{$errors->first('username')}}
+                                            </small>
+                                        @endif
                                     </div>
                                     <div class="form-group">
-                                            <input type="password" name="password" class="form-control" placeholder="Mật khẩu"  required/>
-
-                                            <span><i class="fa fa-lock"></i></span>
+                                        <input type="text" name="email" class="form-control" placeholder="Địa chỉ email"  required/>
+                                        <span><i class="fa fa-user"></i></span>
+                                        @if($errors->has('email'))
+                                            <small class="text-danger w-100">
+                                                {{$errors->first('email')}}
+                                            </small>
+                                        @endif
                                     </div>
-                                    <div class="checkbox">
-                                            <label><input type="checkbox"> Lưu tài khoản</label>
-                                    </div>
-                                    <button type="submit" class="btn btn-orange btn-block">Đăng nhập</button>
+                                    <button type="submit" class="btn btn-orange btn-block">Xác nhận</button>
                                 </form>
-                                
                                 <div class="other-links">
-                                    <p class="link-line"><a href="{{route('get-page-registration-view')}}">Tạo mới tài khoản</a></p>
-                                    <a class="simple-link" href="{{route('get-page-forgot-view')}}">Quên mật khẩu ?</a>
+                                    <p class="link-line">Bạn chưa có tài khoản? <a href="{{route('get-page-registration-view')}}">Đăng ký</a></p>
+                                    <a class="simple-link" href="{{route('get-login')}}">Đăng nhập</a>
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             
                             <div class="flex-content-img custom-form-img">
-                                <img src="page_asset/images/login.jpg" class="img-responsive" alt="registration-img" />
+                                <img src="page_asset/images/good-vacation-wishes5.jpg" class="img-responsive" alt="registration-img" />
                             </div><!-- end custom-form-img -->
                         </div><!-- end form-content -->
                         

@@ -159,4 +159,10 @@ main-homepage
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')
     
+    {{-- alert middleware --}}
+    @if (session('alert'))
+        <script>
+            alert('Bạn cần logout để sử dụng chức năng này');
+        </script>
+    @endif
 @endsection
