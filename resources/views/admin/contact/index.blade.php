@@ -44,6 +44,7 @@
           <div class="card">
               <div class="card-header">
                   <strong class="card-title">Liên hệ</strong>
+                  <a href="{{ route('get-contact-sendMultiMail') }}" class="btn btn-primary" title="Gửi mail đến nhiều người">Gửi thông tin </a>
                   @if (session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -112,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                      <a class="btn btn-primary" href>Trả lời(nghiên cứu)</a>
+                                      <a class="btn btn-primary" href="{{ route('get-contact-replyEmail', ['id' => $contact->id]) }}">Trả lời(nghiên cứu)</a>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     </div>
                                   </div>

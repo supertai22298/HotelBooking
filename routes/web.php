@@ -58,6 +58,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
         Route::get('/', 'ContactController@view')->name('get-contact-view');
 
         Route::get('delete/{id}', 'ContactController@delete')->name('get-contact-delete');
+
+        Route::get('reply-email/{id}', 'ContactController@replyEmail')->name('get-contact-replyEmail');
+        Route::post('handle-reply', 'ContactController@handleReplyEmail')->name('post-contact-handleReplyEmail');
+
+        Route::get('send-multi-mail', 'ContactController@sendMultiMail')->name('get-contact-sendMultiMail');
+        Route::post('handle-send-multi-mail', 'ContactController@handleSendMultiMail')->name('post-contact-handleSendMultiMail');
     });
 
     Route::group(['prefix' => 'room-type'], function () {
