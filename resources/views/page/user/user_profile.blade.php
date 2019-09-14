@@ -132,7 +132,7 @@ Thông tin tài khoản
                                                                 </span>
                                                             </li>
                                                             <li class="edit"><span>Email:</span>
-                                                                <span style="text-transform: none; font-weight: normal">
+                                                                <span id="display_email" style="text-transform: none; font-weight: normal">
                                                                     {{Auth::user()->email}}
                                                                 </span>
                                                             </li>
@@ -188,6 +188,12 @@ Thông tin tài khoản
                                                                 <span class="input-edit">
                                                                     <input id="date_of_birth" name="date_of_birth" type="date" value="{{substr(Auth::user()->date_of_birth,0,-9)}}" placeholder="Ngày sinh"/>
                                                                     <small id="noti_date_of_birth" class="noti"></small>
+                                                                </span>
+                                                            </li>
+                                                            <li class="edit"><span>Địa chỉ email:</span> 
+                                                                <span class="input-edit">
+                                                                    <input id="email" name="email" type="email" value="{{Auth::user()->email}}" placeholder="Địa chỉ email"/>
+                                                                    <small id="noti_email" class="noti"></small>
                                                                 </span>
                                                             </li>
                                                             <li class="edit"><span>Giới tính:</span>
@@ -260,13 +266,7 @@ Thông tin tài khoản
 
 @section('javascript')
     <script>
-    $('#btn-edit').click(function(){
-        $('.input-edit').fadeToggle(0);
-    });
-    // $('.btn-close').click(function(){
-    //     $('.input-edit').fadeOut(0);
-    // });
-    // yyyy-mm-dd to dd/mm/yyyy
+
     function formatDate(dateString){
         var arrDate = dateString.split('-');
         return [arrDate[2],arrDate[1],arrDate[0]].join('/');
@@ -298,6 +298,7 @@ Thông tin tài khoản
                 $('#country').val((jsonResult.country !=null) ? jsonResult.country : 'Chưa cập nhật');
                 $('#preview_avatar').attr('src',"upload/images/" + jsonResult.avatar);
                 $('#avatar1').attr('src',"upload/images/" + jsonResult.avatar);
+                $('#display_email').html(jsonResult.email);
                 $('#description').val((jsonResult.description != null) ? jsonResult.description : 'Chưa cập nhật');
                 
                 //show noti
@@ -319,6 +320,7 @@ Thông tin tài khoản
                 $('#noti_date_of_birth').html(jqXHR.responseJSON.errors.date_of_birth);
                 $('#noti_address').html(jqXHR.responseJSON.errors.address);
                 $('#noti_gender').html(jqXHR.responseJSON.errors.gender);
+                $('#noti_email').html(jqXHR.responseJSON.errors.email);
                 $('#noti_phone_number').html(jqXHR.responseJSON.errors.phone_number);
                 $('#noti_description').html(jqXHR.responseJSON.errors.description);
                 $('#noti_country').html(jqXHR.responseJSON.errors.country);
@@ -350,6 +352,9 @@ Thông tin tài khoản
     $("#avatar").change(function(){
     readURL(this)
     })
+
+    $('.changepass').removeClass('active');
+    $('.profile').addClass('active');
     </script>
     
 @endsection

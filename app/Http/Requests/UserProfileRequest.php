@@ -34,6 +34,8 @@ class UserProfileRequest extends FormRequest
 
             'date_of_birth' => 'before:today',
 
+            'email'     => 'required|email',
+
             'phone_number'  => 'nullable|regex:/[0-9]/|max:11',
 
             'avatar'        => 'image',
@@ -55,6 +57,9 @@ class UserProfileRequest extends FormRequest
             'gender.regex'        => 'Giới tính không hợp lệ',
 
             'address.min'           => 'Tên địa chỉ không hợp lệ',
+
+            'email.required'        => 'Email không được để trống',
+            'email.email'           => 'Email không hợp lệ',
 
             'country.min'           => 'Quốc tịch không hợp lệ',
 

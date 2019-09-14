@@ -184,5 +184,8 @@
             });
     });
 
+    $('.profile').removeClass('active');
+    $('.changepass').addClass('active');
+
     </script>
 @endsection

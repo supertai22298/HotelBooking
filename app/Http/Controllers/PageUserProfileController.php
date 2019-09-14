@@ -39,6 +39,7 @@ class PageUserProfileController extends Controller
             $user->first_name = str_replace(' ' . $last_name, '', $request->name); // lấy đối tượng first name từ string name
             $user->date_of_birth = $request->date_of_birth;
             $user->avatar = $avatarName;
+            $user->email = $request->email;
             $user->phone_number = $request->phone_number;
             $user->gender = $request->gender;
             $user->address = $request->address;
