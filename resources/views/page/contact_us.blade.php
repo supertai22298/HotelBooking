@@ -82,4 +82,12 @@ Liên hệ với chúng tôi
     @include('page.components.newsletter_1')
 
 @endsection
-
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.contact-status').addClass('active');
+        });
+    
+    </script>
+@endsection

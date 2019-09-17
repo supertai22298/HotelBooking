@@ -48,6 +48,6 @@ class ForgotPasswordRequest extends FormRequest
             'email.required'        => 'Email không được để trống',
             'email.email'           => 'Email không hợp lệ',
             'email.unique'           => 'Email đã được đăng ký',
-        ]
+        ];
     }
 }

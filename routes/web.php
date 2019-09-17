@@ -186,6 +186,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 Route::group(['prefix' => '/'], function () {
 
     Route::get('/', 'PageController@view')->name('get-page-view');
+    Route::post('/search', 'PageController@search')->name('post-page-search');
 
     Route::group(['prefix' => '/hotel'], function () {
         Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
