@@ -271,7 +271,7 @@
                                         </div><!-- end room-img -->
                                         
                                         <div class="list-info room-info">
-                                            <h3 class="block-title"><a href="#">{{ $room->name }}</a></h3>
+                                            <h3 class="block-title"><a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}">{{ $room->name }}</a></h3>
                                             <p class="block-minor">{{ $room->room_type->room_type }}</p>
                                             <p>
                                                 @if ($room->description)

@@ -5,8 +5,12 @@
             <div class="row">
 
                 <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 footer-widget ftr-about ftr-our-company">
-                    <h3 class="footer-heading">OUR COMPANY</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit.</p>
+                    <h3 class="footer-heading">Đội ngũ phát triển</h3>
+                    <p>
+                        <h4> Nguyễn Văn Tài</h4>
+                        <h4> Nguyễn Chiếm Hảo</h4>
+                        <h4> Phạm Anh Tài</h4>
+                    </p>
                     <ul class="social-links list-inline list-unstyled">
                         <li><a href="#"><span><i class="fa fa-facebook"></i></span></a></li>
                         <li><a href="#"><span><i class="fa fa-twitter"></i></span></a></li>
@@ -32,13 +36,13 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="copyright">
-                    <p>© 2017 <a href="#">StarTravel</a>. All rights reserved.</p>
+                    <p>© 2019 Bản quyền thuộc CDIO 4. <a href="#">Đại học duy Tân</a>. </p>
                 </div><!-- end columns -->
 
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" id="terms">
                     <ul class="list-unstyled list-inline">
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Điều khoản</a></li>
+                        <li><a href="#">Chính sách</a></li>
                     </ul>
                 </div><!-- end columns -->
             </div><!-- end row -->

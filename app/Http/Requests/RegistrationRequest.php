@@ -24,21 +24,24 @@ class RegistrationRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'  => ['required',
-                            'min:3',
-                            'max:255',
-                            'unique:users,username',
-                            'alpha_num',
+            'username'  => [
+                'required',
+                'min:3',
+                'max:255',
+                'unique:users,username',
+                'alpha_num',
             ],
 
             'email'     => 'required|email|unique:users,email',
-            
-            'password'  => ['required',
-                            'min:3',
-                            'max:35',
+
+            'password'  => [
+                'required',
+                'min:3',
+                'max:35',
             ],
-            'cf_password'  => ['required',
-                            'same:new_password',
+            'cf_password'  => [
+                'required',
+                'same:password',
             ],
         ];
     }
@@ -53,7 +56,7 @@ class RegistrationRequest extends FormRequest
 
             'email.required'        => 'Email không được để trống',
             'email.email'           => 'Email không hợp lệ',
-            'email.unique'           => 'Email đã được đăng ký',
+            'email.unique'          => 'Email đã được đăng ký',
 
             'password.required'     => 'Mật khẩu không được để trống',
             'password.min'          => 'Mật khẩu quá ngắn',

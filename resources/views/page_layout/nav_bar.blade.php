@@ -20,7 +20,7 @@
                 <li class="blog-status"><a href="{{ route('get-page-blog-blogGrid') }}">Blog</a></li>
                 <li class="introduce-status"><a href="#">Giới thiệu</a></li>
                 <li class="contact-status"><a href="{{ route('get-page-contact-contact') }}">Liên hệ</a></li>
-                <li><a href="javascript:void(0)" class="search-button"><span><i class="fa fa-search"></i></span></a></li>
+                <li><a href="javascript:void(0)" class="search-button" onclick="display()"><span><i class="fa fa-search"></i></span></a></li>
             </ul>
         </div><!-- end navbar collapse -->
     </div><!-- end container -->
