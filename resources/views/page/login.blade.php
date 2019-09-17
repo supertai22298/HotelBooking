@@ -36,26 +36,31 @@
                                         {{session('msg')}}
                                     </div>
                                 @endif
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{session('success')}}
+                                    </div>
+                                @endif
                                 <form id="login" action="{{route('post-login')}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
                                     @csrf 
                                     <div class="form-group">
-                                            <input type="text" name="username" class="form-control" placeholder="Username"  required/>
+                                            <input type="text" name="username" class="form-control" placeholder="Tên tài khoản"  required/>
                                             <span><i class="fa fa-user"></i></span>
                                     </div>
                                     <div class="form-group">
-                                            <input type="password" name="password" class="form-control" placeholder="Password"  required/>
+                                            <input type="password" name="password" class="form-control" placeholder="Mật khẩu"  required/>
 
                                             <span><i class="fa fa-lock"></i></span>
                                     </div>
                                     <div class="checkbox">
-                                            <label><input type="checkbox"> Remember me</label>
+                                            <label><input type="checkbox"> Lưu tài khoản</label>
                                     </div>
-                                    <button type="submit" class="btn btn-orange btn-block">Login</button>
+                                    <button type="submit" class="btn btn-orange btn-block">Đăng nhập</button>
                                 </form>
                                 
                                 <div class="other-links">
-                                    <p class="link-line">New Here ? <a href="#">Signup</a></p>
-                                    <a class="simple-link" href="#">Forgot Password ?</a>
+                                    <p class="link-line"><a href="{{route('get-page-registration-view')}}">Tạo mới tài khoản</a></p>
+                                    <a class="simple-link" href="{{route('get-page-forgot-view')}}">Quên mật khẩu ?</a>
                                 </div><!-- end other-links -->
                             </div><!-- end custom-form -->
                             

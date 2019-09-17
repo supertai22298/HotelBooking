@@ -36,12 +36,12 @@ Liên hệ với chúng tôi
                             <div id="frm-contact" >
                                     
                                 <div class="form-group">
-                                        <input type="text" name="name" class="form-control" placeholder="Họ và tên"  required/>
+                                        <input type="text" name="name" class="form-control" placeholder="Họ và tên" value="{{ Auth::check() ? Auth::user()->first_name : '' }}" required/>
                                         <span><i class="fa fa-user"></i></span>
                                 </div>
 
                                 <div class="form-group">
-                                        <input type="email" name="email" class="form-control" placeholder="Email"  required/>
+                                        <input type="email" name="email" class="form-control" placeholder="Email" value="{{ Auth::check() ? Auth::user()->email : '' }}" required/>
                                         <span><i class="fa fa-envelope"></i></span>
                                 </div>
                                 
@@ -82,4 +82,12 @@ Liên hệ với chúng tôi
     @include('page.components.newsletter_1')
 
 @endsection
-
+@section('javascript')
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.contact-status').addClass('active');
+        });
+    
+    </script>
+@endsection

@@ -48,7 +48,7 @@ class StoreEditUserRequest extends FormRequest
 
             'date_of_birth' => 'before:today|nullable',
 
-            'phone_number'  => 'nullable',
+            'phone_number'  => 'nullable|regex:/[0-9]/|max:11',
 
             'avatar'        => 'image',
         ];
@@ -71,6 +71,7 @@ class StoreEditUserRequest extends FormRequest
             'date_of_birth.before'  => 'Ngày sinh không hợp lệ',
 
             'phone_number.regex'    => 'Số điện thoại không hợp lệ',
+            'phone_number.max'    => 'Số điện thoại không hợp lệ',
 
             'gender.regex'        => 'Giới tính không hợp lệ',
 

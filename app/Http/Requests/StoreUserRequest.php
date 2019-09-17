@@ -28,7 +28,7 @@ class StoreUserRequest extends FormRequest
                             'min:3',
                             'max:255',
                             'unique:users,username',
-                            'regex:/^(\w)+$/i',
+                            'alpha_num',
             ],
 
             'email'     => 'required|email', 
@@ -54,7 +54,7 @@ class StoreUserRequest extends FormRequest
 
             'date_of_birth' => 'before:today',
 
-            'phone_number'  => 'regex:/(0)[0-9]{2,10}/|nullable',
+            'phone_number'  => 'regex:/[0-9]/|max:11|nullable',
 
             'avatar'        => 'image',
 
@@ -68,7 +68,7 @@ class StoreUserRequest extends FormRequest
             'username.min'          => 'Tên tài khoản phải dài hơn 3 kí tự',
             'username.max'          => 'Tên tài khoản không dài quá 255 kí tự',
             'username.unique'       => 'Tên tài đã tồn tại',
-            'username.regex'        => 'Tên tài khoản không hợp lệ',
+            'username.alpha_num'        => 'Tên tài khoản không hợp lệ',
 
             'email.required'        => 'Email không được để trống',
             'email.email'           => 'Email không hợp lệ',
@@ -85,8 +85,8 @@ class StoreUserRequest extends FormRequest
 
             'date_of_birth.before'  => 'Ngày sinh không hợp lệ',
 
-            'phone_number.max'      => 'Số điện thoại không hợp lệ',
-            'phone_number.numeric'  => 'Số điện thoại không hợp lệ',
+            'phone_number.regex'    => 'Số điện thoại không hợp lệ',
+            'phone_number.max'    => 'Số điện thoại không hợp lệ',
 
             'gender.regex'        => 'Giới tính không hợp lệ',
 
@@ -96,7 +96,7 @@ class StoreUserRequest extends FormRequest
 
             'city.min'              => 'Tên thành phố không hợp lệ',
 
-            'country.min'           => 'Tên thành phố không hợp lệ',
+            'country.min'           => 'Quốc tịch không hợp lệ',
 
             'avatar.image'          => 'Ảnh đại diện không hợp lệ',
         ];

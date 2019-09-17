@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-heading">
-                    <h2>Our Latest Blogs</h2>
+                    <h2>Những bài đăng mới nhất</h2>
                     <hr class="heading-line" />
                 </div>
 

@@ -3,6 +3,7 @@
 <head>
     <title>@yield('title')</title>
     <base href="{{asset('')}}">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -38,6 +39,65 @@
     <!-- Slick Stylesheet -->
 		<link rel="stylesheet" href="page_asset/css/slick.css">
     <link rel="stylesheet" href="page_asset/css/slick-theme.css">
+    <style>
+        .user-area {
+            float: right;
+            padding-right: 0;
+            position: relative;
+            padding-left: 20px;
+        }
+        .dropdown .dropdown-toggle {
+            line-height: 55px;
+            
+        }
+        .user-area .dropdown-toggle {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        .user-area .dropdown-toggle {
+            position: relative;
+            z-index: 0;
+        }
+        .user-area .user-menu {
+            background: #fff;
+            border: none;
+            left: inherit !important;
+            right: 0;
+            top: 40px !important;
+            margin: 0;
+            max-width: 150px;
+            padding: 5px 10px;
+            position: absolute;
+            width: 100%;
+            z-index: 999;
+            -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+        }
+        .user-area .user-avatar {
+            float: right;
+            width: 30px;
+            border: 2px solid #849896;
+        }
+        .rounded-circle {
+            border-radius: 50%!important;
+        }
+        .user-options{
+            overflow-wrap: break-word;
+            word-wrap: break-word;
+            hyphens: auto;
+            padding: 0px;
+            display: block;
+            margin-left: -5px;
+            color: #58595b;
+        }
+    </style>
     @yield('css')
 </head>
 <body id="@yield('id-body')">

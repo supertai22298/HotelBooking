@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendMailWhenSendContact;
 use App\Message;
 use Exception;
 use Illuminate\Http\Request;
@@ -19,8 +20,16 @@ class PageContactController extends Controller
             $message->is_received_news = 1;
             $message->save();
 
+            $data = array(
+                'email' =>  $message->email,
+                'subject' => 'Đăng ký nhận thông tin',
+                'name' => $message->name,
+            );
+            $job = new SendMailWhenSendContact($data);
+            $this->dispatch($job);
+
         } catch (Exception $e) {
-            return response()->json(['msg'=>'Có lỗi xảy ra']);
+            return response()->json(['msg'=>$e->getMessage()]);
         }
         return response()->json(['msg'=>'Đăng ký nhận thông tin thành công']);
     }
@@ -39,6 +48,19 @@ class PageContactController extends Controller
             $message->message = request('message');
             $message->is_received_news = request('is_received_news');
             $message->save();
+
+
+            if ($message->is_received_news == 1) {
+
+                $data = array(
+                    'email' =>  $message->email,
+                    'subject' => 'Đăng ký nhận thông tin',
+                    'name' => $message->name,
+                );
+                $job = new SendMailWhenSendContact($data);
+                $this->dispatch($job);
+
+            }
 
         } catch (Exception $e) {
             return response()->json([

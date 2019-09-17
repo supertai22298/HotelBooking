@@ -21,7 +21,7 @@ main-homepage
                             <h2>Khám phá</h2>
                             <h1>Đà Nẵng - Việt Nam</h1>
                             {{-- Route dẫn đến địa điểm tìm kiếm các khách sạn thuộc đà nẵng --}}
-                            <a href="#" class="btn btn-default">Xem thêm</a>
+                            <a href="{{ route('get-page-hotel-hotelGrid') }}" class="btn btn-default">Xem thêm</a>
                         </div><!-- end container -->  
                     </div><!-- end meta -->
                 </li><!-- end item-1 -->
@@ -33,7 +33,7 @@ main-homepage
                         <div class="container">
                             <h2>Tận hưởng</h2>
                             <h1>Không gian sang trọng</h1>
-                            <a href="#" class="btn btn-default">Xem thêm</a>
+                            <a href="{{ route('get-page-room-roomGrid') }}" class="btn btn-default">Xem thêm</a>
                         </div><!-- end container -->  
                     </div><!-- end meta -->
                 </li><!-- end item-2 -->
@@ -139,19 +139,19 @@ main-homepage
     @include('page.components.best_features')
 
     <!--=============== LUXURY ROOMS ===============-->
-    @include('page.components.luxury_rooms')
+    {{-- @include('page.components.luxury_rooms') --}}
         
     <!--================ PACKAGES ==============-->
-    @include('page.components.packages')
+    {{-- @include('page.components.packages') --}}
 
     <!--==================== VIDEO BANNER ===================-->
-    @include('page.components.video_banner')
+    {{-- @include('page.components.video_banner') --}}
     
     <!--==================== HIGHLIGHTS ====================-->
     @include('page.components.hightlights')
     
     <!--==================== TESTIMONIALS ====================-->
-    @include('page.components.testimonials')   
+    {{-- @include('page.components.testimonials')    --}}
     
     <!--================ LATEST BLOG ==============-->
     @include('page.components.lasted_blog')
@@ -159,4 +159,10 @@ main-homepage
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')
     
+    {{-- alert middleware --}}
+    @if (session('alert'))
+        <script>
+            alert('Bạn cần logout để sử dụng chức năng này');
+        </script>
+    @endif
 @endsection
