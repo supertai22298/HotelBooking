@@ -11,6 +11,7 @@ use App\BookingStatus;
 use App\Hotel;
 use App\HotelUtillity;
 use App\Message;
+use App\Notifications\TestNotification;
 use App\Payment;
 use App\PaymentStatus;
 use App\PaymentType;
@@ -67,13 +68,20 @@ class PageRoomController extends Controller
                                         "Yêu cầu của khách: ".$request->noti."\n";
     
                 $booking->save();
+                   //tạo key subject
+                $booking->subject = "Khách hàng vừa book";
+
+                //lưu thông báo booking
+                $booking->notify(new TestNotification($booking));
             } catch (Exception $e) {
                 return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
             }
             return redirect()->back()->with('success', 'Đặt thành công');
         }else {
             return redirect('/login')->with('msg','Bạn cần đăng nhập để đặt phòng');
+            
         }
+      
 
         
 

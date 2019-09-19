@@ -6,6 +6,7 @@ use App\Events\Test2Event;
 use App\Events\TestEvent;
 use App\Jobs\SendMailWhenSendContact;
 use App\Message;
+use App\Notifications\TestNotification;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,14 @@ class PageContactController extends Controller
 
             //tạo data
             $data = array(
-                'email' =>  $message->email,
                 'subject' => 'Đăng ký nhận thông tin',
+                'email' =>  $message->email,
                 'name' => $message->name,
             );
             //send realtime notification
             event(new Test2Event($data));
+
+            $message->notify(new TestNotification($message));
 
 
             //send mail
@@ -63,6 +66,7 @@ class PageContactController extends Controller
                 'subject' => 'Đăng ký nhận thông tin',
                 'name' => $message->name,
             );
+            $message->notify(new TestNotification($message));
             //gọi event
             event(new TestEvent($data));
 

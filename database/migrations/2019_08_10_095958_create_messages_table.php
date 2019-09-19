@@ -20,6 +20,7 @@ class CreateMessagesTable extends Migration
             $table->string('subject')->nullable();
             $table->text('message')->nullable();
             $table->integer('is_received_news')->default(0);
+            $table->timestamp('read_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

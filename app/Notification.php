@@ -4,13 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
 
-class Message extends Model
+class Notification extends Model
 {
-    use Notifiable;
-    //
     use SoftDeletes;
-    protected $table = 'messages';
+    protected $table = 'notifications';
     public $timestamp = true;
+    
 }
