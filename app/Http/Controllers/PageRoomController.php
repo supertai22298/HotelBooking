@@ -9,6 +9,7 @@ use App\Blog;
 use App\Booking;
 use App\BookingStatus;
 use App\Hotel;
+use App\HotelUtility;
 use App\HotelUtillity;
 use App\Message;
 use App\Payment;
@@ -27,7 +28,14 @@ class PageRoomController extends Controller
     //
     public function roomGrid(){
         $rooms = Room::where('room_status_id', 1)->orderBy('created_at', 'desc')->simplePaginate(6);
-        return view('page.room.room_grid', ['rooms' => $rooms]);
+        // add $hotels for sort
+        $citys = Hotel::select('city')->groupBy('city')->orderBy('city','desc')->get();
+        $utilitys = HotelUtility::select('utility')->groupBy('utility')->orderBy('utility','desc')->get();
+        $stars = Hotel::select('hotel_star')->groupBy('hotel_star')->orderBy('hotel_star','desc')->get();
+
+        $sorts = ['citys' => $citys, 'utilitys' => $utilitys, 'stars' => $stars];
+        
+        return view('page.room.room_grid', ['rooms' => $rooms,'sorts' => $sorts]);
     }
     public function roomDetail($id){
         $room = Room::findOrFail($id);

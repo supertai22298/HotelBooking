@@ -220,9 +220,6 @@ Route::group(['prefix' => '/'], function () {
         Route::get('editPass', 'PageUserProfileController@editPassword')->name('get-page-userProfile-editPassword');
         Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
 
-
-
-
         // user booking
         Route::group(['prefix' => 'booking'], function () {
             //
@@ -252,7 +249,13 @@ Route::group(['prefix' => '/', 'middleware' => 'checkLogout'], function () {
     });
 });
 
+//search filter
+//forgot password
+Route::group(['prefix' => 'searchFilter'], function () {
+    Route::get('/', 'SearchFilterController@store')->name('get-page-searchFilter-store');
 
+    Route::get('/ajax', 'SearchFilterController@executeRequest')->name('get-page-sort-ajax');
+});
 
 Route::group(['prefix' => 'errors'], function () {
     Route::get('404', function () {
