@@ -11,6 +11,7 @@
 |
 */
 
+use App\Events\TestEvent;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Auth'], function () {
@@ -260,3 +261,6 @@ Route::group(['prefix' => 'errors'], function () {
         return view('error.404');
     });
 });
+
+
+

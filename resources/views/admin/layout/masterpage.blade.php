@@ -8,6 +8,29 @@
     
     <title>@yield('title')</title>
     
+    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+    <script>
+
+        // Enable pusher logging - don't include this in production
+        Pusher.logToConsole = true;
+
+        var pusher = new Pusher('8fe74877e244daa818ac', {
+        cluster: 'ap1',
+        forceTLS: true
+        });
+
+        var channel = pusher.subscribe('test-channel');
+        channel.bind('test-event', function(data) {
+        alert(JSON.stringify(data));
+        });
+        
+        var channel2 = pusher.subscribe('test2-channel');
+        channel2.bind('test2-event', function(data) {
+        alert(JSON.stringify(data));
+        });
+
+    </script>
+
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href={{asset('')}}>
