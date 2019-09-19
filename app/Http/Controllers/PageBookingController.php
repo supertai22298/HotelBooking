@@ -27,5 +27,6 @@ class PageBookingController extends Controller
         $hotel = Hotel::all();
         $room  = Room::all();
         return view('page.bookings', ['hotel' => $hotel, 'room' => $room]);
+
     }
 }

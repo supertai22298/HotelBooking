@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class Booking extends Model
 {
     //
     use SoftDeletes;
+    use Notifiable;
     protected $table = 'bookings';
     public $timestamp = true;
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegistrationRequest;
+use App\Notifications\TestNotification;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -22,13 +23,15 @@ class RegistrationController extends Controller
         $verify_code = str_random(30);
         // $today = Carbon::now();
         // dd($today->format("Y-m-d h:m:s"));
-        User::create([
+        $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'verify_code' => $verify_code,
             'active' => 0
         ]);
+        $user->subject = 'Đăng ký mới';
+        $user->notify(new TestNotification($user));  
         Mail::send('page.register.verify',['code' => $verify_code,'name' => $request->username], function($msg){
             $msg->to(Input::get('email'),Input::get('username'))->subject('Xác thực tài khoản HATABOOKING');
         });
