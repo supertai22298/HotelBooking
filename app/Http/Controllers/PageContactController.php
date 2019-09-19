@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Test2Event;
+use App\Events\TestEvent;
 use App\Jobs\SendMailWhenSendContact;
 use App\Message;
 use Exception;
@@ -20,11 +22,17 @@ class PageContactController extends Controller
             $message->is_received_news = 1;
             $message->save();
 
+            //tạo data
             $data = array(
                 'email' =>  $message->email,
                 'subject' => 'Đăng ký nhận thông tin',
                 'name' => $message->name,
             );
+            //send realtime notification
+            event(new Test2Event($data));
+
+
+            //send mail
             $job = new SendMailWhenSendContact($data);
             $this->dispatch($job);
 
@@ -49,22 +57,24 @@ class PageContactController extends Controller
             $message->is_received_news = request('is_received_news');
             $message->save();
 
+            //tạo dữ liệu để truyền đi
+            $data = array(
+                'email' =>  $message->email,
+                'subject' => 'Đăng ký nhận thông tin',
+                'name' => $message->name,
+            );
+            //gọi event
+            event(new TestEvent($data));
 
+            //gửi mail
             if ($message->is_received_news == 1) {
-
-                $data = array(
-                    'email' =>  $message->email,
-                    'subject' => 'Đăng ký nhận thông tin',
-                    'name' => $message->name,
-                );
                 $job = new SendMailWhenSendContact($data);
                 $this->dispatch($job);
-
             }
 
         } catch (Exception $e) {
             return response()->json([
-                'msg'=>'Có lỗi xảy ra',
+                'msg'=>$e->getMessage(),
                 'class'=>'alert alert-danger'
             ]);
         }

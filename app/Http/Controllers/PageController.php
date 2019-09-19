@@ -25,7 +25,7 @@ class PageController extends Controller
         $room_status_id = [];
         $room_type_id = [];
 
-        $data ='<ul class="list-group"><li class="list-group-item"> <strong>Khách sạn liên quan </strong><li/>';
+        $data ='<table class="table">';
         
         //tìm những khách sạn có chứa từ khoá
         $hotels = Hotel::where('name', 'LIKE', "%$search_key%")
@@ -66,7 +66,7 @@ class PageController extends Controller
             ->take(10)->get();
 
 
-        $data .="<li class='list-group-item' > <strong>Phòng liên quan </strong><li/>";
+        $data .="<tr><strong>Phòng liên quan </strong></tr> ";
         if(count($rooms)){
             foreach ($rooms as $room) {
                 $data .= "<li  class='list-group-item' ><a href='/room/detail/{$room->id}'>{$room->name}, {$room->hotel->city} </a></li>";
