@@ -81,22 +81,23 @@ class RoomBookingController extends Controller
     {
 
         $booking = Booking::findOrFail($id);
-        try {
-            $booking->customer_name = $request->customer_name;
-            $booking->customer_phone = $request->customer_phone;
-            $booking->customer_email = $request->customer_email;
-            $booking->user_id     = 1;
-            $booking->room_id    = $request->room_name;
-            $booking->date_from = $request->date_from;
-            $booking->date_to = $request->date_to;
-            $booking->booking_status_id = 1;
-            $booking->description = $request->note;
+        
+            try {
+                $booking->customer_name = $request->customer_name;
+                $booking->customer_phone = $request->customer_phone;
+                $booking->customer_email = $request->customer_email;
+                $booking->user_id     = 1;
+                $booking->room_id    = $request->room_name;
+                $booking->date_from = $request->date_from;
+                $booking->date_to = $request->date_to;
+                $booking->booking_status_id = 1;
+                $booking->description = $request->note;
 
-            $booking->save();
-        } catch (Exception $e) {
-            return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
-        }
-        return redirect()->back()->with('success', 'Sửa mới thành công');
+                $booking->save();
+            } catch (Exception $e) {
+                return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
+            }
+            return redirect()->back()->with('success', 'Sửa mới thành công');
     }
 
     public function editStatus(Request $request, $id)
