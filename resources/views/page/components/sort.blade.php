@@ -49,12 +49,14 @@
                 <div id="panel-2" class="panel-collapse collapse">
                     <div class="panel-body text-left">
                         <ul class="list-unstyled my_check role_price">
-                            <li class="custom-check"><input type="checkbox" value="1000" id="1000" name="checkbox"/>
-                            <label for="1000"><span><i class="fa fa-check"></i></span>< 1000.000</label></li>
-                            <li class="custom-check"><input type="checkbox" value="2000" id="2000" name="checkbox"/>
-                            <label for="2000"><span><i class="fa fa-check"></i></span>< 2000.000</label></li>
-                            <li class="custom-check"><input type="checkbox" value="2001" id="2001" name="checkbox"/>
-                            <label for="2001"><span><i class="fa fa-check"></i></span>> 2000.000</label></li>
+                            <li class="custom-radio"><input type="radio" checked value=">0" id="0" name="radio"/>
+                            <label for="1000"><span></span>Tất cả</label></li>
+                            <li class="custom-radio"><input type="radio" value="<1000000" id="1000" name="radio"/>
+                            <label for="1000"><span></span>< 1000.000</label></li>
+                            <li class="custom-radio"><input type="radio" value="<2000000" id="2000" name="radio"/>
+                            <label for="2000"><span></span>< 2000.000</label></li>
+                            <li class="custom-radio"><input type="radio" value=">2000000" id="2001" name="radio"/>
+                            <label for="2001"><span></span>> 2000.000</label></li>
                         </ul>
                     </div><!-- end panel-body -->
                 </div><!-- end panel-collapse -->
@@ -68,11 +70,11 @@
 
 @section('javascript')
 <script src="page_asset/js/pagination.min.js"></script>
-    <script>
+<script>
         var roles = {
             rate : [],
             city : [],
-            price : [],
+            price : '',
         };
         // var dataSource;
         var dataContainer = $('#contai');
@@ -85,6 +87,7 @@
         }
 
         $('.my_check').click(function(ev){
+            $('#oldPanigation').fadeOut(0);
             if(ev.target.value) {
 
                 var isChecked = ev.target.checked;
@@ -94,20 +97,19 @@
                     if ($(this).hasClass('role_rate')) {
                         roles.rate.push(value);   
                     } else if($(this).hasClass('role_price')) {
-                        roles.role_price.push(value);
+                        roles.price = value;
                     }else{
                         roles.city.push(value);
                     }
                 } else {
                     if ($(this).hasClass('role_rate')) {
                         removeValue(roles.rate,value);
-                    } else if($(this).hasClass('role_price')) {
-                        removeValue(roles.role_price,value);
-                    }else{
+                    } else if($(this).hasClass('role_city')) {
                         removeValue(roles.city,value);
                     }
                 }
 
+                console.log(roles);
                 // console.log(roles);
                 $.ajaxSetup({
                     headers: {
@@ -115,7 +117,7 @@
                     }
                 });
                 request = $.ajax({
-                    url: "{{route('get-page-sort-ajax')}}",
+                    url: "{{route('get-page-sort-room-ajax')}}",
                     method: 'GET',
                     data: {
                         roles: roles,
@@ -124,49 +126,20 @@
                 request.done(function(jsonResult) {
                     console.log( jsonResult );
                     // dataSource = jsonResult;
-                    $('#contai11').pagination({
-                        dataSource: jsonResult,
-                        pageSize: 3,
-                        showPrevious: false,
-                        showNext: false,
-                        callback: function(data, pagination) {
-                            console.log(data);
-                            // console.log(pagination);
-                            var html = '';
-                            $.each(data, function (index, item) {
-                                console.log(item);
-                                // template method of yourself
-                                html += '<div class="col-sm-6 col-md-6 col-lg-4">'
-                                        + '<div class="grid-block main-block h-grid-block">'
-                                        + '<div class="main-img h-grid-img">'
-                                        + ' <a href="'
-                                        + item['id'] + '">'
-                                        + '<img src="" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />'
-                                        +   '</a>'
-                                        +    '<div class="main-mask"><ul class="list-unstyled list-inline offer-price-1">'
-                                        +    '<li class="price">'+'gia'+'<span class="divider">|</span><span class="pkg">1 Đêm</span></li>'
-                                        +    '</ul>'
-                                        +    '</div><!-- end main-mask -->'
-                                        +    '</div><!-- end h-grid-img --><div class="block-info h-grid-info"><div class="rating">'
-                                        ;       
-                                            for (i = 0; i < item['hotel_star']; i++)
-                                            {html +='<span><i class="fa fa-star orange"></i></span>'};
-                                            for (i = 0; i < (5 -item['hotel_star']); i++)
-                                            {html +='<span><i class="fa fa-star lightgrey"></i></span>'};
-                                html += '</div><!-- end rating --><h3 class="block-title"><a href="hotel-detail-left-sidebar.html">'
-                                        +    item['name'] + '</a></h3>'
-                                        +   '<p class="block-minor">Từ:' + item['city'] + '</p>'
-                                        +   '<div class="grid-btn">'
-                                        +    '<a href="' + item['id']+ '" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>'
-                                        +    '</div><!-- end grid-btn -->'
-                                        +   '</div><!-- end h-grid-info -->'
-                                        +   '</div><!-- end h-grid-block -->'
-                                        +   '</div><!-- end columns -->';
-                                    });
-                            console.log(html);
-                            dataContainer.html(html);
-                        }
-                    })
+                    //phaan trang
+                    // $('#contai11').pagination({
+                    //     dataSource: jsonResult,
+                    //     pageSize: 6,
+                    //     showPrevious: false,
+                    //     showNext: false,
+                    //     callback: function(data, pagination) {
+                    //         // console.log(data);
+                    //         // console.log(pagination);
+                    //         // var html = template(data);
+                    //         // console.log(html);
+                    //         // dataContainer.html(html);
+                    //     }
+                    // })
                 });
                 request.fail(function(jqXHR) {
                     console.log( jqXHR.responseJSON.errors );
@@ -174,6 +147,55 @@
 
             }
         });
-        
+        function template(data){
+            var html = '';
+            $.each(data, function (index, item) {
+                
+                html += '<div class="col-sm-6 col-md-6 col-lg-4">'
+                        +   '<div class="grid-block main-block h-grid-block">'
+                        +   '<div class="main-img h-grid-img">'
+                        +   ' <a href="' + '/room/detail/' + item['id'] + '">'
+                        +   '<img src="'
+                        +   '{{ asset("upload/images") }}'+ '/' + item['image']
+                        +   '" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />'
+                        +   '</a>'
+                        +    '<div class="main-mask"><ul class="list-unstyled list-inline offer-price-1">'
+                        +    '<li class="price">'
+                        +    Math.round(hotelAVG)
+                        +   '<span class="divider">|</span><span class="pkg">1 Đêm</span></li>'
+                        +    '</ul>'
+                        +    '</div><!-- end main-mask -->'
+                        +    '</div><!-- end h-grid-img --><div class="block-info h-grid-info"><div class="rating">'
+                        ;       
+                            for (i = 0; i < item['hotel_star']; i++)
+                            {html +='<span><i class="fa fa-star orange"></i></span>'};
+                            for (i = 0; i < (5 -item['hotel_star']); i++)
+                            {html +='<span><i class="fa fa-star lightgrey"></i></span>'};
+                html += '</div><!-- end rating --><h3 class="block-title"><a href="hotel-detail-left-sidebar.html">'
+                        +    item['name'] + '</a></h3>'
+                        +   '<p class="block-minor">Từ:' + item['city'] + '</p>'
+                        +   '<div class="grid-btn">'
+                        +    '<a href="' + '/room/detail/' + item['id'] + '" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>'
+                        +    '</div><!-- end grid-btn -->'
+                        +   '</div><!-- end h-grid-info -->'
+                        +   '</div><!-- end h-grid-block -->'
+                        +   '</div><!-- end columns -->';
+                    });
+            return html;
+        };
+
+        function avg(arr) {
+            if (arr.length > 0) {
+                var sum = arr.map( function(elt){ // assure the value can be converted into an integer
+                    return /^\d+$/.test(elt) ? parseInt(elt) : 0; 
+                    })
+                    .reduce( function(a,b){ // sum all resulting numbers
+                    return a+b
+                    });
+                return sum / arr.length;
+            } else {
+                return 'dasdas';
+            }
+        }
     </script>
 @endsection

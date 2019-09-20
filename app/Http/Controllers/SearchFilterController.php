@@ -20,17 +20,69 @@ class SearchFilterController extends Controller
             $price = isset($roles['price']) ? $roles['price'] : [''];
 
             
-            $hotels = DB::table('hotels')
-                    ->orWhereIn('city',$city)
+            $hotels = Hotel::orWhereIn('city',$city)
                     ->orWhereIn('hotel_star',$rate)
                     ->orderBy('hotel_star')
                     ->get();
-
+            $avgHotels = [];
+            foreach ($hotels as $hotel) {
+                $avgHotel = $hotel->rooms->avg('price');
+                array_push($avgHotels,$avgHotel);
+            }
         } else {
             $hotels = Hotel::all();
+            $avgHotels = [];
+            foreach ($hotels as $hotel) {
+                $avgHotel = $hotel->rooms->avg('price');
+                array_push($avgHotels,$avgHotel);
+            }
         }
-      
-        return $hotels;
+        
+        $data = ['hotels' => $hotels,
+                'avgHotels' => $avgHotels
+    ];
+
+        return $data;
+    }
+
+    public function executeRoomRequest(Request $request){
+        
+        if (isset($request->roles)) {
+            $roles = ($request->roles != null) ? $request->roles : '';
+            $rate = isset($roles['rate']) ? $roles['rate'] : [''];
+            $city = isset($roles['city']) ? $roles['city'] : [''];
+            $price = isset($roles['price']) ? $roles['price'] : '>0';
+            $operator = $price[0]. '=';
+            $len = strlen($price) - 1;
+            $price = substr($price,1,$len);
+            
+            // >= price or = city or = rate
+            $rooms = DB::table('rooms')
+                    ->join('hotels','rooms.hotel_id','=','hotels.id')
+                    ->where('price',$operator,$price)
+                    ->orderBy('hotel_star')
+                    ->get();
+            // $avgHotels = [];
+            // foreach ($rooms as $room) {
+            //     $avgHotel = $hotel->rooms->avg('price');
+            //     array_push($avgHotels,$avgHotel);
+            // }
+        } else {
+            $rooms = DB::table('rooms')
+                    ->join('hotels','rooms.hotel_id','=','hotels.id')
+                    ->orderBy('hotel_star')
+                    ->get();
+            // $avgHotels = [];
+            // foreach ($hotels as $hotel) {
+            //     $avgHotel = $hotel->rooms->avg('price');
+            //     array_push($avgHotels,$avgHotel);
+            // }
+        }
+        
+        // $data = ['hotels' => $rooms,
+        //         'avgHotels' => $avgHotels
+    // ];
+        return $rooms;
     }
 
 

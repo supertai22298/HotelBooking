@@ -255,6 +255,7 @@ Route::group(['prefix' => 'searchFilter'], function () {
     Route::get('/', 'SearchFilterController@store')->name('get-page-searchFilter-store');
 
     Route::get('/ajax', 'SearchFilterController@executeRequest')->name('get-page-sort-ajax');
+    Route::get('/roomajax', 'SearchFilterController@executeRoomRequest')->name('get-page-sort-room-ajax');
 });
 
 Route::group(['prefix' => 'errors'], function () {
