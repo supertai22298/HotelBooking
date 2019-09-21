@@ -47,8 +47,6 @@
                                 <div id="panel-1" class="panel-collapse collapse">
                                     <div class="panel-body text-left">
                                         <ul class="list-unstyled my_check role_city">
-                                            <li class="custom-check"><input type="checkbox" value="all" id="check01" name="checkAll"/>
-                                            <label for="check01"><span><i class="fa fa-check"></i></span>Tất cả</label></li>
                                             @foreach ($sorts['citys']  as $city)
                                                 <li class="custom-check"><input type="checkbox" value="{{$city['city']}}" id="{{$city['city']}}" name="checkbox"/>
                                                 <label for="{{$city['city']}}"><span><i class="fa fa-check"></i></span>{{$city['city']}}</label></li>
