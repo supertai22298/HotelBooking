@@ -18,17 +18,35 @@ class SearchFilterController extends Controller
             $rate = isset($roles['rate']) ? $roles['rate'] : [''];
             $city = isset($roles['city']) ? $roles['city'] : [''];
             $price = isset($roles['price']) ? $roles['price'] : [''];
-
-            
-            $hotels = Hotel::orWhereIn('city',$city)
-                    ->orWhereIn('hotel_star',$rate)
-                    ->orderBy('hotel_star')
-                    ->get();
             $avgHotels = [];
-            foreach ($hotels as $hotel) {
-                $avgHotel = $hotel->rooms->avg('price');
-                array_push($avgHotels,$avgHotel);
+
+            if ($rate == [''] && $city != ['']) {
+                $hotels = Hotel::whereIn('city',$city)
+                    ->orderBy('hotel_star','desc')
+                    ->get();
+                foreach ($hotels as $hotel) {
+                    $avgHotel = $hotel->rooms->avg('price');
+                    array_push($avgHotels,$avgHotel);
+                }
+            } elseif($rate != [''] && $city == ['']) {
+                $hotels = Hotel::whereIn('hotel_star',$rate)
+                    ->orderBy('hotel_star','desc')
+                    ->get();
+                foreach ($hotels as $hotel) {
+                    $avgHotel = $hotel->rooms->avg('price');
+                    array_push($avgHotels,$avgHotel);
+                }
+            }else{
+                $hotels = Hotel::whereIn('city',$city,'and')
+                    ->whereIn('hotel_star',$rate)
+                    ->orderBy('hotel_star','desc')
+                    ->get();
+                foreach ($hotels as $hotel) {
+                    $avgHotel = $hotel->rooms->avg('price');
+                    array_push($avgHotels,$avgHotel);
+                }
             }
+            
         } else {
             $hotels = Hotel::all();
             $avgHotels = [];
@@ -54,34 +72,45 @@ class SearchFilterController extends Controller
             $price = isset($roles['price']) ? $roles['price'] : '>0';
             $operator = $price[0]. '=';
             $len = strlen($price) - 1;
-            $price = substr($price,1,$len);
+            $price = (int)substr($price,1,$len);
             
             // >= price or = city or = rate
-            $rooms = DB::table('rooms')
+            if($rate == [''] and $city != ['']){
+                $rooms = DB::table('rooms')
                     ->join('hotels','rooms.hotel_id','=','hotels.id')
-                    ->where('price',$operator,$price)
+                    ->where('price',$operator,$price,'and')
+                    ->whereIn('city',$city,'and')
+                    ->orderBy('hotel_star','desc')
+                    ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
+            }elseif($rate != [''] and $city == ['']){
+                $rooms = DB::table('rooms')
+                    ->join('hotels','rooms.hotel_id','=','hotels.id')
+                    ->where('price',$operator,$price,'and')
+                    ->whereIn('hotel_star',$rate)
                     ->orderBy('hotel_star')
-                    ->get();
-            // $avgHotels = [];
-            // foreach ($rooms as $room) {
-            //     $avgHotel = $hotel->rooms->avg('price');
-            //     array_push($avgHotels,$avgHotel);
-            // }
+                    ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
+            }elseif($rate == [''] and $city == ['']){
+                $rooms = DB::table('rooms','desc')
+                    ->join('hotels','rooms.hotel_id','=','hotels.id')
+                    ->where('price',$operator,$price,'and')
+                    ->orderBy('hotel_star')
+                    ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
+            }else{
+                $rooms = DB::table('rooms')
+                    ->join('hotels','rooms.hotel_id','=','hotels.id')
+                    ->where('price',$operator,$price,'and')
+                    ->whereIn('city',$city,'and')
+                    ->whereIn('hotel_star',$rate)
+                    ->orderBy('hotel_star','desc')
+                    ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
+            }
         } else {
             $rooms = DB::table('rooms')
                     ->join('hotels','rooms.hotel_id','=','hotels.id')
-                    ->orderBy('hotel_star')
-                    ->get();
-            // $avgHotels = [];
-            // foreach ($hotels as $hotel) {
-            //     $avgHotel = $hotel->rooms->avg('price');
-            //     array_push($avgHotels,$avgHotel);
-            // }
+                    ->where('price',$operator,$price)
+                    ->orderBy('hotel_star','desc')
+                    ->get(['hotels.name AS hotel_name', 'rooms.*']);
         }
-        
-        // $data = ['hotels' => $rooms,
-        //         'avgHotels' => $avgHotels
-    // ];
         return $rooms;
     }
 

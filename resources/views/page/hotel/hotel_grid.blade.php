@@ -224,7 +224,7 @@
                     }
                 });
                 request.done(function(jsonResult) {
-                    console.log( jsonResult.hotels );
+                    // console.log( jsonResult.hotels );
                     // dataSource = jsonResult;
                     $('#contai11').pagination({
                         dataSource: jsonResult.hotels,
@@ -232,7 +232,7 @@
                         showPrevious: false,
                         showNext: false,
                         callback: function(data, pagination) {
-                            console.log(data);
+                            // console.log(data);
                             // console.log(pagination);
                             var html = template(data);
                             // console.log(html);
@@ -255,8 +255,8 @@
                     arrPrice.push(data[index].rooms[i].price);
                 }
                 var hotelAVG = avg(arrPrice);
-                console.log(arrPrice);
-                console.log(hotelAVG);
+                // console.log(arrPrice);
+                // console.log(hotelAVG);
                 // template method of yourself
                 html += '<div class="col-sm-6 col-md-6 col-lg-4">'
                         +   '<div class="grid-block main-block h-grid-block">'
