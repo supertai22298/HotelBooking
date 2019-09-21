@@ -109,7 +109,7 @@
                     }
                 }
 
-                console.log(roles);
+                // console.log(roles);
                 // console.log(roles);
                 $.ajaxSetup({
                     headers: {
@@ -124,22 +124,22 @@
                     }
                 });
                 request.done(function(jsonResult) {
-                    console.log( jsonResult );
-                    // dataSource = jsonResult;
+                    // console.log( jsonResult );
+                    dataSource = jsonResult;
                     //phaan trang
-                    // $('#contai11').pagination({
-                    //     dataSource: jsonResult,
-                    //     pageSize: 6,
-                    //     showPrevious: false,
-                    //     showNext: false,
-                    //     callback: function(data, pagination) {
-                    //         // console.log(data);
-                    //         // console.log(pagination);
-                    //         // var html = template(data);
-                    //         // console.log(html);
-                    //         // dataContainer.html(html);
-                    //     }
-                    // })
+                    $('#contai11').pagination({
+                        dataSource: jsonResult,
+                        pageSize: 6,
+                        showPrevious: false,
+                        showNext: false,
+                        callback: function(data, pagination) {
+                            // console.log(data);
+                            // console.log(pagination);
+                            var html = template(data);
+                            // console.log(html);
+                            dataContainer.html(html);
+                        }
+                    })
                 });
                 request.fail(function(jqXHR) {
                     console.log( jqXHR.responseJSON.errors );
@@ -161,7 +161,7 @@
                         +   '</a>'
                         +    '<div class="main-mask"><ul class="list-unstyled list-inline offer-price-1">'
                         +    '<li class="price">'
-                        +    Math.round(hotelAVG)
+                        +    item['price']
                         +   '<span class="divider">|</span><span class="pkg">1 Đêm</span></li>'
                         +    '</ul>'
                         +    '</div><!-- end main-mask -->'
@@ -173,7 +173,7 @@
                             {html +='<span><i class="fa fa-star lightgrey"></i></span>'};
                 html += '</div><!-- end rating --><h3 class="block-title"><a href="hotel-detail-left-sidebar.html">'
                         +    item['name'] + '</a></h3>'
-                        +   '<p class="block-minor">Từ:' + item['city'] + '</p>'
+                        +   '<p class="block-minor">Khách sạn:' + item['hotel_name'] + '</p>'
                         +   '<div class="grid-btn">'
                         +    '<a href="' + '/room/detail/' + item['id'] + '" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>'
                         +    '</div><!-- end grid-btn -->'
