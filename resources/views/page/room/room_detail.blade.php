@@ -106,11 +106,11 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
+                                    <input type="date" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
+                                    <input type="date" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		
                                     </div>
                                     
                                     <div class="row">
@@ -261,7 +261,7 @@
                                         </div><!-- end room-img -->
                                         
                                         <div class="list-info room-info">
-                                            <h3 class="block-title"><a href="#">{{ $room->name }}</a></h3>
+                                            <h3 class="block-title"><a href="{{ route('get-page-room-roomDetail', ['id' => $room->id]) }}">{{ $room->name }}</a></h3>
                                             <p class="block-minor">{{ $room->room_type->room_type }}</p>
                                             <p>
                                                 @if ($room->description)

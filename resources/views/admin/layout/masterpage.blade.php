@@ -7,7 +7,32 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     
     <title>@yield('title')</title>
-    
+    <script src="https://js.pusher.com/5.0/pusher.min.js"></script>
+
+    <script>
+        // Enable pusher logging - don't include this in production
+        //Pusher.logToConsole = true;
+      
+        var count = ({{ count($notifications) }});
+        var pusher = new Pusher('8fe74877e244daa818ac', {
+            cluster: 'ap1',
+            forceTLS: true
+        });
+
+        var channel = pusher.subscribe('test-channel');
+        channel.bind('test-event', function(data) {
+            alert(JSON.stringify(data));
+            count += 1;
+            document.querySelector('#count').innerHTML = count;
+        });
+        
+        var channel2 = pusher.subscribe('test2-channel');
+        channel2.bind('test2-event', function(data) {
+            alert(JSON.stringify(data));
+        });
+
+    </script>
+
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <base href={{asset('')}}>
@@ -37,6 +62,8 @@
 <body>
     <!-- Left Panel -->
     @include('admin.layout.menu')
+   
+
     <!-- /#left-panel -->
     <!-- Right Panel -->
     <div id="right-panel" class="right-panel">
@@ -58,6 +85,7 @@
         <!-- Footer -->
         @include('admin.layout.footer')
         <!-- /.site-footer -->
+       
     </div>
     <!-- /#right-panel -->
 
@@ -79,8 +107,8 @@
     <script src="admin_page_asset/js/jquery.flot.pie.min.js"></script>
     <script src="admin_page_asset/js/jquery.flot.spline.min.js"></script>
 
-    <script src="admin_page_asset/js/jquery.simpleWeather.min.js"></script>
-    <script src="admin_page_asset/js/init/weather-init.js"></script>
+    {{-- <script src="admin_page_asset/js/jquery.simpleWeather.min.js"></script> --}}
+    {{-- <script src="admin_page_asset/js/init/weather-init.js"></script> --}}
 
     <script src="admin_page_asset/js/moment.min.js"></script>
     <script src="admin_page_asset/js/fullcalendar.min.js"></script>

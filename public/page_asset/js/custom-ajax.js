@@ -1,4 +1,5 @@
 $(document).ready(function() {
+    
     $.ajaxSetup({
         headers: {
             "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
@@ -70,4 +71,36 @@ $(document).ready(function() {
             });
         }
     });
+
+    //search
+    $("form#frmSearch").submit(function(e) {
+        e.preventDefault();
+    });
+    $("button#btnSearch").click(function(e) {
+        var search_key = $('input[name="search_key"]').val();
+     
+        
+        if(search_key == ''){
+            $('div#suggest-result').html('Vui lòng không để trống').removeClass('d-none').addClass('alert alert-danger');
+        }else{
+            $.ajax({
+                type: "POST",
+                url: "/search",
+                data: {
+                    search_key: search_key,
+                },
+
+                dataType: "json",
+                success: function(response) {
+                    console.log(response);
+                    $('div#suggest-result').html(response.data).removeClass('d-none').addClass('alert alert-success');
+                },
+                error: function(error){
+                    console.log(error);
+                }
+
+            });
+        }
+    });
+
 });

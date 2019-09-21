@@ -38,8 +38,8 @@
                         </div>
                         <li><a href="{{route('get-page-userProfile-view')}}"><span><i class="fa fa-lock"></i></span>Xin chào {{Auth::user()->username}}</a></li>
                         @else
-                        <li><a href="{{route('get-login')}}"><span><i class="fa fa-lock"></i></span>Đăng Nhập</a></li>
-                        <li><a href="{{route('get-page-registration-view')}}"><span><i class="fa fa-plus"></i></span>Đăng Ký</a></li>
+                        <li><a href="{{ route('get-login')}}"><span><i class="fa fa-lock"></i></span>Đăng Nhập</a></li>
+                        <li><a href="{{ route('get-page-registration-view') }}"><span><i class="fa fa-plus"></i></span>Đăng Ký</a></li>
                         @endif
 
                     </ul>

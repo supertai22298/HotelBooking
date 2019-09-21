@@ -16,29 +16,31 @@
                       <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                   </form>
               </div>
+            @if (count($notifications) > 0)
 
-              <div class="dropdown for-notification">
+              <div class="dropdown for-notification ">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-bell"></i>
-                      <span class="count bg-danger">3</span>
+                        <span class="count bg-danger" id="count">{{ count($notifications) }}</span>
                   </button>
-                  <div class="dropdown-menu" aria-labelledby="notification">
-                      <p class="red">You have 3 Notification</p>
-                      <a class="dropdown-item media" href="#">
+                  <div class="dropdown-menu" aria-labelledby="notification" id="thongBao">
+                      <p class="red">Bạn có {{ count($notifications) }} thông báo</p>
+                      @foreach ($notifications as $noti)
+                      <a class="dropdown-item media" href="
+                        @if ($noti->notifiable_type == 'App\Message')
+                            {{ route('get-contact-view') }}
+                        @elseif($noti->notifiable_type == 'App\User')
+                            {{ route('get-user-view') }}
+                        @endif
+                      ">
                           <i class="fa fa-check"></i>
-                          <p>Server #1 overloaded.</p>
+                          <p>{{ json_decode($noti->data)->subject }}</p>
                       </a>
-                      <a class="dropdown-item media" href="#">
-                          <i class="fa fa-info"></i>
-                          <p>Server #2 overloaded.</p>
-                      </a>
-                      <a class="dropdown-item media" href="#">
-                          <i class="fa fa-warning"></i>
-                          <p>Server #3 overloaded.</p>
-                      </a>
+                      @endforeach
+
                   </div>
               </div>
-
+            @endif
               <div class="dropdown for-message">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="message" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i class="fa fa-envelope"></i>

@@ -12,6 +12,7 @@ use App\Hotel;
 use App\HotelUtility;
 use App\HotelUtillity;
 use App\Message;
+use App\Notifications\TestNotification;
 use App\Payment;
 use App\PaymentStatus;
 use App\PaymentType;
@@ -56,27 +57,41 @@ class PageRoomController extends Controller
         $payment= new Payment();
         $payment->booking_id=$booking->id;
         $payment->payment_status_id= 2;
-        try {
-            $booking->customer_name = $request->first_name." ".$request->last_name;
-            $booking->customer_phone = $request->phone_number;
-            $booking->customer_email = $request->email;
-            $booking->user_id     = Auth::user()->id ;
-            $booking->room_id    = $room->id;
-            $booking->date_from = $request->date_from;
-            $booking->date_to = $request->date_to;
-            $booking->booking_status_id = 2;
-            $payment->payment_type_id=$request->payment;
-            $booking->description = "Số lượng phòng khách đặt: ".$request->room_num."\n".
-                                    "Số lượng giường yêu cầu: ".$request->bed_num. "\n".
-                                    "Số người lớn:".$request->adult_num."\n". 
-                                    "Số trẻ em: ".$request->kid_num."\n". 
-                                    "Yêu cầu của khách: ".$request->noti."\n";
 
-            $booking->save();
-        } catch (Exception $e) {
-            return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
+        if (Auth::check()) {
+            try {
+                $booking->customer_name = $request->first_name." ".$request->last_name;
+                $booking->customer_phone = $request->phone_number;
+                $booking->customer_email = $request->email;
+                $booking->user_id     = Auth::user()->id ;
+                $booking->room_id    = $room->id;
+                $booking->date_from = $request->date_from;
+                $booking->date_to = $request->date_to;
+                $booking->booking_status_id = 2;
+                $payment->payment_type_id=$request->payment;
+                $booking->description = "Số lượng phòng khách đặt: ".$request->room_num."\n".
+                                        "Số lượng giường yêu cầu: ".$request->bed_num. "\n".
+                                        "Số người lớn:".$request->adult_num."\n". 
+                                        "Số trẻ em: ".$request->kid_num."\n". 
+                                        "Yêu cầu của khách: ".$request->noti."\n";
+    
+                $booking->save();
+                   //tạo key subject
+                $booking->subject = "Khách hàng vừa book";
+
+                //lưu thông báo booking
+                $booking->notify(new TestNotification($booking));
+            } catch (Exception $e) {
+                return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
+            }
+            return redirect()->back()->with('success', 'Đặt thành công');
+        }else {
+            return redirect('/login')->with('msg','Bạn cần đăng nhập để đặt phòng');
+            
         }
-        return redirect()->back()->with('success', 'Đặt thành công');
+      
+
+        
 
     }
 }

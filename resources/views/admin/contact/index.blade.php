@@ -59,6 +59,7 @@
                             <th>Tên</th>
                             <th>Email</th>
                             <th>Tiêu đề</th>
+                            <th>Tình trạng</th>
                             <th style="width: 159px !important;">Chức Năng</th>
                         </tr>
                     </thead>
@@ -69,6 +70,13 @@
                         <td>{{$contact->name}}</td>
                         <td>{{$contact->email}}</td>
                         <td>{{$contact->subject}}</td>
+                        <td>
+                            @if ($contact->read_at == null)
+                                <p class="text text-danger">Chưa đọc</p>
+                            @else 
+                                <p class="text text-success">Đã đọc</p>
+                            @endif
+                        </td>
                           <td>
                                 <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
                                 <a class="btn btn-danger btn-sm mr-2" href="" data-toggle="modal" data-target="#myModalDel-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xóa</a>
@@ -111,9 +119,18 @@
                                             <hr>
                                             <p class="text-body">{{$contact->message}}</p>
                                         </div>
+                                        <div>
+                                            <h6>Tình trạng:</h6>
+                                            @if ($contact->read_at == null)
+                                                <p class="text text-danger">Chưa đọc</p>
+                                            @else 
+                                                <p class="text text-success">Đã đọc</p>
+                                            @endif
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
-                                      <a class="btn btn-primary" href="{{ route('get-contact-replyEmail', ['id' => $contact->id]) }}">Trả lời(nghiên cứu)</a>
+                                        <button class="btn btn-warning">Đánh dấu đã đọc</button>
+                                      <a class="btn btn-primary" href="{{ route('get-contact-replyEmail', ['id' => $contact->id]) }}">Trả lời</a>
                                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     </div>
                                   </div>
