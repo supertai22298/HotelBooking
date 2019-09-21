@@ -52,11 +52,11 @@
                             <li class="custom-radio"><input type="radio" checked value=">0" id="0" name="radio"/>
                             <label for="1000"><span></span>Tất cả</label></li>
                             <li class="custom-radio"><input type="radio" value="<1000000" id="1000" name="radio"/>
-                            <label for="1000"><span></span>< 1000.000</label></li>
+                            <label for="1000"><span></span><= 1000.000</label></li>
                             <li class="custom-radio"><input type="radio" value="<2000000" id="2000" name="radio"/>
-                            <label for="2000"><span></span>< 2000.000</label></li>
+                            <label for="2000"><span></span><= 2000.000</label></li>
                             <li class="custom-radio"><input type="radio" value=">2000000" id="2001" name="radio"/>
-                            <label for="2001"><span></span>> 2000.000</label></li>
+                            <label for="2001"><span></span>>= 2000.000</label></li>
                         </ul>
                     </div><!-- end panel-body -->
                 </div><!-- end panel-collapse -->
