@@ -32,6 +32,7 @@ class CreateUsersTable extends Migration
             $table->text('description')->nullable();
             $table->integer('active')->default(1);
             $table->integer('role')->default(0);
+            $table->string('verify_code');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

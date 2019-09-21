@@ -3,7 +3,9 @@
 @section('title')
    Danh sách khách sạn
 @endsection
-
+@section('css')
+    <link rel="stylesheet" href="page_asset/css/pagination.css">
+@endsection
 @section('content')
         
         
@@ -32,93 +34,53 @@
                     <div class="col-xs-12 col-sm-12 col-md-3 side-bar left-side-bar">
                                     
                         <div class="side-bar-block filter-block">
-                            <h3>Sort By Filter</h3>
-                            <p>Find your dream flights today</p>
+                        <h3>Tìm theo bộ lọc</h3>
+                        <p>Tìm kiếm khách sạn trong mơ ngay</p>
+                        
+                        <div class="panels-group">
                             
-                            <div class="panels-group">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">					
+                                    <a href="#panel-1" data-toggle="collapse" >Địa điểm<span><i class="fa fa-angle-down"></i></span></a>
+                                </div><!-- end panel-heading -->
                                 
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">					
-                                        <a href="#panel-1" data-toggle="collapse" >Select Category <span><i class="fa fa-angle-down"></i></span></a>
-                                    </div><!-- end panel-heading -->
-                                    
-                                    <div id="panel-1" class="panel-collapse collapse">
-                                        <div class="panel-body text-left">
-                                            <ul class="list-unstyled">
-                                                <li class="custom-check"><input type="checkbox" id="check01" name="checkbox"/>
-                                                <label for="check01"><span><i class="fa fa-check"></i></span>All</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check02" name="checkbox"/>
-                                                <label for="check02"><span><i class="fa fa-check"></i></span>Apartment</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check03" name="checkbox"/>
-                                                <label for="check03"><span><i class="fa fa-check"></i></span>Bed & Breakfast</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check04" name="checkbox"/>
-                                                <label for="check04"><span><i class="fa fa-check"></i></span>Guest House</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check05" name="checkbox"/>
-                                                <label for="check05"><span><i class="fa fa-check"></i></span>Hotels</label></li>				
-                                                <li class="custom-check"><input type="checkbox" id="check06" name="checkbox"/>
-                                                <label for="check06"><span><i class="fa fa-check"></i></span>Residence</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check07" name="checkbox"/>
-                                                <label for="check07"><span><i class="fa fa-check"></i></span>Resorts</label></li>
-                                            </ul>
-                                        </div><!-- end panel-body -->
-                                    </div><!-- end panel-collapse -->
-                                </div><!-- end panel-default -->
-                                
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">					
-                                        <a href="#panel-2" data-toggle="collapse" >Facility<span><i class="fa fa-angle-down"></i></span></a>
-                                    </div><!-- end panel-heading -->
-                                    
-                                    <div id="panel-2" class="panel-collapse collapse">
-                                        <div class="panel-body text-left">
-                                            <ul class="list-unstyled">
-                                                <li class="custom-check"><input type="checkbox" id="check08" name="checkbox"/>
-                                                <label for="check08"><span><i class="fa fa-check"></i></span>Air Conditioning</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check09" name="checkbox"/>
-                                                <label for="check09"><span><i class="fa fa-check"></i></span>Bathroom</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check10" name="checkbox"/>
-                                                <label for="check10"><span><i class="fa fa-check"></i></span>Cable Tv</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check11" name="checkbox"/>
-                                                <label for="check11"><span><i class="fa fa-check"></i></span>Parking</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check12" name="checkbox"/>
-                                                <label for="check12"><span><i class="fa fa-check"></i></span>Pool</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check13" name="checkbox"/>
-                                                <label for="check13"><span><i class="fa fa-check"></i></span>Wi-fi</label></li>
-                                            </ul>
-                                        </div><!-- end panel-body -->
-                                    </div><!-- end panel-collapse -->
-                                </div><!-- end panel-default -->
-                                
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">					
-                                        <a href="#panel-3" data-toggle="collapse" >Rating <span><i class="fa fa-angle-down"></i></span></a>
-                                    </div><!-- end panel-heading -->
-                                    
-                                    <div id="panel-3" class="panel-collapse collapse">
-                                        <div class="panel-body text-left">
-                                            <ul class="list-unstyled">
-                                                <li class="custom-check"><input type="checkbox" id="check14" name="checkbox"/>
-                                                <label for="check14"><span><i class="fa fa-check"></i></span>1 Star</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check15" name="checkbox"/>
-                                                <label for="check15"><span><i class="fa fa-check"></i></span>2 Star</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check16" name="checkbox"/>
-                                                <label for="check16"><span><i class="fa fa-check"></i></span>3 Star</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check17" name="checkbox"/>
-                                                <label for="check17"><span><i class="fa fa-check"></i></span>4 Star</label></li>
-                                                <li class="custom-check"><input type="checkbox" id="check18" name="checkbox"/>
-                                                <label for="check18"><span><i class="fa fa-check"></i></span>5 Star</label></li>
-                                            </ul>
-                                        </div><!-- end panel-body -->
-                                    </div><!-- end panel-collapse -->
-                                </div><!-- end panel-default -->
-                                
-                            </div><!-- end panel-group -->
+                                <div id="panel-1" class="panel-collapse collapse">
+                                    <div class="panel-body text-left">
+                                        <ul class="list-unstyled my_check role_city">
+                                            <li class="custom-check"><input type="checkbox" value="all" id="check01" name="checkAll"/>
+                                            <label for="check01"><span><i class="fa fa-check"></i></span>Tất cả</label></li>
+                                            @foreach ($sorts['citys']  as $city)
+                                                <li class="custom-check"><input type="checkbox" value="{{$city['city']}}" id="{{$city['city']}}" name="checkbox"/>
+                                                <label for="{{$city['city']}}"><span><i class="fa fa-check"></i></span>{{$city['city']}}</label></li>
+                                            @endforeach
+                                        </ul>
+                                    </div><!-- end panel-body -->
+                                </div><!-- end panel-collapse -->
+                            </div><!-- end panel-default -->
                             
-                            <div class="price-slider">
-                                <p><input type="text" id="amount" readonly></p>
-                                <div id="slider-range"></div>
-                            </div><!-- end price-slider -->
-                        </div><!-- end side-bar-block -->
+                            
+                            <div class="panel panel-default">
+                                <div class="panel-heading">					
+                                    <a href="#panel-3" data-toggle="collapse" >Đánh giá <span><i class="fa fa-angle-down"></i></span></a>
+                                </div><!-- end panel-heading -->
+                                
+                                <div id="panel-3" class="panel-collapse collapse">
+                                    <div class="panel-body text-left">
+                                        <ul class="list-unstyled my_check role_rate">
+                                            @foreach ($sorts['stars']  as $star)
+                                            <li class="custom-check"><input value="{{$star['hotel_star']}}" type="checkbox" id="{{$star['hotel_star']}}" name="checkbox"/>
+                                                <label for="{{$star['hotel_star']}}"><span><i class="fa fa-check"></i></span>{{$star['hotel_star']}} <i style="color: #faa61a" class="fa fa-star"></i></label></li>
+                                                @endforeach
+                                            </ul>
+                                        </div><!-- end panel-body -->
+                                    </div><!-- end panel-collapse -->
+                                </div><!-- end panel-default -->
+                        </div><!-- end panel-group -->
+                        <div class="price-slider">
+                            <p><input type="text" id="amount" readonly></p>
+                            <div id="slider-range"></div>
+                        </div><!-- end price-slider -->
+                    </div><!-- end side-bar-block -->
                         
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-12">
@@ -152,8 +114,8 @@
                         </div><!-- end row -->
                     </div><!-- end columns -->
                     
-                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side">
-                        <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side" id="contai11">
+                        <div class="row" id="contai">
                             @foreach ($hotels as $hotel)
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block h-grid-block">
@@ -187,10 +149,8 @@
                                     </div><!-- end h-grid-block -->
                                 </div><!-- end columns -->
                             @endforeach
-                            
                         </div><!-- end row -->
-                        
-                        <div class="row text-center">
+                        <div id="oldPanigation" class="row text-center">
                             {{ $hotels->links() }}
                         </div><!-- end pages -->
                     </div><!-- end columns -->
@@ -200,16 +160,151 @@
         </div><!-- end hotel-grid -->
     </section><!-- end innerpage-wrapper -->
     
-    
     <!--======================= BEST FEATURES =====================-->
     @include('page.components.best_features')
     
     
     <!--========================= NEWSLETTER-1 ==========================-->
     @include('page.components.newsletter_1')
-    b:sec
 @endsection
 @section('javascript')
+<script src="page_asset/js/pagination.min.js"></script>
+    <script>
+        var roles = {
+            rate : [],
+            city : [],
+            price : [],
+        };
+        // var dataSource;
+        var dataContainer = $('#contai');
+
+        function removeValue(arr,value){
+            var index = arr.indexOf(value);
+            if(index > -1){
+                arr.splice(index,1);
+            }
+        }
+
+        $('.my_check').click(function(ev){
+            $('#oldPanigation').fadeOut(0);
+            if(ev.target.value) {
+
+                var isChecked = ev.target.checked;
+                var value = ev.target.value;
+
+                if (isChecked == true) {
+                    if ($(this).hasClass('role_rate')) {
+                        roles.rate.push(value);   
+                    } else if($(this).hasClass('role_price')) {
+                        roles.role_price.push(value);
+                    }else{
+                        roles.city.push(value);
+                    }
+                } else {
+                    if ($(this).hasClass('role_rate')) {
+                        removeValue(roles.rate,value);
+                    } else if($(this).hasClass('role_price')) {
+                        removeValue(roles.role_price,value);
+                    }else{
+                        removeValue(roles.city,value);
+                    }
+                }
+
+                // console.log(roles);
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                request = $.ajax({
+                    url: "{{route('get-page-sort-ajax')}}",
+                    method: 'GET',
+                    data: {
+                        roles: roles,
+                    }
+                });
+                request.done(function(jsonResult) {
+                    console.log( jsonResult.hotels );
+                    // dataSource = jsonResult;
+                    $('#contai11').pagination({
+                        dataSource: jsonResult.hotels,
+                        pageSize: 6,
+                        showPrevious: false,
+                        showNext: false,
+                        callback: function(data, pagination) {
+                            console.log(data);
+                            // console.log(pagination);
+                            var html = template(data);
+                            // console.log(html);
+                            dataContainer.html(html);
+                        }
+                    })
+                });
+                request.fail(function(jqXHR) {
+                    console.log( jqXHR.responseJSON.errors );
+                });
+
+            }
+        });
+        function template(data){
+            var html = '';
+            $.each(data, function (index, item) {
+                var arrPrice = [];
+                // console.log(data[index].rooms);
+                for (let i = 0; i < data[index].rooms.length; i++) {
+                    arrPrice.push(data[index].rooms[i].price);
+                }
+                var hotelAVG = avg(arrPrice);
+                console.log(arrPrice);
+                console.log(hotelAVG);
+                // template method of yourself
+                html += '<div class="col-sm-6 col-md-6 col-lg-4">'
+                        +   '<div class="grid-block main-block h-grid-block">'
+                        +   '<div class="main-img h-grid-img">'
+                        +   ' <a href="' + '/hotel/detail/' + item['id'] + '">'
+                        +   '<img src="'
+                        +   '{{ asset("upload/images") }}'+ '/' + item['image']
+                        +   '" class="img-responsive" alt="hotel-img" style="width: 264px; height: 190px;" />'
+                        +   '</a>'
+                        +    '<div class="main-mask"><ul class="list-unstyled list-inline offer-price-1">'
+                        +    '<li class="price">'
+                        +    Math.round(hotelAVG)
+                        +   '<span class="divider">|</span><span class="pkg">1 Đêm</span></li>'
+                        +    '</ul>'
+                        +    '</div><!-- end main-mask -->'
+                        +    '</div><!-- end h-grid-img --><div class="block-info h-grid-info"><div class="rating">'
+                        ;       
+                            for (i = 0; i < item['hotel_star']; i++)
+                            {html +='<span><i class="fa fa-star orange"></i></span>'};
+                            for (i = 0; i < (5 -item['hotel_star']); i++)
+                            {html +='<span><i class="fa fa-star lightgrey"></i></span>'};
+                html += '</div><!-- end rating --><h3 class="block-title"><a href="hotel-detail-left-sidebar.html">'
+                        +    item['name'] + '</a></h3>'
+                        +   '<p class="block-minor">Từ:' + item['city'] + '</p>'
+                        +   '<div class="grid-btn">'
+                        +    '<a href="' + '/hotel/detail/' + item['id'] + '" class="btn btn-orange btn-block btn-lg">Xem chi tiết</a>'
+                        +    '</div><!-- end grid-btn -->'
+                        +   '</div><!-- end h-grid-info -->'
+                        +   '</div><!-- end h-grid-block -->'
+                        +   '</div><!-- end columns -->';
+                    });
+            return html;
+        };
+
+        function avg(arr) {
+            if (arr.length > 0) {
+                var sum = arr.map( function(elt){ // assure the value can be converted into an integer
+                    return /^\d+$/.test(elt) ? parseInt(elt) : 0; 
+                    })
+                    .reduce( function(a,b){ // sum all resulting numbers
+                    return a+b
+                    });
+                return sum / arr.length;
+            } else {
+                return 'dasdas';
+            }
+        }
+    </script>
     <script>
         $(document).ready(function(){
             $('.home-status').removeClass('active');

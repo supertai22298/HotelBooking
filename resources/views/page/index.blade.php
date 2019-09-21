@@ -52,21 +52,21 @@ main-homepage
     
                         <div class="tab-content">
                             <div id="hotels" class="tab-pane in active">
-                                <form>
+                                <form action="{{route('get-page-searchFilter-store')}}" method="GET">
+                                    {{-- @csrf --}}
                                     <div class="row">
                                         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-5">
                                             <div class="row">
-                                            
                                                 <div class="col-xs-12 col-sm-6">
                                                     <div class="form-group left-icon">
-                                                        <input type="text" class="form-control dpd1" placeholder="Ngày đến" >
+                                                        <input name="date_from" type="text" class="form-control dpd1" placeholder="Ngày đến" >
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
                                                 </div><!-- end columns -->
                                                 
                                                 <div class="col-xs-12 col-sm-6">
                                                     <div class="form-group left-icon">
-                                                        <input type="text" class="form-control dpd2" placeholder="Ngày đi" >
+                                                        <input name="date_to" type="text" class="form-control dpd2" placeholder="Ngày đi" >
                                                         <i class="fa fa-calendar"></i>
                                                     </div>
                                                 </div><!-- end columns -->
@@ -79,11 +79,11 @@ main-homepage
                                             
                                                 <div class="col-xs-12 col-sm-12 col-md-4">
                                                     <div class="form-group right-icon">
-                                                        <select class="form-control">
-                                                            <option selected>Phòng</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
+                                                        <select name="room_type" class="form-control">
+                                                            <option value="-1">Phòng</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
                                                         </select>
                                                         <i class="fa fa-angle-down"></i>
                                                     </div>
@@ -91,11 +91,11 @@ main-homepage
                                                 
                                                 <div class="col-xs-6 col-sm-6 col-md-4">
                                                     <div class="form-group right-icon">
-                                                        <select class="form-control">
-                                                            <option selected>Người lớn</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
+                                                        <select name="adult" class="form-control">
+                                                            <option value="-1">Người lớn</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
                                                         </select>
                                                         <i class="fa fa-angle-down"></i>
                                                     </div>
@@ -103,11 +103,11 @@ main-homepage
                                                 
                                                 <div class="col-xs-6 col-sm-6 col-md-4">
                                                     <div class="form-group right-icon">
-                                                        <select class="form-control">
-                                                            <option selected>Trẻ em</option>
-                                                            <option>0</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
+                                                        <select name="kid" class="form-control">
+                                                            <option value="-1">Trẻ em</option>
+                                                            <option value="0">0</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
                                                         </select>
                                                         <i class="fa fa-angle-down"></i>
                                                     </div>
@@ -117,7 +117,7 @@ main-homepage
                                         </div><!-- end columns -->
                                         
                                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 search-btn">
-                                            <button class="btn btn-orange">Tìm phòng</button>
+                                            <button type="submit" class="btn btn-orange">Tìm phòng</button>
                                         </div><!-- end columns -->
                                         
                                     </div><!-- end row -->

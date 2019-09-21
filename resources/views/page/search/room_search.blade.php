@@ -3,9 +3,7 @@
 @section('title')
    Danh sách phòng
 @endsection
-@section('css')
-    <link rel="stylesheet" href="page_asset/css/pagination.css">
-@endsection
+
 @section('content')
         
         
@@ -67,8 +65,8 @@
                         </div><!-- end row -->
                     </div><!-- end columns -->
                     
-                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side" id="contai11">
-                        <div class="row" id="contai">
+                    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 content-side">
+                        <div class="row">
                             @foreach ($rooms as $room)
                                 <div class="col-sm-6 col-md-6 col-lg-4">
                                     <div class="grid-block main-block h-grid-block">
@@ -105,7 +103,7 @@
                             
                         </div><!-- end row -->
                         
-                        <div id="oldPanigation" class="row text-center">
+                        <div class="row text-center">
                             {{ $rooms->links() }}
                         </div><!-- end pages -->
                     </div><!-- end columns -->
