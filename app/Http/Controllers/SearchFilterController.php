@@ -48,7 +48,7 @@ class SearchFilterController extends Controller
             }
             
         } else {
-            $hotels = Hotel::all();
+            $hotels = Hotel::all()->orderBy('hotel_star','desc');
             $avgHotels = [];
             foreach ($hotels as $hotel) {
                 $avgHotel = $hotel->rooms->avg('price');
@@ -87,13 +87,13 @@ class SearchFilterController extends Controller
                     ->join('hotels','rooms.hotel_id','=','hotels.id')
                     ->where('price',$operator,$price,'and')
                     ->whereIn('hotel_star',$rate)
-                    ->orderBy('hotel_star')
+                    ->orderBy('hotel_star','desc')
                     ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
             }elseif($rate == [''] and $city == ['']){
-                $rooms = DB::table('rooms','desc')
+                $rooms = DB::table('rooms')
                     ->join('hotels','rooms.hotel_id','=','hotels.id')
                     ->where('price',$operator,$price,'and')
-                    ->orderBy('hotel_star')
+                    ->orderBy('hotel_star','desc')
                     ->get(['hotels.name AS hotel_name','hotels.hotel_star AS hotel_star', 'rooms.*']);
             }else{
                 $rooms = DB::table('rooms')
