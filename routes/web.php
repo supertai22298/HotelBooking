@@ -180,6 +180,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('room/{idHotel}', 'AjaxController@getRoom');
     });
+
+    Route::group(['prefix' => 'notification'], function () {
+        Route::get('bookingnoti/{id}','PageRoomController@BookingNoti')->name('get-booking-noti');
+    });
 });
 
 
