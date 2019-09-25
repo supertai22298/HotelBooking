@@ -95,11 +95,11 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_from" class="form-control dpd1" placeholder="Ngày đến" required/>                                       		<i class="fa fa-calendar"></i>
+                                    <input type="date" name="date_from" class="form-control" placeholder="Ngày đến" required/>                                       		<i class="fa fa-calendar"></i>
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="text" name="date_to" class="form-control dpd2" placeholder="Ngày đi" required/>                                       		<i class="fa fa-calendar"></i>
+                                    <input type="date" name="date_to" class="form-control" placeholder="Ngày đi" required/>                                       		<i class="fa fa-calendar"></i>
                                     </div>
                                     
                                     <div class="row">

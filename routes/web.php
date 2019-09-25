@@ -12,6 +12,7 @@
 */
 
 use App\Events\TestEvent;
+use App\Notification;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'Auth'], function () {
@@ -266,5 +267,10 @@ Route::group(['prefix' => 'errors'], function () {
     });
 });
 
+Route::get('/noti/{id}', function ($id) {
+    
+    $noti = Notification::withUuid($id);
+    dd($noti);
+});
 
 

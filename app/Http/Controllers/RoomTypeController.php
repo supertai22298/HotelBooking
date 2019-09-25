@@ -17,7 +17,7 @@ class RoomTypeController extends Controller
      */
     public function view()
     {
-        $roomTypes = RoomType::all();
+        $roomTypes = RoomType::orderBy('created_at', 'desc')->get();
         return view('admin.room_type.index', ['roomTypes' => $roomTypes]);
     }
 

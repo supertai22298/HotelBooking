@@ -14,7 +14,7 @@ class HotelController extends Controller
      */
     public function view()
     {
-        $hotels = Hotel::all();
+        $hotels = Hotel::orderBy('created_at', 'desc')->get();
         return view('admin.hotel.index', ['hotels' => $hotels]);
     }
 

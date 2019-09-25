@@ -15,7 +15,7 @@ class RoomStatusController extends Controller
      */
     public function view()
     {
-        $roomStatuses = RoomStatus::all();
+        $roomStatuses = RoomStatus::orderBy('created_at', 'desc')->get();
         return view('admin.room_status.index', ['roomStatuses' => $roomStatuses]);
     }
 

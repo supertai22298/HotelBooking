@@ -28,9 +28,9 @@
                       @foreach ($notifications as $noti)
                       <a class="dropdown-item media" href="
                         @if ($noti->notifiable_type == 'App\Message')
-                            {{ route('get-contact-view') }}
+                            /noti/{{ $noti->id }}
                         @elseif($noti->notifiable_type == 'App\User')
-                            {{ route('get-user-view') }}
+                            /noti/{{ $noti->id }}
                         @endif
                       ">
                           <i class="fa fa-check"></i>
