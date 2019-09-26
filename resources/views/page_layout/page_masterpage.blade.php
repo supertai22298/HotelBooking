@@ -141,11 +141,6 @@
 <script src="page_asset/js/custom-ajax.js"></script>
 <!-- Page Scripts Ends -->
 @yield('javascript')
-<script>
-  $(document).ready(function(){
-    $('.home-staus').removeClass('active');
-  });
 
-</script>
 </body>
 </html>

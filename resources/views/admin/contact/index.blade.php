@@ -129,9 +129,11 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button class="btn btn-warning">Đánh dấu đã đọc</button>
-                                      <a class="btn btn-primary" href="{{ route('get-contact-replyEmail', ['id' => $contact->id]) }}">Trả lời</a>
-                                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                                        @if ($contact->read_at == null)
+                                        <button class="btn btn-warning" id="markAsRead" data-read="{{ $contact->id }}">Đánh dấu đã đọc</button>
+                                        @endif
+                                        <a class="btn btn-primary" href="{{ route('get-contact-replyEmail', ['id' => $contact->id]) }}">Trả lời</a>
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                                     </div>
                                   </div>
                                 </div>
@@ -188,6 +190,27 @@
   <script type="text/javascript">
     $(document).ready(function() {
       $('#bootstrap-data-table-export').DataTable();
+
+      $('#markAsRead').click(function(){
+        var data = $(this).attr("data-read")
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $.ajax({
+            type: "post",
+            url: "/admin/contact/mark-as-read",
+            data: {
+                id: data
+            },
+            dataType: "json",
+            success: function (response) {
+                alert(response.result);
+            }
+        });
+      });
+    
     });
   </script>
 @endsection

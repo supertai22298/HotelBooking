@@ -6,6 +6,8 @@ use App\Http\Requests\ReplyEmailRequest;
 use App\Jobs\ReplyEmailJob;
 use App\Jobs\SendMultiMail;
 use App\Message;
+use App\Notification;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -87,5 +89,21 @@ class ContactController extends Controller
             return redirect()->back()->withErrors('noti', $e->getMessage());
         }
         return redirect()->back()->with('noti', 'Gửi email thành công');
+    }
+
+    public function markAsRead(Request $request){
+        try {
+            $message = Message::findOrFail(request('id'));
+            $message->read_at = Carbon::now();
+            $message->save();
+
+            $noti = Notification::where('notifiable_type', 'App\Message')->where('notifiable_id', $message->id)->first();
+            $noti->read_at = Carbon::now();
+            $noti->save();
+        } catch (Exception $e) {
+            return response()->json(['result' => $e->getMessage()]);
+        }
+        return response()->json(['result' => 'Thành công']);
+       
     }
 }

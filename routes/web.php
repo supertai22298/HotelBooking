@@ -70,6 +70,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
 
         Route::get('send-multi-mail', 'ContactController@sendMultiMail')->name('get-contact-sendMultiMail');
         Route::post('handle-send-multi-mail', 'ContactController@handleSendMultiMail')->name('post-contact-handleSendMultiMail');
+
+        Route::post('mark-as-read', 'ContactController@markAsRead')->name('post-contact-markAsRead');
     });
 
     Route::group(['prefix' => 'room-type'], function () {

@@ -15,13 +15,15 @@ class UserSeeder extends Seeder
             'username'=>'admin',
             'email'=>'admin@admin.admin',
             'password'=>bcrypt('admin'),
-            'role'=>1
+            'role'=>1,
+            'verify_code'=>'',
         ]);
         DB::table('users')->insert([
             'username'=>'supertai22298',
-            'email'=>'admin1@admin.admin',
+            'email'=>'supertai22298@gmail.com',
             'password'=>bcrypt('tai12345'),
-            'role'=>0
+            'role'=>1,
+            'verify_code'=>'',
         ]);
     }
 }
