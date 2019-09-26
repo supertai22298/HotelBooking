@@ -106,11 +106,11 @@
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_from" class="form-control " placeholder="Ngày đến" required min=""/>                                       		
+                                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_from" class="form-control " placeholder="Ngày đến" required/>                                       		
                                     </div>
                                     
                                     <div class="form-group">
-                                    <input type="date" name="date_to" class="form-control " placeholder="Ngày đi" required/>                                       		
+                                    <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_to" class="form-control " placeholder="Ngày đi" required/>                                       		
                                     </div>
                                     
                                     <div class="row">

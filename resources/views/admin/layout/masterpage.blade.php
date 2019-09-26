@@ -14,7 +14,7 @@
         //Pusher.logToConsole = true;
       
         var count = ({{ count($notifications) }});
-        var pusher = new Pusher('8fe74877e244daa818ac', {
+        var pusher = new Pusher('1e5465089a2ab09260bb', {
             cluster: 'ap1',
             forceTLS: true
         });
@@ -29,6 +29,13 @@
         var channel2 = pusher.subscribe('test2-channel');
         channel2.bind('test2-event', function(data) {
             alert(JSON.stringify(data));
+        });
+
+        var channel = pusher.subscribe('bookingnoti-channel');
+        channel.bind('bookingnoti-event', function(data) {
+            alert(JSON.stringify(data));
+            count += 1;
+            document.querySelector('#count').innerHTML = count;
         });
 
     </script>

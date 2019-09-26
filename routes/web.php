@@ -181,6 +181,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminLogin'], function () {
     Route::group(['prefix' => 'ajax'], function () {
         Route::get('room/{idHotel}', 'AjaxController@getRoom');
     });
+
+    Route::group(['prefix' => 'notification'], function () {
+        Route::get('bookingnoti/{id}','PageRoomController@BookingNoti')->name('get-booking-noti');
+    });
 });
 
 
@@ -193,6 +197,7 @@ Route::group(['prefix' => '/'], function () {
     Route::group(['prefix' => '/hotel'], function () {
         Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
         Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
+        Route::post('booking/{id}', 'PageHotelController@hotelBooking')->name('post-page-hotel-booking');
     });
 
 

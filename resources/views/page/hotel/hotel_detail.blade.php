@@ -33,121 +33,134 @@
                           <div class="booking-form">
                               <h3>Đặt phòng ngay</h3>
                                 <p>Nhanh chóng tận hưởng du lịch</p>
-                                
-                                <form>
-                                  <div class="form-group">
-                                    <input type="text" 
-                                        name="first_name" 
-                                        class="form-control" 
-                                        placeholder="Họ" 
-                                        required 
-                                        @if (Auth::check())
-                                            value="{{ Auth::user()->first_name }}"
-                                        @else
-                                            value="{{ old('first_name') }}"
-                                        @endif
-                                    />                                       
+                                @if (session('success'))
+                                <div class="alert alert-success">
+                                {{session('success')}}
+                                </div>
+                                @endif
+                                @if (session('errorSQL'))
+                                    <div class="alert alert-danger">
+                                    {{session('errorSQL')}}
                                     </div>
-                                    
-                                    <div class="form-group">
-                                    <input 
-                                        type="text" 
-                                        name="last_name" 
-                                        class="form-control" 
-                                        placeholder="Tên" 
-                                        required
-                                        @if (Auth::check())
-                                            value="{{ Auth::user()->last_name }}"
-                                        @else
-                                            value="{{ old('last_name') }}"
-                                        @endif   
-                                    />                                    
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                    <input 
-                                        type="email" 
-                                        name="email" 
-                                        class="form-control" 
-                                        placeholder="Email" 
-                                        required
-                                        @if (Auth::check())
-                                            value="{{ Auth::user()->email }}"
-                                        @else
-                                            value="{{ old('email') }}"
-                                        @endif
-                                    />                                       
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                    <input 
-                                        type="text" 
-                                        name="phone_number" 
-                                        class="form-control" 
-                                        placeholder="Số điện thoại" 
-                                        required
-                                         @if (Auth::check())
-                                            value="{{ Auth::user()->phone_number }}"
-                                        @else
-                                            value="{{ old('phone_number') }}"
-                                        @endif
-                                    />                                       
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                    <input type="date" name="date_from" class="form-control" placeholder="Ngày đến" required/>                                       		<i class="fa fa-calendar"></i>
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                    <input type="date" name="date_to" class="form-control" placeholder="Ngày đi" required/>                                       		<i class="fa fa-calendar"></i>
-                                    </div>
-                                    
-                                    <div class="row">
-                                      <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
-                                            <div class="form-group right-icon">
-                                                <input type="number" min="1"  name="" class="form-control" placeholder="Số phòng" required/>  
-                                            </div>
+                                @endif
+                                <form action={{ route('post-page-hotel-booking',['id' => $hotel->id])}} method="post">
+                                    @csrf
+                                      <div class="form-group">
+                                        <input type="text" 
+                                            name="first_name" 
+                                            class="form-control" 
+                                            placeholder="Họ" 
+                                            required 
+                                            @if (Auth::check())
+                                                value="{{ Auth::user()->first_name }}"
+                                            @else
+                                                value="{{ old('first_name') }}"
+                                            @endif
+                                        />                                       
                                         </div>
                                         
-                                        <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
-                                            <div class="form-group right-icon">
-                                                <input type="number" min="1" name="" class="form-control" placeholder="Giường" required/>  
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="row">
-                                      <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
-                                            <div class="form-group right-icon">
-                                                <input type="number" min="1" name="" class="form-control" placeholder="Người lớn" required/>  
-                                            </div>
+                                        <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            name="last_name" 
+                                            class="form-control" 
+                                            placeholder="Tên" 
+                                            required
+                                            @if (Auth::check())
+                                                value="{{ Auth::user()->last_name }}"
+                                            @else
+                                                value="{{ old('last_name') }}"
+                                            @endif   
+                                        />                                    
                                         </div>
                                         
-                                        <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
-                                            <div class="form-group right-icon">
-                                                <input type="number" min="0" name="" class="form-control " placeholder="Trẻ em" required/>  
-                                            </div>
+                                        <div class="form-group">
+                                        <input 
+                                            type="email" 
+                                            name="email" 
+                                            class="form-control" 
+                                            placeholder="Email" 
+                                            required
+                                            @if (Auth::check())
+                                                value="{{ Auth::user()->email }}"
+                                            @else
+                                                value="{{ old('email') }}"
+                                            @endif
+                                        />                                       
                                         </div>
-                                    </div>
-                                    
-                                    <div class="form-group right-icon">
-                                        <select class="form-control">
-                                            <option selected>Phương thức thanh toán</option>
-                                            @foreach ($paymentTypes as $paymentType)
-                                                <option value="{{ $paymentType->id }}">{{ $paymentType->payment_type }}</option>
-                                            @endforeach
+                                        
+                                        <div class="form-group">
+                                        <input 
+                                            type="text" 
+                                            name="phone_number" 
+                                            class="form-control" 
+                                            placeholder="Số điện thoại" 
+                                            required
+                                             @if (Auth::check())
+                                                value="{{ Auth::user()->phone_number }}"
+                                            @else
+                                                value="{{ old('phone_number') }}"
+                                            @endif
+                                        />                                       
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_from" class="form-control " placeholder="Ngày đến" required/>                                       		
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                        <input type="text" onfocus="(this.type='date')" onblur="(this.type='text')" name="date_to" class="form-control " placeholder="Ngày đi" required/>                                       		
+                                        </div>
+                                        
+                                        <div class="row">
+                                          <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
+                                                <div class="form-group right-icon">
+                                                    <input type="number" min="1"  name="room_num" class="form-control" placeholder="Số phòng" required/>  
+                                                </div>
+                                            </div>
                                             
-                                        </select>
-                                        <i class="fa fa-angle-down"></i>
-                                    </div>
-                                    
-                                    <div class="checkbox custom-check">
-                                      <input type="checkbox" id="check01" name="checkbox" required/>
-                                        <label for="check01"><span><i class="fa fa-check"></i></span>Bạn đồng ý với <a href="#">Điều khoản và chính sách</a></label>
-                                    </div>
-                                    
-                                    <button class="btn btn-block btn-orange">Xác nhận đặt phòng</button>
-                                </form>
+                                            <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
+                                                <div class="form-group right-icon">
+                                                    <input type="number" min="1" name="bed_num" class="form-control" placeholder="Giường" required/>  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                          <div class="col-sm-6 col-md-12 col-lg-6 no-sp-r">
+                                                <div class="form-group right-icon">
+                                                    <input type="number" min="1" name="adult_num" class="form-control" placeholder="Người lớn" required/>  
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-sm-6 col-md-12 col-lg-6 no-sp-l">    
+                                                <div class="form-group right-icon">
+                                                    <input type="number" min="0" name="kid_num" class="form-control " placeholder="Trẻ em" />  
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                                <textarea rows="4" cols="50" name="noti" class="form-control" placeholder="Ghi chú"></textarea>    
+                                        </div>
+                                        
+                                        <div class="form-group right-icon">
+                                            <select class="form-control" name="payment">
+                                                <option selected>Phương thức thanh toán</option>
+                                                @foreach ($paymentTypes as $paymentType)
+                                                    <option value="{{ $paymentType->id }}">{{ $paymentType->payment_type }}</option>
+                                                @endforeach
+                                                
+                                            </select>
+                                            <i class="fa fa-angle-down"></i>
+                                        </div>
+                                        
+                                        <div class="checkbox custom-check">
+                                          <input type="checkbox" id="check01" name="checkbox" required/>
+                                            <label for="check01"><span><i class="fa fa-check"></i></span>Bạn đồng ý với <a href="#">Điều khoản và chính sách</a></label>
+                                        </div>
+                                        
+                                        <button class="btn btn-block btn-orange">Xác nhận đặt phòng</button>
+                                    </form>
 
                             </div><!-- end booking-form -->
                         </div><!-- end side-bar-block -->
