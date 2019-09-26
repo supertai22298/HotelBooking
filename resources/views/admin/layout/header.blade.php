@@ -16,7 +16,7 @@
                       <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                   </form>
               </div>
-            @if (count($notifications) > 0)
+            @if (count($notifications) >= 0)
 
               <div class="dropdown for-notification ">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,12 +32,14 @@
                         @elseif($noti->notifiable_type == 'App\User')
                             {{ route('get-user-view') }}
                         @elseif($noti->notifiable_type == 'App\Booking')
-                            {{ route('get-roombooking-view') }}
+                            {{ route('get-booking-noti',['id' => $noti->notifiable_id]) }} 
+                             
                         @endif
                       ">
                           <i class="fa fa-check"></i>
                           <p>{{ json_decode($noti->data)->subject }}</p>
                       </a>
+                      
                       @endforeach
 
                   </div>

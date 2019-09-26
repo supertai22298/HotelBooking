@@ -25,7 +25,7 @@ class RoomBookingController extends Controller
 {
     public function View()
     {
-        $booking = Booking::orderBy('created_at', 'desc')->get();
+        $booking = Booking::orderBy('id','DESC')->get();
         return view('admin.roombooking.index', ['booking' => $booking]);
     }
 
