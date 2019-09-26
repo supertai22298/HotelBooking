@@ -27,7 +27,7 @@ class ComposerServiceProvider extends ServiceProvider
     {
         //
         View::composer('admin.layout.masterpage', function($view){
-            $notifications = Notification::where('read_at', null)->get();
+            $notifications = Notification::where('read_at', null)->orderBy('created_at', 'desc')->get();
             $view->with('notifications', $notifications);
         });
     }

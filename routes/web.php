@@ -196,6 +196,7 @@ Route::group(['prefix' => '/'], function () {
     Route::group(['prefix' => '/hotel'], function () {
         Route::get('/', 'PageHotelController@hotelGrid')->name('get-page-hotel-hotelGrid');
         Route::get('detail/{id}', 'PageHotelController@hotelDetail')->name('get-page-hotel-hotelDetail');
+        Route::post('booking/{id}', 'PageHotelController@hotelBooking')->name('post-page-hotel-booking');
     });
 
 

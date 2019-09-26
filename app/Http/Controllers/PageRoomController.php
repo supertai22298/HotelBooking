@@ -75,7 +75,7 @@ class PageRoomController extends Controller
                 }
                 $booking->save();
                    //tạo key subject
-                $booking->subject = "Khách hàng ".$booking->customer_name." vừa book";
+                $booking->subject = "Khách hàng ".$booking->customer_name." vừa book phòng";
                 //dât của noti
                 $data = array(
                     'name'      =>$booking->customer_name,
