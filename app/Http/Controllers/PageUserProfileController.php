@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\Helpers\Helper;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserProfileRequest;
+use App\Room;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -75,5 +77,29 @@ class PageUserProfileController extends Controller
         } else {
             return redirect('/login')->with('msg', 'Hãy đăng nhập để dùng tính năng này');
         }
+    }
+
+    public function viewBooking()
+    {
+        $id = Auth::user()->id;
+        $bookings = Booking::where('user_id',$id)
+                        ->orderBy('created_at','desc')
+                        ->get();
+        foreach ($bookings as $booking) {
+            $room_id = $booking->room_id;
+            $info_room = Room::find($room_id);
+            $booking->description .= "@!@" . $info_room->name . "@!@" . $info_room->price;
+        }
+        
+        // dd($bookings);
+
+        return view('page.user.booking_management',['bookings' => $bookings]);
+    }
+    public function updateBooking(Request $request, $id)
+    {
+        $booking = Booking::find($id);
+        $booking->booking_status_id = 3;
+        $booking->save();
+        return back()->with('msg','Hủy thành công');
     }
 }

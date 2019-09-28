@@ -231,9 +231,8 @@ Route::group(['prefix' => '/'], function () {
         Route::post('changePass', 'PageUserProfileController@updatePassword')->name('post-page-userProfile-updatePassword');
 
         // user booking
-        Route::group(['prefix' => 'booking'], function () {
-            //
-        });
+        Route::get('booking', 'PageUserProfileController@viewBooking')->name('get-page-booking-view');
+        Route::post('booking/cancle/{id}', 'PageUserProfileController@updateBooking')->name('post-page-booking-update');
     });
 
     Route::post('/subscribeEmail', 'PageContactController@subscribeEmail')->name('post-page-contact-subscribeEmail');
