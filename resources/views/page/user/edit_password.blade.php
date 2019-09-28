@@ -186,6 +186,7 @@
 
     $('.profile').removeClass('active');
     $('.changepass').addClass('active');
+    $('.booking-management').removeClass('active');
 
     </script>
 @endsection

@@ -355,6 +355,7 @@ Thông tin tài khoản
 
     $('.changepass').removeClass('active');
     $('.profile').addClass('active');
+    $('.booking-management').removeClass('active');
     </script>
     
 @endsection

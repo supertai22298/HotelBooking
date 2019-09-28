@@ -102,7 +102,7 @@
               <div class="user-menu dropdown-menu">
                     <a class="nav-link" href="{{route('get-admin-profile-view')}}"><i class="fa fa- user"></i>Quản lý tài khoản</a>
 
-                    <a class="nav-link" href="#"><i class="fa fa- user"></i>Thông báo<span class="count">13</span></a>
+                   {{-- <a class="nav-link" href="#"><i class="fa fa- user"></i>Thông báo<span class="count">13</span></a> --}}
 
                     <a class="nav-link" href="#"><i class="fa fa -cog"></i>Cài đặt</a>
 
