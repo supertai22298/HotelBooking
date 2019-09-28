@@ -196,4 +196,10 @@
             }
         }
     </script>
+    <script>
+        $(document).ready(function(){
+            $('.home-status').removeClass('active');
+            $('.room-status').addClass('active');
+        });
+    </script>
 @endsection
