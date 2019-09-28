@@ -8,7 +8,6 @@ use App\Blog;
 use App\Booking;
 use App\BookingStatus;
 use App\Hotel;
-use App\HotelUtillity;
 use App\Message;
 use App\Notifications\TestNotification;
 use App\Notification;
@@ -24,24 +23,13 @@ use App\RoomStatus;
 use App\RoomType;
 use Illuminate\Support\Facades\Auth;
 use App\Events\BookingNotiEvent;
+use App\HotelUtility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PageHotelController extends Controller
 {
     public function hotelGrid(){
-
-        // $hotels = DB::table('hotels')
-        //             ->join('rooms','rooms.hotel_id','=','hotels.id')
-        //             ->whereIn('city',['Hà Nội'],'and')
-        //             ->whereIn('hotel_star',['5'],'and')
-        //             ->where('rooms.price','<','500000')
-        //             ->orderBy('hotel_star')
-        //             ->get();
-        // dd($hotels);
-
-
-
         $hotels = Hotel::orderBy('created_at', 'desc')->simplePaginate(6);
         // add $hotels for sort
         $citys = Hotel::select('city')->groupBy('city')->orderBy('city','desc')->get();
