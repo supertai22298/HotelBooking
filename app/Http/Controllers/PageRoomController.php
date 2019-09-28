@@ -97,7 +97,10 @@ class PageRoomController extends Controller
                 //lưu thông báo booking
                 $booking->notify(new TestNotification($booking));
                 event(new BookingNotiEvent($data));
-
+                //add user_id
+                $currentNoti = Notification::where('notifiable_id',$booking->id)->first();
+                $currentNoti->user_id = Auth::user()->id;
+                $currentNoti->save();
                 
             } catch (Exception $e) {
                 return back()->with('errorSQL', 'Có lỗi xảy ra')->withInput();
