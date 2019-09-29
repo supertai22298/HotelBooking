@@ -19,8 +19,6 @@ class CreateNotificationsTable extends Migration
             $table->morphs('notifiable');
             $table->text('data');
             $table->timestamp('read_at')->nullable();
-            $table->timestamp('user_read_at')->nullable();
-            $table->int('user_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

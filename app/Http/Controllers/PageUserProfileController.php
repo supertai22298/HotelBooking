@@ -6,10 +6,8 @@ use App\Booking;
 use App\Helpers\Helper;
 use App\Http\Requests\ChangePasswordRequest;
 use App\Http\Requests\UserProfileRequest;
-use App\Notification;
 use App\Room;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -97,23 +95,7 @@ class PageUserProfileController extends Controller
 
         return view('page.user.booking_management',['bookings' => $bookings]);
     }
-    public function viewNotiBooking($id)
-    {
-        $bookings = Booking::where('id',$id)
-                        ->orderBy('created_at','desc')
-                        ->get();
-        foreach ($bookings as $booking) {
-            $room_id = $booking->room_id;
-            $info_room = Room::find($room_id);
-            $booking->description .= "@!@" . $info_room->name . "@!@" . $info_room->price;
-        }
-        $noti = Notification::where('notifiable_id',$id)->first();
-        $noti->user_read_at = Carbon::now()->toDateTimeString();
-        $noti->save();
-        // dd($bookings);
-
-        return view('page.user.booking_management',['bookings' => $bookings]);
-    }
+    
     public function updateBooking(Request $request, $id)
     {
         $booking = Booking::find($id);

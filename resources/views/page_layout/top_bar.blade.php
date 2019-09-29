@@ -35,29 +35,6 @@
                                 <a class="user-options" href="{{route('get-logout')}}"><i class="fa fa-power -off"></i>Logout</a>
                             </div>
                         </div>
-                        {{-- thông báo --}}
-                        @if(count($userNotifications) > 0)
-                        <div class="user-area dropdown float-right">
-                            <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fa fa-bell" style="color: white;font-size: 20px;padding: 5px 0px;"></i>
-                                <span class="count-noti">{{count($userNotifications)}}</span>
-                            </a>
-                
-                            <div class="user-menu dropdown-menu">
-                                    <p class="user-options">Bạn có {{ count($userNotifications) }} thông báo</p>
-                                    @foreach ($userNotifications as $noti)
-                                    <a class="user-options" href="
-                                      @if ($noti->notifiable_type == 'App\Booking')
-                                          {{ route('get-page-bookingnoti-view',['id' => $noti->notifiable_id]) }} 
-                                      @endif
-                                    ">
-                                        <p>{{ "Bạn vừa đặt phòng thành công" }}</p>
-                                    </a>
-                                    
-                                    @endforeach
-                            </div>
-                        </div>
-                        @endif
                         <li><a href="{{route('get-page-userProfile-view')}}"><span><i class="fa fa-lock"></i></span>Xin chào {{Auth::user()->username}}</a></li>
                         @else
                         <li><a href="{{ route('get-login')}}"><span><i class="fa fa-lock"></i></span>Đăng Nhập</a></li>

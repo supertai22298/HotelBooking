@@ -232,7 +232,6 @@ Route::group(['prefix' => '/'], function () {
 
         // user booking
         Route::get('booking', 'PageUserProfileController@viewBooking')->name('get-page-booking-view');
-        Route::get('booking/{id}', 'PageUserProfileController@viewNotiBooking')->name('get-page-bookingnoti-view');
         Route::post('booking/cancle/{id}', 'PageUserProfileController@updateBooking')->name('post-page-booking-update');
     });
 

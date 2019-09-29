@@ -30,7 +30,9 @@ Quên mật khẩu
                     <div class="col-sm-12">
                         <div class="flex-content">
                             <div class="custom-form custom-form-fields">
-                                <h3>Đăng ký tài khoản mới</h3>
+                                <h3>Quên mật khẩu</h3>
+                                <p>Chức năng này sẽ gửi lại mật khẩu mới về tài khoản email của bạn.</p>
+                                <p>Hãy chắc chắn rằng tài khoản email bạn nhập là tài khoản của bạn!</p>
                                 @if (session('msg'))
                                     <div class="alert alert-danger">
                                         {{session('msg')}}

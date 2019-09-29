@@ -97,20 +97,6 @@
             margin-left: -5px;
             color: #58595b;
         }
-        .count-noti{
-            background: red;
-            border-radius: 50%;
-            color: #fff;
-            font-size: 11px;
-            line-height: 10px;
-            right: 0px;
-            top: -2px;
-            min-width: 12px;
-            min-height: 12px;
-            position: absolute;
-            padding: 2px;
-            text-align: center;
-        }
     </style>
     @yield('css')
 </head>

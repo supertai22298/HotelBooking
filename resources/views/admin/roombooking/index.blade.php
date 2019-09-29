@@ -45,7 +45,7 @@
             <div class="card">
                 <div class="card-header">
                     <strong class="card-title">Bảng dữ liệu</strong>
-                    <a class="btn btn-primary btn-sm" href="{{ route('get-roombooking-create') }}">Thêm</a>
+                    <a class="btn btn-primary" href="{{ route('get-roombooking-create') }}"><span><i class="fa fa-plus"></i></span> Thêm</a>
                     @if (session('success'))
                       <div class="alert alert-success">
                           {{session('success')}}
@@ -63,8 +63,8 @@
                                 <th>Loại phòng</th>
                                 <th>Giá</th>
                                 <th>Khách đặt</th>
-                                <th>Tình trạng</th>
-                                <th></th>
+                                <th style="min-width: 109px;">Tình trạng</th>
+                                <th>Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -80,31 +80,31 @@
                                     <form id="data_status_edit" action="{{route('post-roombooking-edit-status', ['id'=>$bk->id])}}" method="post" enctype="multipart/form-data" class="form-horizontal" data-parsley-validate="">
                                     @csrf 
                                         @if($bk->booking_status_id==1)
-                                        <select name="booking_status" id="booking_status" class="form-control" data-parsley-trigger="change">                          
+                                        <select style="padding: 0px;font-size: 15px;" name="booking_status" id="booking_status" class="form-control" data-parsley-trigger="change">                          
                                             <option value="1" selected="selected" >Đã xác nhận</option>
                                             <option value="2">Chưa xác nhận</option>
                                         </select>
-                                        <button type="submit"  class="btn btn-primary">
+                                        <button type="submit"  class="btn btn-primary btn-sm btn-op">
                                             <i class="fa fa-dot-circle-o"></i> Lưu
                                         </button>
-                                        <button  class="btn btn-danger"></i> Hủy</button>
+                                        <button  class="btn btn-danger btn-sm btn-op"></i> Hủy</button>
                                         @else
-                                        <select name="booking_status" id="booking_status" class="form-control" data-parsley-trigger="change">                          
+                                        <select style="padding: 0px;font-size: 15px; " name="booking_status" id="booking_status" class="form-control" data-parsley-trigger="change">                          
                                             <option value="1"  >Đã xác nhận</option>
                                             <option value="2" selected="selected">Chưa xác nhận</option>
                                         </select>
-                                        <button type="submit"  class="btn btn-primary">
+                                        <button type="submit"  class="btn btn-primary btn-sm btn-op">
                                             <i class="fa fa-dot-circle-o"></i> Lưu
                                         </button>
-                                        <button type="reset" class="btn btn-danger"></i> Hủy</button>
+                                        <button type="reset" class="btn btn-danger btn-sm btn-op"></i> Hủy</button>
                                         @endif
                                     </form>
                                 </td>
                                 
                                 <td>
-                                    <a class="btn btn-success btn-sm" data-toggle="modal" data-target="#myModal{{$bk->id}}" data-backdrop="true" > <span><i class="fa fa-eye"></i></span> Xem</a>
-                                    <a class="btn btn-warning btn-sm" href="{{route('get-roombooking-edit', ['id'=>$bk->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                    <a class="btn btn-danger btn-sm" href="{{route('get-roombooking-delete', ['id'=>$bk->id])}}"> <span><i class="fa fa-trash"></i></span> Xoá</a>
+                                    <a class="btn btn-success btn-sm btn-op" data-toggle="modal" data-target="#myModal{{$bk->id}}" data-backdrop="true" > <span><i class="fa fa-eye"></i></span> Xem</a>
+                                    <a class="btn btn-warning btn-sm btn-op" href="{{route('get-roombooking-edit', ['id'=>$bk->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                    <a class="btn btn-danger btn-sm btn-op" href="{{route('get-roombooking-delete', ['id'=>$bk->id])}}"> <span><i class="fa fa-trash"></i></span> Xoá</a>
                                  </td>
                                  
                                 {{-- modal --}}
