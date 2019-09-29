@@ -79,9 +79,9 @@
                             <td>{{$room->discount}}</td>
                             <td>{{$room->room_status->room_status}}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{{route('get-room-detail', ['id'=>$room->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
-                          		<a class="btn btn-warning btn-sm" href="{{route('get-room-edit', ['id' => $room->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$room->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                <a class="btn btn-success btn-sm btn-op" href="{{route('get-room-detail', ['id'=>$room->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm btn-op" href="{{route('get-room-edit', ['id' => $room->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                <button class="btn btn-danger btn-sm btn-op"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$room->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
                                         
                                 <!-- model delete-->
                                 <div style="text-align: left;" id="myModal{{$room->id}}" class="modal fade" role="dialog">

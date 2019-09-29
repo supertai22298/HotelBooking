@@ -44,7 +44,7 @@
           <div class="card">
               <div class="card-header">
                   <strong class="card-title">Liên hệ</strong>
-                  <a href="{{ route('get-contact-sendMultiMail') }}" class="btn btn-primary" title="Gửi mail đến nhiều người">Gửi thông tin </a>
+                  <a href="{{ route('get-contact-sendMultiMail') }}" class="btn btn-primary" title="Gửi mail đến nhiều người"><span><i class="fa fa-share"></i></span> Gửi thông tin </a>
                   @if (session('noti'))
                     <small id="success" class="alert alert-success p-2">
                         {{session('noti')}}
@@ -60,7 +60,7 @@
                             <th>Email</th>
                             <th>Tiêu đề</th>
                             <th>Tình trạng</th>
-                            <th style="width: 159px !important;">Chức Năng</th>
+                            <th class="mw-241">Chức Năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -78,8 +78,8 @@
                             @endif
                         </td>
                           <td>
-                                <a class="btn btn-success btn-sm mr-2" href="" data-toggle="modal" data-target="#myModal-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
-                                <a class="btn btn-danger btn-sm mr-2" href="" data-toggle="modal" data-target="#myModalDel-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xóa</a>
+                                <a class="btn btn-success btn-sm mr-2 btn-op" href="" data-toggle="modal" data-target="#myModal-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xem</a>
+                                <a class="btn btn-danger btn-sm mr-2 btn-op" href="" data-toggle="modal" data-target="#myModalDel-{{$contact->id}}" data-backdrop="false"> <span><i class="fa fa-eye"></i></span> Xóa</a>
                                 <div class="modal fade" id="myModal-{{$contact->id}}">
                                 <div class="modal-dialog">
                                   <div class="modal-content">

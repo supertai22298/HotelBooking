@@ -64,6 +64,18 @@
 
    {{-- css --}}
     @yield('css')
+    <style>
+    .btn-op{
+        margin-top: 5px;
+        min-width: 65px;
+    }
+    .mw-241{
+        min-width: 199px !important;
+    }
+    #bootstrap-data-table{
+        /* text-align: center; */
+    }
+    </style>
 </head>
 
 <body>

@@ -61,7 +61,7 @@
                             <th>Thành phố</th>
                             <th>Số điện thoại</th>
                             <th>Email</th>
-                            <th>Chức năng</th>
+                            <th class="mw-241">Chức năng</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,9 +75,9 @@
                             <td>{{$hotel->main_phone_number}}</td>
                             <td>{{$hotel->company_email_address}}</td>
                             <td>
-                                <a class="btn btn-success btn-sm" href="{{route('get-hotel-detail', ['id'=>$hotel->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
-                          		<a class="btn btn-warning btn-sm" href="{{route('get-hotel-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
-                                <button class="btn btn-danger btn-sm"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$hotel->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
+                                <a class="btn btn-success btn-sm btn-op" href="{{route('get-hotel-detail', ['id'=>$hotel->id])}}" > <span><i class="fa fa-eye"></i></span> Xem</a>
+                          		<a class="btn btn-warning btn-sm btn-op" href="{{route('get-hotel-edit', ['id' => $hotel->id])}}"> <span><i class="fa fa-edit"></i></span> Sửa</a>
+                                <button class="btn btn-danger btn-sm btn-op"  data-backdrop="static" data-keyboard="false" data-toggle="modal" data-target="#myModal{{$hotel->id}}"> <span><i class="fa fa-trash"></i></span> Xoá</button>
                                         
                                 <!-- model delete-->
                                 <div style="text-align: left;" id="myModal{{$hotel->id}}" class="modal fade" role="dialog">

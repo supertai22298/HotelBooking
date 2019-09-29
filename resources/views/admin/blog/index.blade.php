@@ -85,7 +85,7 @@
                                 <th>Tác giả</th>
                                 <th>Hình ảnh</th>
                                 <th style="width: 57px !important;">Trạng thái</th>
-                                <th style="width: 159px !important;">Chức năng</th>
+                                <th class="mw-241">Chức năng</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -119,9 +119,9 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-success mt-1" href="" data-toggle="modal" data-target="#myModal{{$post->id}}" data-backdrop="true">Xem</a>
-                                    <a class="btn btn-warning mt-1" href="{{route('get-blog-edit',['id' => $post->id])}}">Sửa</a>
-                                    <a class="btn btn-danger mt-1" href="" data-toggle="modal" data-target="#myModalDel{{$post->id}}" data-backdrop="true">Xóa</a>
+                                    <a class="btn btn-success btn-sm btn-op" href="" data-toggle="modal" data-target="#myModal{{$post->id}}" data-backdrop="true"><span><i class="fa fa-eye"></i></span> Xem</a>
+                                    <a class="btn btn-warning btn-sm btn-op" href="{{route('get-blog-edit',['id' => $post->id])}}"><span><i class="fa fa-edit"></i></span> Sửa</a>
+                                    <a class="btn btn-danger btn-sm btn-op" href="" data-toggle="modal" data-target="#myModalDel{{$post->id}}" data-backdrop="true"><span><i class="fa fa-trash"></i></span> Xóa</a>
                                 </td>
                                 {{-- modal --}}
                                 <!-- The Modal -->
