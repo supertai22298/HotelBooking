@@ -14,7 +14,7 @@
         //Pusher.logToConsole = true;
       
         var count = ({{ count($notifications) }});
-        var pusher = new Pusher('1e5465089a2ab09260bb', {
+        var pusher = new Pusher('9493889f59e986b45a0d', {
             cluster: 'ap1',
             forceTLS: true
         });
